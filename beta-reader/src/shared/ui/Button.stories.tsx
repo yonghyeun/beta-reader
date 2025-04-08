@@ -105,7 +105,7 @@ export const Variants: Story = {
       </Button>
       <Button variant="secondary" size="md" rounded="md">
         <Icon />
-        secondary
+        Secondary
       </Button>
       <Button variant="white" size="md" rounded="md">
         <Icon />
@@ -141,7 +141,7 @@ export const Disabled: Story = {
       </Button>
       <Button variant="secondary" size="md" rounded="md" disabled>
         <Icon />
-        secondary
+        Secondary
       </Button>
       <Button variant="white" size="md" rounded="md" disabled>
         <Icon />
