@@ -27,4 +27,11 @@
 
   /* 폰트 속성 */
   --font-display: var(--font-pretenard), "sans";
+
+  /* border-radius */
+  --rounded-8: 0.5rem;
+  --rounded-12: 0.75rem;
+  --rounded-16: 1rem;
+  --rounded-20: 1.25rem;
+  --rounded-24: 1.5rem;
 }
