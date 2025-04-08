@@ -10,7 +10,7 @@ const preview: Preview = {
       values: [
         {
           name: "custom",
-          value: "#0000001A"
+          value: "#0000002A"
         }
       ]
     },

@@ -12,7 +12,7 @@ const buttonColors = {
   secondary:
     "bg-secondary-700 text-secondary-white hover:bg-secondary-600  disabled:bg-secondary-700 disabled:text-secondary-300 ",
   white:
-    "bg-secondary-white text-neuutral-black hover:bg-secondary-200 disabled:bg-secondary-700 disabled:text-secondary-300"
+    "bg-secondary-white text-secondary-black hover:bg-secondary-200 disabled:bg-secondary-700 disabled:text-secondary-300"
 } as const;
 
 const buttonRadius = {
