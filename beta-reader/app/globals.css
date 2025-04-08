@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme {
+  /* 컬러 */
   --color-primary-100: #d9dcff;
   --color-primary-200: #bac0ff;
   --color-primary-300: #919bff;
@@ -23,4 +24,7 @@
 
   --color-warning-100: #fe9189;
   --color-warning-200: #ff564a;
+
+  /* 폰트 속성 */
+  --font-display: var(--font-pretenard), "sans";
 }
