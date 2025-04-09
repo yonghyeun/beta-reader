@@ -47,26 +47,36 @@ const Wrapper: React.FC<DropDownProps> = ({
     };
   }, [isOpen]);
 
+  const dropdownId = `dropdown-${Math.random().toString(36).slice(2, 9)}`;
+
   return (
     <DropdownContext
       value={{
         closeDropDown
       }}
     >
-      <div ref={dropDownRef}>
-        {/* 토글 상부 */}
+      <div ref={dropDownRef} className="relative">
         <button
+          aria-haspopup="listbox"
+          aria-expanded={isOpen}
+          aria-controls={dropdownId}
           onClick={() => setIsOpen((prev) => !prev)}
           className="text-secondary-white bg-secondary-900 flex min-w-72 items-center justify-between rounded-[1.25rem] px-5 py-6"
         >
           <span>{value}</span>
-          <span>{isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}</span>
+          <span aria-hidden="true">
+            {isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
+          </span>
         </button>
-        {/* 내부 아이템 */}
+
         {isOpen && (
-          <div className="text-secondary-white bg-secondary-800 absolute top-full mt-2 flex min-w-72 flex-col gap-1 rounded-[1.25rem] p-5">
+          <ul
+            id={dropdownId}
+            role="listbox"
+            className="text-secondary-white bg-secondary-800 absolute top-full mt-2 flex min-w-72 flex-col gap-1 rounded-[1.25rem] p-5"
+          >
             {children}
-          </div>
+          </ul>
         )}
       </div>
     </DropdownContext>
@@ -82,14 +92,16 @@ const Item: React.FC<ItemProps> = ({ value, children }) => {
   const { closeDropDown } = useDropdownContext();
 
   return (
-    <div
-      className="min-w-[15.5rem] rounded-xl px-[0.815rem] py-2.5 hover:bg-[#5E6CFF66]"
+    <li
+      role="option"
+      aria-selected={false}
+      className="min-w-[15.5rem] cursor-pointer rounded-xl px-[0.815rem] py-2.5 hover:bg-[#5E6CFF66]"
       onClick={() => {
         closeDropDown(value);
       }}
     >
       {children}
-    </div>
+    </li>
   );
 };
 
