@@ -36,7 +36,7 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => (
   <button
-    className={`flex items-center ${buttonSize[size]} ${buttonColors[variant]} ${buttonRadius[rounded]} ${className}`}
+    className={`flex items-center justify-center ${buttonSize[size]} ${buttonColors[variant]} ${buttonRadius[rounded]} ${className}`}
     {...props}
   >
     {children}
