@@ -4,7 +4,7 @@ import { Radio, RadioGroup } from "./Form";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
-  title: "UI/Form/Radio",
+  title: "Shared/Form/Radio",
   component: Radio
 } satisfies Meta<typeof Radio>;
 
