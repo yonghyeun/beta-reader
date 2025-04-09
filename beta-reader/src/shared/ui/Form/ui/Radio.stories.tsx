@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { Radio, RadioGroup } from "./Form";
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -60,4 +62,33 @@ export const HorizontalGroup: Story = {
       <Radio value="horizontal_option3" label="옵션 C" />
     </RadioGroup>
   )
+};
+
+export const WithEffect: Story = {
+  render: () => {
+    const [selectedValue, setSelectedValue] = useState("effect_option1");
+
+    return (
+      <div className="flex flex-col gap-4">
+        <div>
+          <p>
+            현재 선택된 값: <strong>{selectedValue}</strong>
+          </p>
+        </div>
+        <RadioGroup
+          name="WithEffectRadioStory"
+          value={selectedValue}
+          effect={(value) => {
+            setSelectedValue(value);
+            console.log(`선택된 옵션이 변경되었습니다: ${value}`);
+          }}
+          className="flex flex-col gap-2"
+        >
+          <Radio value="effect_option1" label="첫 번째 옵션" />
+          <Radio value="effect_option2" label="두 번째 옵션" />
+          <Radio value="effect_option3" label="세 번째 옵션" />
+        </RadioGroup>
+      </div>
+    );
+  }
 };

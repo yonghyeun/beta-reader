@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { RadioGroupContext, useRadioGroupContext } from "../model";
 import { CheckIcon } from "@/public/assets";
@@ -10,6 +10,7 @@ interface RadioGroupProps extends React.InputHTMLAttributes<HTMLInputElement> {
   value: string;
   children: React.ReactNode;
   className?: string;
+  effect?: (value: string) => void;
 }
 
 export const RadioGroup: React.FC<RadioGroupProps> = ({
@@ -17,9 +18,16 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
   value,
   children,
   className,
+  effect,
   ...props
 }) => {
   const [selectedValue, setSelectedValue] = useState<string>(() => value);
+
+  useEffect(() => {
+    if (effect) {
+      effect(selectedValue);
+    }
+  }, [selectedValue]);
 
   return (
     <fieldset className={className}>
