@@ -1,4 +1,7 @@
+import { createElement } from "react";
+
 import "../app/globals.css";
+import "./storybook.css";
 import type { Preview } from "@storybook/react";
 
 const preview: Preview = {
@@ -20,7 +23,16 @@ const preview: Preview = {
         date: /Date$/i
       }
     }
-  }
+  },
+  decorators: [
+    (Story) => {
+      return createElement(
+        "div",
+        { className: "decorator" },
+        createElement(Story)
+      );
+    }
+  ]
 };
 
 export default preview;
