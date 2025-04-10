@@ -17,21 +17,6 @@ const meta: Meta<typeof Form> = {
 export default meta;
 type Story = StoryObj<typeof Form>;
 
-export const Default: Story = {
-  render: () => (
-    <Form onSubmit={(e) => e.preventDefault()}>
-      <div className="flex flex-col gap-4">
-        <input
-          type="text"
-          placeholder="이름을 입력하세요"
-          className="bg-secondary-800 text-secondary-white rounded-xl p-3"
-        />
-        <Button type="submit">제출하기</Button>
-      </div>
-    </Form>
-  )
-};
-
 const GENRE_ARRAY = [
   "로맨스",
   "로맨스 판타지",
@@ -45,18 +30,17 @@ const GENRE_ARRAY = [
   "드라마"
 ];
 
-export const WithContainer: Story = {
+export const Default: Story = {
   render: () => (
     <Form>
       <Form.Container>
         <RadioGroup
           name="genre"
           value=""
-          className="flex w-full flex-col gap-4"
           onRadioGroupChange={(value) => console.log(value)}
         >
           <legend className="text-title-4-bold">장르</legend>
-          <div className="grid grid-cols-5 gap-4">
+          <div className="mt-4 grid grid-cols-5 gap-4">
             {GENRE_ARRAY.map((item) => (
               <Radio value={item} key={item} label={item} />
             ))}
