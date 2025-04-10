@@ -1,7 +1,7 @@
 import { type VariantProps, cva } from "class-variance-authority";
 import React from "react";
 
-import { CloseIcon } from "@/public/assets";
+import { CloseIcon } from "../assets";
 
 const tagVariants = cva(
   "flex justify-center items-center gap-1 px-3 py-1.5 text-secondary-white text-caption-1-medium",

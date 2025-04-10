@@ -39,7 +39,7 @@ export const Default: Story = {
 export const Rounded: Story = {
   args: {
     children: "둥근 태그",
-    rounded: true
+    rounded: "full"
   }
 };
 
@@ -53,7 +53,7 @@ export const WithOnClick: Story = {
 export const RoundedWithOnClick: Story = {
   args: {
     children: "둥근 클릭 가능한 태그",
-    rounded: true,
+    rounded: "full",
     onClick: () => alert("둥근 태그가 클릭되었습니다")
   }
 };
@@ -69,9 +69,9 @@ export const Multiple: Story = {
   render: () => (
     <div className="flex flex-wrap gap-2">
       <Tag>태그 1</Tag>
-      <Tag rounded>태그 2</Tag>
+      <Tag rounded="full">태그 2</Tag>
       <Tag onClick={() => console.log("clicked")}>태그 3</Tag>
-      <Tag rounded onClick={() => console.log("clicked")}>
+      <Tag rounded="full" onClick={() => console.log("clicked")}>
         태그 4
       </Tag>
     </div>

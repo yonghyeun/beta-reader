@@ -2,7 +2,7 @@ import { useMemo, useRef } from "react";
 
 import { useDropdown } from "../lib";
 import { DropdownContext, useDropdownContext } from "../model";
-import { ArrowDownIcon, ArrowUpIcon } from "@/public/assets";
+import { ArrowDownIcon, ArrowUpIcon } from "@/src/shared/assets";
 
 interface DropDownProps {
   initialValue?: string;
