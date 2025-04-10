@@ -125,6 +125,22 @@ export const NoLabelTextArea: Story = {
   )
 };
 
+export const TextAreaWithResize: Story = {
+  render: () => (
+    <TextField className="flex gap-5">
+      <TextField.Label htmlFor="resizable-textarea">
+        크기 조절 가능
+      </TextField.Label>
+      <TextField.TextArea
+        id="resizable-textarea"
+        placeholder="크기 조절이 가능합니다"
+        rows={4}
+        resize
+      />
+    </TextField>
+  )
+};
+
 export const WithAriaDescribedBy: Story = {
   render: () => (
     <div>

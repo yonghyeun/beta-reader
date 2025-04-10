@@ -1,4 +1,4 @@
-import { cva } from "class-variance-authority";
+import { VariantProps, cva } from "class-variance-authority";
 import { useCallback, useState } from "react";
 
 import {
@@ -72,10 +72,25 @@ const Input: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = ({
   );
 };
 
-const TextArea: React.FC<React.TextareaHTMLAttributes<HTMLTextAreaElement>> = ({
-  className = "",
-  ...props
-}) => {
+const textAreaVariant = cva(
+  "text-body-1-medium text-secondary-white placeholder:text-secondary-200 bg-transparent selection:bg-[#B3BAFF]/30 focus:outline-none",
+  {
+    variants: {
+      resize: {
+        true: "",
+        false: "resize-none"
+      }
+    },
+    defaultVariants: {
+      resize: false
+    }
+  }
+);
+
+const TextArea: React.FC<
+  React.TextareaHTMLAttributes<HTMLTextAreaElement> &
+    VariantProps<typeof textAreaVariant>
+> = ({ className = "", resize, ...props }) => {
   const { toggleFocus } = useTextFieldContext();
 
   return (
@@ -83,7 +98,10 @@ const TextArea: React.FC<React.TextareaHTMLAttributes<HTMLTextAreaElement>> = ({
       {...props}
       onFocus={toggleFocus("on")}
       onBlur={toggleFocus("off")}
-      className={`text-body-1-medium text-secondary-white placeholder:text-secondary-200 resize-none bg-transparent selection:bg-[#B3BAFF]/30 focus:outline-none ${className}`}
+      className={textAreaVariant({
+        className,
+        resize
+      })}
     />
   );
 };
