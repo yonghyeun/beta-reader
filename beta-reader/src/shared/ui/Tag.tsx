@@ -8,7 +8,7 @@ interface TagProps {
 }
 
 const paddingClassName = "px-3 py-1.5";
-const backgrondClassName = "bg-secondary-700 hover:bg-secondary-500";
+const backgroundClassName = "bg-secondary-700 hover:bg-secondary-500";
 const textClassName = "text-secondary-white text-caption-1-medium";
 
 const baseClassName = `
