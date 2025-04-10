@@ -34,15 +34,27 @@ type Story = StoryObj<typeof List>;
 export const Default: Story = {
   render: () => (
     <List>
-      <List.Item size="md" isActivate={false}>
+      <List.Item
+        size="md"
+        isActivate={false}
+        className="flex justify-between gap-2.5"
+      >
         <span>일반 리스트 아이템</span>
         <MoreIcon />
       </List.Item>
-      <List.Item size="md" isActivate={false}>
+      <List.Item
+        size="md"
+        isActivate={false}
+        className="flex justify-between gap-2.5"
+      >
         <span>두 번째 아이템</span>
         <MoreIcon />
       </List.Item>
-      <List.Item size="md" isActivate={false}>
+      <List.Item
+        size="md"
+        isActivate={false}
+        className="flex justify-between gap-2.5"
+      >
         <span>세 번째 아이템</span>
         <MoreIcon />
       </List.Item>
@@ -53,15 +65,27 @@ export const Default: Story = {
 export const WithActiveItem: Story = {
   render: () => (
     <List>
-      <List.Item size="md" isActivate={true}>
+      <List.Item
+        size="md"
+        isActivate={true}
+        className="flex justify-between gap-2.5"
+      >
         <span>활성화된 아이템</span>
         <MoreIcon />
       </List.Item>
-      <List.Item size="md" isActivate={false}>
+      <List.Item
+        size="md"
+        isActivate={false}
+        className="flex justify-between gap-2.5"
+      >
         <span>일반 아이템</span>
         <MoreIcon />
       </List.Item>
-      <List.Item size="md" isActivate={false}>
+      <List.Item
+        size="md"
+        isActivate={false}
+        className="flex justify-between gap-2.5"
+      >
         <span>일반 아이템</span>
         <MoreIcon />
       </List.Item>
@@ -72,11 +96,19 @@ export const WithActiveItem: Story = {
 export const SmallSize: Story = {
   render: () => (
     <List>
-      <List.Item size="sm" isActivate={false}>
+      <List.Item
+        size="sm"
+        isActivate={false}
+        className="flex justify-between gap-2.5"
+      >
         <span>작은 크기 아이템</span>
         <MoreIcon />
       </List.Item>
-      <List.Item size="sm" isActivate={false}>
+      <List.Item
+        size="sm"
+        isActivate={false}
+        className="flex justify-between gap-2.5"
+      >
         <span>작은 크기 아이템</span>
         <MoreIcon />
       </List.Item>
@@ -90,7 +122,7 @@ export const CustomClassName: Story = {
       <List.Item
         size="md"
         isActivate={false}
-        className="text-secondary-800 border border-gray-200"
+        className="text-secondary-800 flex justify-between gap-2.5 border border-gray-200"
       >
         <span>커스텀 클래스가 적용된 아이템</span>
         <MoreIcon />
@@ -98,7 +130,7 @@ export const CustomClassName: Story = {
       <List.Item
         size="md"
         isActivate={true}
-        className="text-secondary-800 border border-gray-200"
+        className="text-secondary-800 flex justify-between gap-2.5 border border-gray-200"
       >
         <span>활성화된 커스텀 아이템</span>
         <MoreIcon />
