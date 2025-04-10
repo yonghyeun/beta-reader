@@ -12,6 +12,7 @@
     "chromatic": "npx chromatic --project-token=chpt_1094b5e8050f39d"
   },
   "dependencies": {
+    "class-variance-authority": "^0.7.1",
     "next": "15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

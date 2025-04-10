@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-import { Checkbox, CheckboxGroup } from "./Form";
+import { Checkbox, CheckboxGroup } from "./Checkbox";
 import { action } from "@storybook/addon-actions";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
-  title: "UI/Form/Checkbox",
+  title: "Shared/Form/Checkbox",
   component: Checkbox
 } satisfies Meta<typeof Checkbox>;
 
