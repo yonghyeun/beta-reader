@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { TextField } from "./TextField";
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -123,6 +125,29 @@ export const NoLabelTextArea: Story = {
       />
     </TextField>
   )
+};
+
+export const WithOnChangeTracking: Story = {
+  render: () => {
+    const [inputValue, setInputValue] = useState("");
+
+    return (
+      <div className="flex flex-col gap-4">
+        <TextField className="flex gap-5">
+          <TextField.Label htmlFor="tracked-input">상태 추적</TextField.Label>
+          <TextField.Input
+            id="tracked-input"
+            placeholder="텍스트를 입력해보세요"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+          />
+        </TextField>
+        <div className="text-sm">
+          현재 입력 값: <span className="font-semibold">{inputValue}</span>
+        </div>
+      </div>
+    );
+  }
 };
 
 export const TextAreaWithResize: Story = {
