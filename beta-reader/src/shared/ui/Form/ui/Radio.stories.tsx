@@ -5,7 +5,7 @@ import { action } from "@storybook/addon-actions";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
-  title: "UI/Form/Radio",
+  title: "Shared/Form/Radio",
   component: Radio
 } satisfies Meta<typeof Radio>;
 
