@@ -1,2 +1,2 @@
 export * from "./useRadioGroupContext";
-export * from "./useCheckbocGroupContext";
+export * from "./useCheckboxGroupContext";
