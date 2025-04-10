@@ -11,7 +11,7 @@ export const Wrapper: React.FC<ListProps> = ({ children, className = "" }) => {
 
 const listItemVariants = cva(" rounded-xl hover:bg-[#FFFFFF1A]", {
   variants: {
-    isActivate: {
+    isActive: {
       true: "bg-secondary-700",
       false: "bg-transparent"
     },
@@ -24,12 +24,12 @@ const listItemVariants = cva(" rounded-xl hover:bg-[#FFFFFF1A]", {
 
 export const Item: React.FC<
   ListProps & VariantProps<typeof listItemVariants>
-> = ({ children, className = "", isActivate, size }) => {
+> = ({ children, className = "", isActive, size }) => {
   return (
     <li
       className={listItemVariants({
         className,
-        isActivate,
+        isActive,
         size
       })}
     >
