@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef } from "react";
 
+import { useDropdown } from "../lib";
 import { DropdownContext, useDropdownContext } from "../model";
 import { ArrowDownIcon, ArrowUpIcon } from "@/public/assets";
 
@@ -14,38 +15,12 @@ const Wrapper: React.FC<DropDownProps> = ({
   onDropdownChange,
   initialValue = ""
 }) => {
-  const [value, setValue] = useState<string>(() => initialValue || "");
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const dropDownRef = useRef<HTMLDivElement>(null);
-
-  const closeDropDown = useCallback((value: string) => {
-    setValue(value);
-    setIsOpen(false);
-    onDropdownChange?.(value);
-  }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropDownRef.current &&
-        !dropDownRef.current.contains(event.target as Node)
-      ) {
-        console.log("clicked outside");
-
-        setIsOpen(false);
-      }
-    };
-
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen]);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const { value, closeDropDown, isOpen, openDropdown } = useDropdown(
+    dropdownRef,
+    initialValue,
+    onDropdownChange
+  );
 
   const dropdownId = useMemo(
     () => `dropdown-${Math.random().toString(36).slice(2, 9)}`,
@@ -58,12 +33,12 @@ const Wrapper: React.FC<DropDownProps> = ({
         closeDropDown
       }}
     >
-      <div ref={dropDownRef} className="relative">
+      <div ref={dropdownRef} className="relative">
         <button
           aria-haspopup="listbox"
           aria-expanded={isOpen}
           aria-controls={dropdownId}
-          onClick={() => setIsOpen((prev) => !prev)}
+          onClick={() => (isOpen ? closeDropDown(value) : openDropdown())}
           className="text-secondary-white bg-secondary-900 flex min-w-72 items-center justify-between rounded-[1.25rem] px-5 py-6"
         >
           <span>{value}</span>
