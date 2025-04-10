@@ -9,8 +9,8 @@ interface RadioGroupProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
   value: string;
   children: React.ReactNode;
+  onRadioGroupChange: (value: string) => void;
   className?: string;
-  effect?: (value: string) => void;
 }
 
 export const RadioGroup: React.FC<RadioGroupProps> = ({
@@ -18,16 +18,15 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
   value,
   children,
   className,
-  effect,
+  onRadioGroupChange,
   ...props
 }) => {
   const [selectedValue, setSelectedValue] = useState<string>(() => value);
 
-  useEffect(() => {
-    if (effect) {
-      effect(selectedValue);
-    }
-  }, [selectedValue]);
+  const _onRadioGroupChange = (value: string) => {
+    setSelectedValue(value);
+    onRadioGroupChange(value);
+  };
 
   return (
     <fieldset className={className}>
@@ -35,7 +34,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
         value={{
           name,
           value: selectedValue,
-          onRadioChange: setSelectedValue,
+          onRadioChange: _onRadioGroupChange,
           ...props
         }}
       >
@@ -48,9 +47,14 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
 interface RadioProps {
   value: string;
   label?: string;
+  className?: string;
 }
 
-export const Radio: React.FC<RadioProps> = ({ value, label }) => {
+export const Radio: React.FC<RadioProps> = ({
+  value,
+  label,
+  className = ""
+}) => {
   const {
     value: radioGoupValue,
     name,
@@ -70,7 +74,7 @@ export const Radio: React.FC<RadioProps> = ({ value, label }) => {
   return (
     <label
       htmlFor={value}
-      className="hover:bg-secondary-200 flex cursor-pointer items-center justify-center gap-1 rounded-full px-2 py-1"
+      className={`hover:bg-secondary-200 flex w-fit cursor-pointer items-center justify-center gap-1 rounded-full px-2 py-1 ${className}`}
     >
       {/* 
         시각적 라디오 버튼 표시 - 실제 input은 sr-only로 화면에 보이지 않지만
