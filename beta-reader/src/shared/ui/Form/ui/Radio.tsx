@@ -49,7 +49,7 @@ interface RadioProps {
   className?: string;
 }
 
-const radioInputVariants = cva("h-6 w-6 rounded-full transition-colors", {
+const radioInputVariants = cva("h-5 w-5 p-0.5 rounded-full transition-colors", {
   variants: {
     isChecked: {
       true: "bg-primary-300 flex items-center justify-center",

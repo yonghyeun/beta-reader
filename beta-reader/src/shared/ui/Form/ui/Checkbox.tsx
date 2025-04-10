@@ -54,7 +54,7 @@ interface CheckboxProps {
   className?: string;
 }
 
-const checkboxVariants = cva("h-6 w-6 rounded-sm transition-colors", {
+const checkboxVariants = cva("h-5 w-5 p-0.5 rounded-sm transition-colors", {
   variants: {
     isChecked: {
       true: "bg-primary-300 flex items-center justify-center",
