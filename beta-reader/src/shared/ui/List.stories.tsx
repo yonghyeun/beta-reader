@@ -1,8 +1,9 @@
 import { List } from "./List";
+import { MoreIcon } from "@/public/assets";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof List> = {
-  title: "UI/List",
+  title: "shared/List",
   component: List,
   parameters: {
     layout: "centered"
@@ -34,16 +35,16 @@ export const Default: Story = {
   render: () => (
     <List>
       <List.Item size="md" isActivate={false}>
-        <div>일반 리스트 아이템</div>
-        <div>추가 정보</div>
+        <span>일반 리스트 아이템</span>
+        <MoreIcon />
       </List.Item>
       <List.Item size="md" isActivate={false}>
-        <div>두 번째 아이템</div>
-        <div>추가 정보</div>
+        <span>두 번째 아이템</span>
+        <MoreIcon />
       </List.Item>
       <List.Item size="md" isActivate={false}>
-        <div>세 번째 아이템</div>
-        <div>추가 정보</div>
+        <span>세 번째 아이템</span>
+        <MoreIcon />
       </List.Item>
     </List>
   )
@@ -53,16 +54,16 @@ export const WithActiveItem: Story = {
   render: () => (
     <List>
       <List.Item size="md" isActivate={true}>
-        <div>활성화된 아이템</div>
-        <div>추가 정보</div>
+        <span>활성화된 아이템</span>
+        <MoreIcon />
       </List.Item>
       <List.Item size="md" isActivate={false}>
-        <div>일반 아이템</div>
-        <div>추가 정보</div>
+        <span>일반 아이템</span>
+        <MoreIcon />
       </List.Item>
       <List.Item size="md" isActivate={false}>
-        <div>일반 아이템</div>
-        <div>추가 정보</div>
+        <span>일반 아이템</span>
+        <MoreIcon />
       </List.Item>
     </List>
   )
@@ -72,12 +73,12 @@ export const SmallSize: Story = {
   render: () => (
     <List>
       <List.Item size="sm" isActivate={false}>
-        <div>작은 크기 아이템</div>
-        <div>추가 정보</div>
+        <span>작은 크기 아이템</span>
+        <MoreIcon />
       </List.Item>
       <List.Item size="sm" isActivate={false}>
-        <div>작은 크기 아이템</div>
-        <div>추가 정보</div>
+        <span>작은 크기 아이템</span>
+        <MoreIcon />
       </List.Item>
     </List>
   )
@@ -91,16 +92,16 @@ export const CustomClassName: Story = {
         isActivate={false}
         className="text-secondary-800 border border-gray-200"
       >
-        <div>커스텀 클래스가 적용된 아이템</div>
-        <div>추가 정보</div>
+        <span>커스텀 클래스가 적용된 아이템</span>
+        <MoreIcon />
       </List.Item>
       <List.Item
         size="md"
         isActivate={true}
         className="text-secondary-800 border border-gray-200"
       >
-        <div>활성화된 커스텀 아이템</div>
-        <div>추가 정보</div>
+        <span>활성화된 커스텀 아이템</span>
+        <MoreIcon />
       </List.Item>
     </List>
   )
