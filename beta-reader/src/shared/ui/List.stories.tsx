@@ -1,5 +1,5 @@
+import { MoreIcon } from "../assets";
 import { List } from "./List";
-import { MoreIcon } from "@/public/assets";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof List> = {

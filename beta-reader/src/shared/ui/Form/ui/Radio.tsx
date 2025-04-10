@@ -2,7 +2,7 @@ import { cva } from "class-variance-authority";
 import React, { useState } from "react";
 
 import { RadioGroupContext, useRadioGroupContext } from "../model";
-import { CheckIcon } from "@/public/assets";
+import { CheckIcon } from "@/src/shared/assets";
 
 interface RadioGroupProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
