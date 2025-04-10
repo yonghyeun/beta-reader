@@ -4,10 +4,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 const meta: Meta<typeof Tag> = {
   title: "Shared/Tag",
   component: Tag,
-  parameters: {
-    layout: "centered"
-  },
-
   argTypes: {
     rounded: {
       control: {
@@ -22,9 +18,7 @@ const meta: Meta<typeof Tag> = {
     onClick: {
       action: "clicked"
     }
-  },
-
-  tags: ["autodocs"]
+  }
 };
 
 export default meta;
