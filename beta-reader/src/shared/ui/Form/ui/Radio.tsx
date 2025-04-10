@@ -67,12 +67,12 @@ export const Radio: React.FC<RadioProps> = ({
   className = ""
 }) => {
   const {
-    value: radioGoupValue,
+    value: radioGroupValue,
     name,
     onRadioChange,
     ...props
   } = useRadioGroupContext();
-  const isChecked = radioGoupValue === value;
+  const isChecked = radioGroupValue === value;
 
   /**
    * 라디오 버튼 상태 변경을 처리하는 핸들러
