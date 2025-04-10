@@ -1,35 +1,53 @@
+import { type VariantProps, cva } from "class-variance-authority";
+import React from "react";
+
 import { CloseIcon } from "@/public/assets";
 
-interface TagProps {
-  rounded?: boolean;
+const tagVariants = cva(
+  "flex justify-center items-center gap-1 px-3 py-1.5 text-secondary-white text-caption-1-medium",
+  {
+    variants: {
+      variant: {
+        default: "bg-secondary-700 hover:bg-secondary-500",
+        interactive:
+          "bg-secondary-700 hover:bg-secondary-500 border-secondary-600 hover:border-secondary-500 cursor-pointer border"
+      },
+      rounded: {
+        default: "rounded-lg",
+        full: "rounded-full"
+      }
+    },
+    defaultVariants: {
+      variant: "default",
+      rounded: "default"
+    }
+  }
+);
+
+interface TagProps extends VariantProps<typeof tagVariants> {
   className?: string;
   children?: React.ReactNode;
   onClick?: () => void;
 }
 
-const paddingClassName = "px-3 py-1.5";
-const backgroundClassName = "bg-secondary-700 hover:bg-secondary-500";
-const textClassName = "text-secondary-white text-caption-1-medium";
-
-const baseClassName = `
-  ${paddingClassName} 
-  ${backgrondClassName} 
-  ${textClassName}
-  flex justify-center items-center gap-1
-`;
-
 export const Tag: React.FC<TagProps> = ({
   rounded,
-  className,
+  className = "",
   children,
   onClick
 }) => {
-  const roundClassName = rounded ? "rounded-full" : "rounded-lg";
+  // onClick이 있으면 variant를 interactive로 설정
+  const variant = onClick ? "interactive" : "default";
+  const roundedValue = rounded ? "full" : "default";
 
   if (onClick) {
     return (
       <button
-        className={`${baseClassName} ${roundClassName} ${className} border-secondary-600 hover:border-secondary-500 cursor-pointer border`}
+        className={tagVariants({
+          variant,
+          rounded: roundedValue,
+          class: className
+        })}
         onClick={onClick}
         type="button"
         aria-label="tag"
@@ -41,7 +59,13 @@ export const Tag: React.FC<TagProps> = ({
   }
 
   return (
-    <span className={`${baseClassName} ${roundClassName} ${className}`}>
+    <span
+      className={tagVariants({
+        variant,
+        rounded: roundedValue,
+        class: className
+      })}
+    >
       {children}
     </span>
   );
