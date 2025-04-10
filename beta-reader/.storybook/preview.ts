@@ -13,7 +13,7 @@ const preview: Preview = {
       values: [
         {
           name: "custom",
-          value: "#0000002A"
+          value: "#222222"
         }
       ]
     },
@@ -28,7 +28,7 @@ const preview: Preview = {
     (Story) => {
       return createElement(
         "div",
-        { className: "decorator" },
+        { className: "decorator text-secondary-white" },
         createElement(Story)
       );
     }
