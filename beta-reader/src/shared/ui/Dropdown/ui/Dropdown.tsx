@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { DropdownContext, useDropdownContext } from "../model";
 import { ArrowDownIcon, ArrowUpIcon } from "@/public/assets";
@@ -47,7 +47,10 @@ const Wrapper: React.FC<DropDownProps> = ({
     };
   }, [isOpen]);
 
-  const dropdownId = `dropdown-${Math.random().toString(36).slice(2, 9)}`;
+  const dropdownId = useMemo(
+    () => `dropdown-${Math.random().toString(36).slice(2, 9)}`,
+    []
+  );
 
   return (
     <DropdownContext
