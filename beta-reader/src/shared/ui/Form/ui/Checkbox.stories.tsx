@@ -156,7 +156,7 @@ export const MultipleCustomStyles: Story = {
     <CheckboxGroup
       name="MultipleCustomStylesStory"
       value={["custom_style2"]}
-      className="flex flex-col gap-3"
+      className="text-secondary-400 flex flex-col gap-3"
       onCheckboxGroupChange={action("커스텀 체크박스 그룹 값 변경")}
     >
       <Checkbox
