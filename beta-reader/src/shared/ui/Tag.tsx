@@ -4,13 +4,13 @@ import React from "react";
 import { CloseIcon } from "../assets";
 
 const tagVariants = cva(
-  "flex justify-center items-center gap-1 px-3 py-1.5 text-secondary-white text-caption-1-medium",
+  "bg-secondary-700  flex justify-center items-center gap-1 px-3 py-1.5 text-secondary-white text-caption-1-medium",
   {
     variants: {
       variant: {
-        default: "bg-secondary-700 hover:bg-secondary-500",
+        default: "",
         interactive:
-          "bg-secondary-700 hover:bg-secondary-500 border-secondary-600 hover:border-secondary-500 cursor-pointer border"
+          "border-secondary-600 hover:border-secondary-500 cursor-pointer border"
       },
       rounded: {
         default: "rounded-lg",
@@ -24,7 +24,7 @@ const tagVariants = cva(
   }
 );
 
-interface TagProps extends VariantProps<typeof tagVariants> {
+interface TagProps extends Omit<VariantProps<typeof tagVariants>, "variant"> {
   className?: string;
   children?: React.ReactNode;
   onClick?: () => void;
@@ -38,16 +38,17 @@ export const Tag: React.FC<TagProps> = ({
 }) => {
   // onClick이 있으면 variant를 interactive로 설정
   const variant = onClick ? "interactive" : "default";
-  const roundedValue = rounded ? "full" : "default";
 
-  if (onClick) {
+  const _className = tagVariants({
+    variant,
+    rounded,
+    class: className
+  });
+
+  if (variant === "interactive") {
     return (
       <button
-        className={tagVariants({
-          variant,
-          rounded: roundedValue,
-          class: className
-        })}
+        className={_className}
         onClick={onClick}
         type="button"
         aria-label="tag"
@@ -58,15 +59,5 @@ export const Tag: React.FC<TagProps> = ({
     );
   }
 
-  return (
-    <span
-      className={tagVariants({
-        variant,
-        rounded: roundedValue,
-        class: className
-      })}
-    >
-      {children}
-    </span>
-  );
+  return <span className={_className}>{children}</span>;
 };
