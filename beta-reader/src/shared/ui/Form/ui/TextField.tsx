@@ -12,7 +12,7 @@ interface TextFieldProps {
 }
 
 const textFieldWrapperVariant = cva(
-  "bg-secondary-900 rounded-[1.25rem] px-7 py-6",
+  "bg-secondary-900 rounded-[1.25rem] px-7 py-6 ",
   {
     variants: {
       isFocused: {
@@ -67,7 +67,7 @@ const Input: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = ({
       {...props}
       onFocus={toggleFocus("on")}
       onBlur={toggleFocus("off")}
-      className={`text-title-4-bold text-secondary-200 placeholder:text-secondary-200 focus:outline-none ${className}`}
+      className={`text-title-4-bold text-secondary-200 placeholder:text-secondary-200 selection:bg-[#B3BAFF]/30 focus:outline-none ${className}`}
     />
   );
 };
@@ -83,7 +83,7 @@ const TextArea: React.FC<React.TextareaHTMLAttributes<HTMLTextAreaElement>> = ({
       {...props}
       onFocus={toggleFocus("on")}
       onBlur={toggleFocus("off")}
-      className={`text-body-1-medium text-secondary-white placeholder:text-secondary-200 resize-none bg-transparent focus:outline-none ${className}`}
+      className={`text-body-1-medium text-secondary-white placeholder:text-secondary-200 resize-none bg-transparent selection:bg-[#B3BAFF]/30 focus:outline-none ${className}`}
     />
   );
 };
