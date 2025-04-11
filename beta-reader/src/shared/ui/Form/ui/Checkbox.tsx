@@ -13,7 +13,7 @@ interface CheckboxGroupProps
   className?: string;
 }
 
-const Wrapper: React.FC<CheckboxGroupProps> = ({
+const CheckboxContainer: React.FC<CheckboxGroupProps> = ({
   name,
   value,
   children,
@@ -114,6 +114,6 @@ const Input: React.FC<CheckboxProps> = ({ value, label, className = "" }) => {
   );
 };
 
-export const CheckboxGroup = Object.assign(Wrapper, {
+export const CheckboxGroup = Object.assign(CheckboxContainer, {
   Input
 });

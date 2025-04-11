@@ -5,7 +5,10 @@ interface ListProps {
   className?: string;
 }
 
-export const Wrapper: React.FC<ListProps> = ({ children, className = "" }) => {
+const ListItemContainer: React.FC<ListProps> = ({
+  children,
+  className = ""
+}) => {
   return <ul className={`flex flex-col gap-1.5 ${className}`}>{children}</ul>;
 };
 
@@ -38,6 +41,6 @@ export const Item: React.FC<
   );
 };
 
-export const List = Object.assign(Wrapper, {
+export const List = Object.assign(ListItemContainer, {
   Item
 });

@@ -3,7 +3,7 @@ interface FormProps extends React.HTMLProps<HTMLFormElement> {
   className?: string;
 }
 
-const Wrapper: React.FC<FormProps> = ({
+const FormContainer: React.FC<FormProps> = ({
   children,
   className = "",
   ...props
@@ -30,4 +30,4 @@ const Container: React.FC<ContainerProps> = ({ children, className }) => {
   );
 };
 
-export const Form = Object.assign(Wrapper, { Container });
+export const Form = Object.assign(FormContainer, { Container });

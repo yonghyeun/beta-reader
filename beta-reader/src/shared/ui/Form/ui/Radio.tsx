@@ -12,7 +12,7 @@ interface RadioGroupProps extends React.InputHTMLAttributes<HTMLInputElement> {
   className?: string;
 }
 
-export const Wrapper: React.FC<RadioGroupProps> = ({
+export const RadioGroupContainer: React.FC<RadioGroupProps> = ({
   name,
   value,
   children,
@@ -111,6 +111,6 @@ const Input: React.FC<RadioProps> = ({ value, label, className = "" }) => {
   );
 };
 
-export const RadioGroup = Object.assign(Wrapper, {
+export const RadioGroup = Object.assign(RadioGroupContainer, {
   Input
 });
