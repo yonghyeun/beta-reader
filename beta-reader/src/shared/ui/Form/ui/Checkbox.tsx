@@ -13,7 +13,7 @@ interface CheckboxGroupProps
   className?: string;
 }
 
-export const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
+const Wrapper: React.FC<CheckboxGroupProps> = ({
   name,
   value,
   children,
@@ -63,11 +63,7 @@ const checkboxVariants = cva("h-5 w-5 p-0.5 rounded-sm transition-colors", {
   }
 });
 
-export const Checkbox: React.FC<CheckboxProps> = ({
-  value,
-  label,
-  className = ""
-}) => {
+const Item: React.FC<CheckboxProps> = ({ value, label, className = "" }) => {
   const {
     value: checkboxValues,
     name,
@@ -117,3 +113,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
     </label>
   );
 };
+
+export const CheckboxGroup = Object.assign(Wrapper, {
+  Item
+});
