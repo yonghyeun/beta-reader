@@ -63,7 +63,7 @@ const checkboxVariants = cva("h-5 w-5 p-0.5 rounded-sm transition-colors", {
   }
 });
 
-const Item: React.FC<CheckboxProps> = ({ value, label, className = "" }) => {
+const Input: React.FC<CheckboxProps> = ({ value, label, className = "" }) => {
   const {
     value: checkboxValues,
     name,
@@ -115,5 +115,5 @@ const Item: React.FC<CheckboxProps> = ({ value, label, className = "" }) => {
 };
 
 export const CheckboxGroup = Object.assign(Wrapper, {
-  Item
+  Input
 });

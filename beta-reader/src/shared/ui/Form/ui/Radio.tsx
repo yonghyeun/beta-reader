@@ -61,11 +61,7 @@ const radioInputVariants = cva("h-5 w-5 p-0.5 rounded-full transition-colors", {
   }
 });
 
-export const Item: React.FC<RadioProps> = ({
-  value,
-  label,
-  className = ""
-}) => {
+const Input: React.FC<RadioProps> = ({ value, label, className = "" }) => {
   const {
     value: radioGroupValue,
     name,
@@ -116,5 +112,5 @@ export const Item: React.FC<RadioProps> = ({
 };
 
 export const RadioGroup = Object.assign(Wrapper, {
-  Item
+  Input
 });
