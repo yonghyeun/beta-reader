@@ -11,7 +11,7 @@ interface TextFieldProps {
   className?: string;
 }
 
-const textFieldWrapperVariant = cva(
+const textFieldTextFieldContainerVariant = cva(
   "bg-secondary-900 rounded-[1.25rem] px-7 py-6 ",
   {
     variants: {
@@ -23,7 +23,10 @@ const textFieldWrapperVariant = cva(
   }
 );
 
-const Wrapper: React.FC<TextFieldProps> = ({ children, className = "" }) => {
+const TextFieldContainer: React.FC<TextFieldProps> = ({
+  children,
+  className = ""
+}) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
   const toggleFocus = useCallback(
@@ -35,7 +38,7 @@ const Wrapper: React.FC<TextFieldProps> = ({ children, className = "" }) => {
 
   return (
     <fieldset
-      className={textFieldWrapperVariant({
+      className={textFieldTextFieldContainerVariant({
         className,
         isFocused
       })}
@@ -106,4 +109,8 @@ const TextArea: React.FC<
   );
 };
 
-export const TextField = Object.assign(Wrapper, { Label, Input, TextArea });
+export const TextField = Object.assign(TextFieldContainer, {
+  Label,
+  Input,
+  TextArea
+});

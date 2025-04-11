@@ -1,46 +1,41 @@
 import { useState } from "react";
 
-import { Radio, RadioGroup } from "./Radio";
+import { RadioGroup } from "./Radio";
 import { action } from "@storybook/addon-actions";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
   title: "Shared/Form/Radio",
-  component: Radio
-} satisfies Meta<typeof Radio>;
+  component: RadioGroup
+} satisfies Meta<typeof RadioGroup>;
 
 export default meta;
-type Story = StoryObj<typeof Radio>;
+type Story = StoryObj<typeof RadioGroup>;
 
 export const Default: Story = {
   args: {
+    name: "DefaultRadioStory",
     value: "default_option",
-    label: "기본 옵션"
+    onRadioGroupChange: action("라디오 값 변경")
   },
 
   render: (args) => (
-    <RadioGroup
-      name="DefaultRadioStory"
-      value={args.value}
-      onRadioGroupChange={action("라디오 값 변경")}
-    >
-      <Radio {...args} />
+    <RadioGroup {...args}>
+      <RadioGroup.Input value="default_option" label="기본 옵션" />
     </RadioGroup>
   )
 };
 
 export const WithoutLabel: Story = {
   args: {
-    value: "no_label_option"
+    name: "WithoutLabelRadioStory",
+    value: "no_label_option",
+    onRadioGroupChange: action("라디오 값 변경")
   },
 
   render: (args) => (
-    <RadioGroup
-      name="WithoutLabelRadioStory"
-      value={args.value}
-      onRadioGroupChange={action("라디오 값 변경")}
-    >
-      <Radio {...args} />
+    <RadioGroup {...args}>
+      <RadioGroup.Input value="no_label_option" />
     </RadioGroup>
   )
 };
@@ -53,9 +48,9 @@ export const MultipleOptions: Story = {
       className="flex flex-col gap-2"
       onRadioGroupChange={action("라디오 그룹 값 변경")}
     >
-      <Radio value="multiple_option1" label="첫 번째 옵션" />
-      <Radio value="multiple_option2" label="두 번째 옵션" />
-      <Radio value="multiple_option3" label="세 번째 옵션" />
+      <RadioGroup.Input value="multiple_option1" label="첫 번째 옵션" />
+      <RadioGroup.Input value="multiple_option2" label="두 번째 옵션" />
+      <RadioGroup.Input value="multiple_option3" label="세 번째 옵션" />
     </RadioGroup>
   )
 };
@@ -68,9 +63,9 @@ export const HorizontalGroup: Story = {
       className="flex flex-row gap-4"
       onRadioGroupChange={action("라디오 그룹 값 변경")}
     >
-      <Radio value="horizontal_option1" label="옵션 A" />
-      <Radio value="horizontal_option2" label="옵션 B" />
-      <Radio value="horizontal_option3" label="옵션 C" />
+      <RadioGroup.Input value="horizontal_option1" label="옵션 A" />
+      <RadioGroup.Input value="horizontal_option2" label="옵션 B" />
+      <RadioGroup.Input value="horizontal_option3" label="옵션 C" />
     </RadioGroup>
   )
 };
@@ -95,9 +90,9 @@ export const WithStateTracking: Story = {
           }}
           className="flex flex-col gap-2"
         >
-          <Radio value="effect_option1" label="첫 번째 옵션" />
-          <Radio value="effect_option2" label="두 번째 옵션" />
-          <Radio value="effect_option3" label="세 번째 옵션" />
+          <RadioGroup.Input value="effect_option1" label="첫 번째 옵션" />
+          <RadioGroup.Input value="effect_option2" label="두 번째 옵션" />
+          <RadioGroup.Input value="effect_option3" label="세 번째 옵션" />
         </RadioGroup>
       </div>
     );
@@ -106,18 +101,17 @@ export const WithStateTracking: Story = {
 
 // 커스텀 스타일 라디오 버튼
 export const CustomStyleRadio: Story = {
-  args: {
-    value: "custom_styled",
-    label: "커스텀 스타일 옵션",
-    className: "bg-blue-100 hover:bg-blue-200"
-  },
-  render: (args) => (
+  render: () => (
     <RadioGroup
       name="CustomStyleRadioStory"
-      value={args.value}
+      value="custom_styled"
       onRadioGroupChange={action("커스텀 라디오 값 변경")}
     >
-      <Radio {...args} />
+      <RadioGroup.Input
+        value="custom_styled"
+        label="커스텀 스타일 옵션"
+        className="bg-blue-100 hover:bg-blue-200"
+      />
     </RadioGroup>
   )
 };
@@ -131,17 +125,17 @@ export const MultipleCustomStyles: Story = {
       className="flex flex-col gap-3"
       onRadioGroupChange={action("커스텀 라디오 그룹 값 변경")}
     >
-      <Radio
+      <RadioGroup.Input
         value="custom_style1"
         label="파란색 스타일"
         className="rounded-lg bg-blue-100 hover:bg-blue-200"
       />
-      <Radio
+      <RadioGroup.Input
         value="custom_style2"
         label="초록색 스타일"
         className="rounded-lg bg-green-100 hover:bg-green-200"
       />
-      <Radio
+      <RadioGroup.Input
         value="custom_style3"
         label="빨간색 스타일"
         className="rounded-lg bg-red-100 hover:bg-red-200"
@@ -184,17 +178,17 @@ export const ThemeSelector: Story = {
           }}
           className="flex flex-row gap-4"
         >
-          <Radio
+          <RadioGroup.Input
             value="light"
             label="라이트"
             className="bg-gray-100 px-4 py-2 text-gray-900 hover:bg-gray-200"
           />
-          <Radio
+          <RadioGroup.Input
             value="dark"
             label="다크"
             className="bg-gray-800 px-4 py-2 text-white hover:bg-gray-700"
           />
-          <Radio
+          <RadioGroup.Input
             value="blue"
             label="블루"
             className="bg-blue-600 px-4 py-2 text-white hover:bg-blue-500"

@@ -168,8 +168,8 @@ export const TextAreaWithResize: Story = {
 
 export const WithAriaDescribedBy: Story = {
   render: () => (
-    <div>
-      <TextField className="mb-2 flex gap-5">
+    <TextField className="flex flex-col gap-5">
+      <div className="flex gap-5">
         <TextField.Label htmlFor="pwd-input">비밀번호</TextField.Label>
         <TextField.Input
           id="pwd-input"
@@ -177,10 +177,10 @@ export const WithAriaDescribedBy: Story = {
           aria-describedby="pwd-requirements"
           placeholder="비밀번호를 입력하세요"
         />
-      </TextField>
+      </div>
       <div id="pwd-requirements" className="text-secondary-200 text-sm">
         비밀번호는 8자 이상, 특수문자 포함이 필요합니다.
       </div>
-    </div>
+    </TextField>
   )
 };

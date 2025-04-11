@@ -1,60 +1,52 @@
 import { useState } from "react";
 
-import { Checkbox, CheckboxGroup } from "./Checkbox";
+import { CheckboxGroup } from "./Checkbox";
 import { action } from "@storybook/addon-actions";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
   title: "Shared/Form/Checkbox",
-  component: Checkbox
-} satisfies Meta<typeof Checkbox>;
+  component: CheckboxGroup
+} satisfies Meta<typeof CheckboxGroup>;
 
 export default meta;
-type Story = StoryObj<typeof Checkbox>;
+type Story = StoryObj<typeof CheckboxGroup>;
 
 export const Default: Story = {
   args: {
-    value: "default_option",
-    label: "기본 옵션"
+    name: "DefaultCheckboxStory",
+    value: [],
+    onCheckboxGroupChange: action("체크박스 값 변경")
   },
   render: (args) => (
-    <CheckboxGroup
-      name="DefaultCheckboxStory"
-      value={[]}
-      onCheckboxGroupChange={action("체크박스 값 변경")}
-    >
-      <Checkbox {...args} />
+    <CheckboxGroup {...args}>
+      <CheckboxGroup.Input value="default_option" label="기본 옵션" />
     </CheckboxGroup>
   )
 };
 
 export const Checked: Story = {
   args: {
-    value: "checked_option",
-    label: "선택된 옵션"
+    name: "CheckedCheckboxStory",
+    value: ["checked_option"],
+    onCheckboxGroupChange: action("체크박스 값 변경")
   },
   render: (args) => (
-    <CheckboxGroup
-      name="CheckedCheckboxStory"
-      value={["checked_option"]}
-      onCheckboxGroupChange={action("체크박스 값 변경")}
-    >
-      <Checkbox {...args} />
+    <CheckboxGroup {...args}>
+      <CheckboxGroup.Input value="checked_option" label="선택된 옵션" />
     </CheckboxGroup>
   )
 };
 
 export const WithoutLabel: Story = {
   args: {
-    value: "no_label_option"
+    name: "WithoutLabelCheckboxStory",
+    value: [],
+    onCheckboxGroupChange: action("체크박스 값 변경")
   },
   render: (args) => (
-    <CheckboxGroup
-      name="WithoutLabelCheckboxStory"
-      value={[]}
-      onCheckboxGroupChange={action("체크박스 값 변경")}
-    >
-      <Checkbox {...args} />
+    <CheckboxGroup {...args}>
+      <CheckboxGroup.Input value="no_label_option" />
     </CheckboxGroup>
   )
 };
@@ -67,9 +59,9 @@ export const MultipleOptions: Story = {
       className="flex flex-col gap-2"
       onCheckboxGroupChange={action("체크박스 그룹 값 변경")}
     >
-      <Checkbox value="multiple_option1" label="첫 번째 옵션" />
-      <Checkbox value="multiple_option2" label="두 번째 옵션" />
-      <Checkbox value="multiple_option3" label="세 번째 옵션" />
+      <CheckboxGroup.Input value="multiple_option1" label="첫 번째 옵션" />
+      <CheckboxGroup.Input value="multiple_option2" label="두 번째 옵션" />
+      <CheckboxGroup.Input value="multiple_option3" label="세 번째 옵션" />
     </CheckboxGroup>
   )
 };
@@ -82,9 +74,9 @@ export const HorizontalGroup: Story = {
       className="flex flex-row gap-4"
       onCheckboxGroupChange={action("체크박스 그룹 값 변경")}
     >
-      <Checkbox value="horizontal_option1" label="옵션 A" />
-      <Checkbox value="horizontal_option2" label="옵션 B" />
-      <Checkbox value="horizontal_option3" label="옵션 C" />
+      <CheckboxGroup.Input value="horizontal_option1" label="옵션 A" />
+      <CheckboxGroup.Input value="horizontal_option2" label="옵션 B" />
+      <CheckboxGroup.Input value="horizontal_option3" label="옵션 C" />
     </CheckboxGroup>
   )
 };
@@ -122,10 +114,10 @@ export const WithStateTracking: Story = {
           }}
           className="flex flex-col gap-2"
         >
-          <Checkbox value="option1" label="첫 번째 옵션" />
-          <Checkbox value="option2" label="두 번째 옵션" />
-          <Checkbox value="option3" label="세 번째 옵션" />
-          <Checkbox value="option4" label="네 번째 옵션" />
+          <CheckboxGroup.Input value="option1" label="첫 번째 옵션" />
+          <CheckboxGroup.Input value="option2" label="두 번째 옵션" />
+          <CheckboxGroup.Input value="option3" label="세 번째 옵션" />
+          <CheckboxGroup.Input value="option4" label="네 번째 옵션" />
         </CheckboxGroup>
       </div>
     );
@@ -134,18 +126,17 @@ export const WithStateTracking: Story = {
 
 // 커스텀 스타일 체크박스
 export const CustomStyleCheckbox: Story = {
-  args: {
-    value: "custom_styled",
-    label: "커스텀 스타일 옵션",
-    className: "bg-blue-100 hover:bg-blue-200"
-  },
-  render: (args) => (
+  render: () => (
     <CheckboxGroup
       name="CustomStyleCheckboxStory"
       value={["custom_styled"]}
       onCheckboxGroupChange={action("커스텀 체크박스 값 변경")}
     >
-      <Checkbox {...args} />
+      <CheckboxGroup.Input
+        value="custom_styled"
+        label="커스텀 스타일 옵션"
+        className="bg-blue-100 hover:bg-blue-200"
+      />
     </CheckboxGroup>
   )
 };
@@ -159,17 +150,17 @@ export const MultipleCustomStyles: Story = {
       className="text-secondary-400 flex flex-col gap-3"
       onCheckboxGroupChange={action("커스텀 체크박스 그룹 값 변경")}
     >
-      <Checkbox
+      <CheckboxGroup.Input
         value="custom_style1"
         label="파란색 스타일"
         className="rounded-lg bg-blue-100 hover:bg-blue-200"
       />
-      <Checkbox
+      <CheckboxGroup.Input
         value="custom_style2"
         label="초록색 스타일"
         className="rounded-lg bg-green-100 hover:bg-green-200"
       />
-      <Checkbox
+      <CheckboxGroup.Input
         value="custom_style3"
         label="빨간색 스타일"
         className="rounded-lg bg-red-100 hover:bg-red-200"
@@ -229,22 +220,22 @@ export const PermissionsSelector: Story = {
           }}
           className="grid grid-cols-2 gap-3"
         >
-          <Checkbox
+          <CheckboxGroup.Input
             value="read"
             label="읽기 권한"
             className="border border-blue-200 bg-blue-50 text-blue-800"
           />
-          <Checkbox
+          <CheckboxGroup.Input
             value="write"
             label="쓰기 권한"
             className="border border-green-200 bg-green-50 text-green-800"
           />
-          <Checkbox
+          <CheckboxGroup.Input
             value="delete"
             label="삭제 권한"
             className="border border-red-200 bg-red-50 text-red-800"
           />
-          <Checkbox
+          <CheckboxGroup.Input
             value="comment"
             label="댓글 권한"
             className="border border-purple-200 bg-purple-50 text-purple-800"

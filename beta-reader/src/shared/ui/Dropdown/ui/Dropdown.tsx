@@ -10,7 +10,7 @@ interface DropDownProps {
   onDropdownChange?: (value: string) => void;
 }
 
-const Wrapper: React.FC<DropDownProps> = ({
+const DropdownContainer: React.FC<DropDownProps> = ({
   children,
   onDropdownChange,
   initialValue = ""
@@ -83,6 +83,6 @@ const Item: React.FC<ItemProps> = ({ value, children }) => {
   );
 };
 
-export const DropDown = Object.assign(Wrapper, {
+export const DropDown = Object.assign(DropdownContainer, {
   Item
 });
