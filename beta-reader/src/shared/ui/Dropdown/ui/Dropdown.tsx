@@ -2,7 +2,7 @@ import { useMemo, useRef } from "react";
 
 import { useDropdown } from "../lib";
 import { DropdownContext, useDropdownContext } from "../model";
-import { ArrowDownIcon, ArrowUpIcon } from "@/src/shared/assets";
+import { DownLargeIcon, UpLargeIcon } from "@/src/shared/assets";
 
 interface DropDownProps {
   initialValue?: string;
@@ -43,7 +43,7 @@ const DropdownContainer: React.FC<DropDownProps> = ({
         >
           <span>{value}</span>
           <span aria-hidden="true">
-            {isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
+            {isOpen ? <UpLargeIcon /> : <DownLargeIcon />}
           </span>
         </button>
 
