@@ -1,4 +1,4 @@
-import { MoreIcon } from "../assets";
+import { MeatballIcon } from "../assets";
 import { List } from "./List";
 import { Meta, StoryObj } from "@storybook/react";
 
@@ -40,7 +40,7 @@ export const Default: Story = {
         className="flex justify-between gap-2.5"
       >
         <span>일반 리스트 아이템</span>
-        <MoreIcon />
+        <MeatballIcon />
       </List.Item>
       <List.Item
         size="md"
@@ -48,7 +48,7 @@ export const Default: Story = {
         className="flex justify-between gap-2.5"
       >
         <span>두 번째 아이템</span>
-        <MoreIcon />
+        <MeatballIcon />
       </List.Item>
       <List.Item
         size="md"
@@ -56,7 +56,7 @@ export const Default: Story = {
         className="flex justify-between gap-2.5"
       >
         <span>세 번째 아이템</span>
-        <MoreIcon />
+        <MeatballIcon />
       </List.Item>
     </List>
   )
@@ -71,7 +71,7 @@ export const WithActiveItem: Story = {
         className="flex justify-between gap-2.5"
       >
         <span>활성화된 아이템</span>
-        <MoreIcon />
+        <MeatballIcon />
       </List.Item>
       <List.Item
         size="md"
@@ -79,7 +79,7 @@ export const WithActiveItem: Story = {
         className="flex justify-between gap-2.5"
       >
         <span>일반 아이템</span>
-        <MoreIcon />
+        <MeatballIcon />
       </List.Item>
       <List.Item
         size="md"
@@ -87,7 +87,7 @@ export const WithActiveItem: Story = {
         className="flex justify-between gap-2.5"
       >
         <span>일반 아이템</span>
-        <MoreIcon />
+        <MeatballIcon />
       </List.Item>
     </List>
   )
@@ -102,7 +102,7 @@ export const SmallSize: Story = {
         className="flex justify-between gap-2.5"
       >
         <span>작은 크기 아이템</span>
-        <MoreIcon />
+        <MeatballIcon />
       </List.Item>
       <List.Item
         size="sm"
@@ -110,7 +110,7 @@ export const SmallSize: Story = {
         className="flex justify-between gap-2.5"
       >
         <span>작은 크기 아이템</span>
-        <MoreIcon />
+        <MeatballIcon />
       </List.Item>
     </List>
   )
@@ -125,7 +125,7 @@ export const CustomClassName: Story = {
         className="text-secondary-800 flex justify-between gap-2.5 border border-gray-200"
       >
         <span>커스텀 클래스가 적용된 아이템</span>
-        <MoreIcon />
+        <MeatballIcon />
       </List.Item>
       <List.Item
         size="md"
@@ -133,7 +133,7 @@ export const CustomClassName: Story = {
         className="text-secondary-800 flex justify-between gap-2.5 border border-gray-200"
       >
         <span>활성화된 커스텀 아이템</span>
-        <MoreIcon />
+        <MeatballIcon />
       </List.Item>
     </List>
   )
