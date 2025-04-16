@@ -2,7 +2,7 @@ import React from "react";
 
 import { Button } from "../../Button";
 import { Form } from "./Form";
-import { Radio, RadioGroup } from "./Radio";
+import { RadioGroup } from "./Radio";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof Form> = {
@@ -42,7 +42,7 @@ export const Default: Story = {
           <legend className="text-title-4-bold">장르</legend>
           <div className="mt-4 grid grid-cols-5 gap-4">
             {GENRE_ARRAY.map((item) => (
-              <Radio value={item} key={item} label={item} />
+              <RadioGroup.Input value={item} key={item} label={item} />
             ))}
           </div>
         </RadioGroup>

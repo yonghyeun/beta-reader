@@ -2,7 +2,6 @@ import { cva } from "class-variance-authority";
 import React, { useState } from "react";
 
 import { RadioGroupContext, useRadioGroupContext } from "../model";
-import { CheckIcon } from "@/src/shared/assets";
 
 interface RadioGroupProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -49,17 +48,20 @@ interface RadioProps {
   className?: string;
 }
 
-const radioInputVariants = cva("h-5 w-5 p-0.5 rounded-full transition-colors", {
-  variants: {
-    isChecked: {
-      true: "bg-primary-300 flex items-center justify-center",
-      false: "border-secondary-400 border"
+const radioInputVariants = cva(
+  "bg-primary-300 h-4 w-4 rounded-full transition-transform duration-200 origin-center",
+  {
+    variants: {
+      isChecked: {
+        true: "scale-100",
+        false: "scale-0"
+      }
+    },
+    defaultVariants: {
+      isChecked: false
     }
-  },
-  defaultVariants: {
-    isChecked: false
   }
-});
+);
 
 const Input: React.FC<RadioProps> = ({ value, label, className = "" }) => {
   const {
@@ -88,8 +90,11 @@ const Input: React.FC<RadioProps> = ({ value, label, className = "" }) => {
         스크린 리더는 인식 가능
       */}
       <div className="relative flex items-center justify-center">
-        <div className={radioInputVariants({ isChecked })} aria-hidden="true">
-          {isChecked && <CheckIcon />}
+        <div
+          className="border-secondary-400 flex h-5 w-5 items-center justify-center rounded-full border transition-colors"
+          aria-hidden="true"
+        >
+          <div className={radioInputVariants({ isChecked })} />
         </div>
       </div>
 
