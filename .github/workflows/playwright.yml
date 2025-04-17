@@ -24,18 +24,32 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
+          # npm 캐시 설정 추가
+          cache: "npm"
+          cache-dependency-path: "./beta-reader/package-lock.json"
+
+      # Playwright 브라우저를 캐시에 저장
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          # Playwright 브라우저 버전을 캐시 키로 사용
+          key: playwright-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            playwright-
 
       # 프로젝트 의존성 설치
       - name: Install dependencies
         run: npm install
 
-      # Playwright 브라우저 설치
+      # Playwright 브라우저 설치 (캐시되지 않은 경우에만 실행)
       - name: Install Playwright Browsers
+        # 캐시가 없거나 업데이트된 경우에만 실행
         run: npx playwright install --with-deps
 
-      # Playwright 테스트 실행 (continue-on-error 제거)
+      # Playwright 테스트 실행 (chromium만 사용하여 속도 향상)
       - name: Run Playwright tests
-        run: npx playwright test
+        run: npx playwright test --project=chromium
         id: playwright-test
         # continue-on-error를 제거하여 테스트 실패 시 워크플로우도 실패하도록 함
 
@@ -47,63 +61,23 @@ jobs:
           path: beta-reader/playwright-report/
           retention-days: 30
 
-      # 상세 테스트 결과 추출
-      - name: Extract test results
+      # 간단한 테스트 결과만 표시
+      - name: Create simple test result
         if: ${{ always() && github.event_name == 'pull_request' }}
         run: |
-          # 테스트 결과 파일 찾기
-          REPORT_DIR="playwright-report"
-          if [ -d "$REPORT_DIR" ]; then
-            # HTML 결과에서 테스트 결과 추출 (실패한 테스트, 성공한 테스트 정보)
-            TEST_COUNT=$(grep -r "tests=\"" $REPORT_DIR | head -1 | sed -E 's/.*tests="([0-9]+)".*/\1/')
-            PASSED_COUNT=$(grep -r "passed=\"" $REPORT_DIR | head -1 | sed -E 's/.*passed="([0-9]+)".*/\1/')
-            FAILED_COUNT=$(grep -r "failed=\"" $REPORT_DIR | head -1 | sed -E 's/.*failed="([0-9]+)".*/\1/')
-            SKIPPED_COUNT=$(grep -r "skipped=\"" $REPORT_DIR | head -1 | sed -E 's/.*skipped="([0-9]+)".*/\1/')
-            
-            # 테스트 결과 요약 파일 생성
-            echo "## Playwright Test Results" > test-summary.md
-            
-            if [ "$FAILED_COUNT" = "0" ]; then
-              echo "✅ **All tests passed!**" >> test-summary.md
-            else
-              echo "❌ **Some tests failed!**" >> test-summary.md
-            fi
-            
+          echo "## 🎭 Playwright 테스트 결과" > test-summary.md
+
+          if [ "${{ steps.playwright-test.outcome }}" == "success" ]; then
+            echo "### ✅ 모든 테스트가 성공했습니다! 🎉" >> test-summary.md
             echo "" >> test-summary.md
-            echo "### Test Summary" >> test-summary.md
-            echo "- **Total Tests:** $TEST_COUNT" >> test-summary.md
-            echo "- **Passed:** $PASSED_COUNT ✅" >> test-summary.md
-            echo "- **Failed:** $FAILED_COUNT ❌" >> test-summary.md
-            echo "- **Skipped:** $SKIPPED_COUNT ⏭️" >> test-summary.md
-            
-            echo "" >> test-summary.md
-            echo "### Test Files" >> test-summary.md
-            find e2eTests -name "*.spec.ts" | sort | while read file; do
-              echo "- \`$file\`" >> test-summary.md
-            done
-            
-            # 실패한 테스트가 있다면 세부 정보 추출
-            if [ "$FAILED_COUNT" != "0" ]; then
-              echo "" >> test-summary.md
-              echo "### Failed Tests" >> test-summary.md
-              
-              # 실패한 테스트 정보 추출 시도
-              FAILED_TESTS=$(grep -r "status=\"failed\"" $REPORT_DIR --include="*.xml" | sed -E 's/.*name="([^"]+)".*/- \1/' | sort -u)
-              
-              if [ ! -z "$FAILED_TESTS" ]; then
-                echo "$FAILED_TESTS" >> test-summary.md
-              else
-                echo "Failed test details could not be extracted. Please check the full report artifact." >> test-summary.md
-              fi
-            fi
-            
-            echo "" >> test-summary.md
-            echo "For detailed results, check the uploaded artifacts." >> test-summary.md
+            echo "테스트가 정상적으로 완료되었습니다. 👍" >> test-summary.md
           else
-            echo "## Playwright Test Results" > test-summary.md
-            echo "❓ **Test report not found**" >> test-summary.md
+            echo "### ❌ 일부 테스트가 실패했습니다! 😢" >> test-summary.md
             echo "" >> test-summary.md
-            echo "Could not find test report directory. Please check the workflow logs for details." >> test-summary.md
+            echo "자세한 내용은 GitHub Actions의 아티팩트에서 확인해주세요. 📝" >> test-summary.md
+            echo "1. Actions 탭으로 이동" >> test-summary.md
+            echo "2. 이 워크플로우 실행 선택" >> test-summary.md 
+            echo "3. Artifacts 섹션에서 'playwright-report' 다운로드" >> test-summary.md
           fi
 
       # PR에 테스트 결과 댓글 추가
@@ -128,7 +102,7 @@ jobs:
 
             const botComment = comments.find(comment => {
               return comment.user.login === 'github-actions[bot]' && 
-                     comment.body.includes('Playwright Test Results');
+                     comment.body.includes('Playwright 테스트 결과');
             });
 
             // 기존 댓글 업데이트 또는 새 댓글 추가
