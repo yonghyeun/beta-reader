@@ -1,0 +1,139 @@
+name: Playwright Tests
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    # GitHub Actions에 PR에 댓글을 달 수 있는 권한 부여
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+    defaults:
+      run:
+        working-directory: ./beta-reader
+    steps:
+      # 소스 코드 체크아웃
+      - uses: actions/checkout@v4
+
+      # Node.js 환경 설정
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          # npm 캐시 설정 추가
+          cache: "npm"
+          cache-dependency-path: "./beta-reader/package.json"
+
+      # Playwright 브라우저를 캐시에 저장 (수정된 캐시 키)
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          # 단순한 캐시 키로 변경
+          key: playwright-cache-v1
+
+      # 캐시 상태 출력
+      - name: Cache Status
+        run: echo "Cache hit - ${{ steps.playwright-cache.outputs.cache-hit }}"
+
+      # 프로젝트 의존성 설치
+      - name: Install dependencies
+        run: npm install
+
+      # Playwright 브라우저 설치 (캐시 미스인 경우에만 실행)
+      - name: Install Playwright Browsers
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps
+
+      # cross-env 패키지 설치
+      - name: Install cross-env
+        run: npm install cross-env --save-dev
+
+      # Playwright 테스트 실행 (mock 데이터로 테스트)
+      - name: Run Playwright tests with mocks
+        run: npm run test:e2e:with-mocks
+        id: playwright-test
+        # continue-on-error를 제거하여 테스트 실패 시 워크플로우도 실패하도록 함
+
+      # 테스트 결과 보고서 아티팩트로 업로드
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() }} # 테스트 실패해도 항상 업로드
+        with:
+          name: playwright-report
+          path: beta-reader/playwright-report/
+          retention-days: 30
+
+      # 간단한 테스트 결과만 표시
+      - name: Create simple test result
+        if: ${{ always() && github.event_name == 'pull_request' }}
+        run: |
+          echo "## 🎭 Playwright 테스트 결과" > test-summary.md
+
+          if [ "${{ steps.playwright-test.outcome }}" == "success" ]; then
+            echo "### ✅ 모든 테스트가 성공했습니다! 🎉" >> test-summary.md
+            echo "" >> test-summary.md
+            echo "테스트가 정상적으로 완료되었습니다. 👍" >> test-summary.md
+          else
+            echo "### ❌ 일부 테스트가 실패했습니다! 😢" >> test-summary.md
+            echo "" >> test-summary.md
+            echo "자세한 내용은 GitHub Actions의 아티팩트에서 확인해주세요. 📝" >> test-summary.md
+            echo "1. Actions 탭으로 이동" >> test-summary.md
+            echo "2. 이 워크플로우 실행 선택" >> test-summary.md 
+            echo "3. Artifacts 섹션에서 'playwright-report' 다운로드" >> test-summary.md
+          fi
+
+      # PR에 테스트 결과 댓글 추가
+      - name: Add test result comment to PR
+        if: ${{ always() && github.event_name == 'pull_request' }}
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const fs = require('fs');
+            const testSummary = fs.readFileSync('./beta-reader/test-summary.md', 'utf8');
+
+            // PR 번호 찾기
+            const pr_number = context.issue.number;
+
+            // 기존 댓글이 있는지 확인
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr_number
+            });
+
+            const botComment = comments.find(comment => {
+              return comment.user.login === 'github-actions[bot]' && 
+                     comment.body.includes('Playwright 테스트 결과');
+            });
+
+            // 기존 댓글 업데이트 또는 새 댓글 추가
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: testSummary
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr_number,
+                body: testSummary
+              });
+            }
+
+      # 임시 파일 정리
+      - name: Clean up temporary files
+        if: ${{ always() }}
+        run: |
+          if [ -f "test-summary.md" ]; then
+            rm test-summary.md
+            echo "Removed temporary test-summary.md file"
+          fi
