@@ -17,9 +17,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const response = await fetch(
-          "https://jsonplaceholder.typicode.com/posts"
-        );
+        const response = await fetch("http://localhost:2222/posts");
         if (!response.ok) {
           throw new Error("API 응답이 올바르지 않습니다");
         }
