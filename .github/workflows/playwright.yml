@@ -56,7 +56,7 @@ jobs:
 
       # Playwright 테스트 실행 (mock 데이터로 테스트)
       - name: Run Playwright tests with mocks
-        run: npm run test:e2e:with-mocks
+        run: npm run test:e2e
         id: playwright-test
         # continue-on-error를 제거하여 테스트 실패 시 워크플로우도 실패하도록 함
 
