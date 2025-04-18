@@ -50,9 +50,13 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps
 
-      # Playwright 테스트 실행 (chromium만 사용하여 속도 향상)
-      - name: Run Playwright tests
-        run: npx playwright test --project=chromium
+      # cross-env 패키지 설치
+      - name: Install cross-env
+        run: npm install cross-env --save-dev
+
+      # Playwright 테스트 실행 (mock 데이터로 테스트)
+      - name: Run Playwright tests with mocks
+        run: npm run test:e2e:with-mocks
         id: playwright-test
         # continue-on-error를 제거하여 테스트 실패 시 워크플로우도 실패하도록 함
 
@@ -133,4 +137,3 @@ jobs:
             rm test-summary.md
             echo "Removed temporary test-summary.md file"
           fi
-
