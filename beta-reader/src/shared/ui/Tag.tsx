@@ -4,7 +4,7 @@ import React from "react";
 import { CloseSmallIcon } from "../assets";
 
 const tagVariants = cva(
-  "bg-secondary-700  flex justify-center items-center gap-1 px-3 py-1.5 text-secondary-white text-caption-1-medium",
+  "bg-secondary-700  flex justify-center items-center gap-1.5 px-3 py-1.5 text-secondary-white text-caption-1-medium",
   {
     variants: {
       variant: {
