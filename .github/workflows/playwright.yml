@@ -54,9 +54,13 @@ jobs:
       - name: Install cross-env
         run: npm install cross-env --save-dev
 
+      # 목업 서버 실행을 위한 express , cors 설치
+      - name: Install express and cors
+        run: npm install express cors --save-dev
+
       # Playwright 테스트 실행 (mock 데이터로 테스트)
       - name: Run Playwright tests with mocks
-        run: npm run test:e2e:with-mocks
+        run: npm run test:e2e
         id: playwright-test
         # continue-on-error를 제거하여 테스트 실패 시 워크플로우도 실패하도록 함
 
