@@ -2,15 +2,15 @@ import { SVGProps } from "react";
 
 export const UpSmallIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
+    xmlns="http://www.w3.org/2000/svg"
     width="1.5rem"
     height="1.5rem"
-    viewBox="0 0 19 11"
+    viewBox="0 0 24 24"
     fill="none"
-    xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
     <path
-      d="M1.5 9.5L9.5 1.5L17.5 9.5"
+      d="M8 14L12 10L16 14"
       stroke="currentColor"
       strokeWidth="1.5"
       strokeLinecap="round"
