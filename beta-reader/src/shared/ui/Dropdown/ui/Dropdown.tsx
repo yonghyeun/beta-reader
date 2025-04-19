@@ -51,7 +51,7 @@ const DropdownContainer: React.FC<DropDownProps> = ({
           <ul
             id={dropdownId}
             role="listbox"
-            className="text-secondary-white bg-secondary-800 absolute top-full mt-2 flex min-w-72 flex-col gap-1 rounded-[1.25rem] p-5"
+            className="text-secondary-white bg-secondary-800 border-secondary-500 absolute top-full mt-2 flex min-w-72 flex-col gap-1 rounded-[1.25rem] border p-5"
           >
             {children}
           </ul>
