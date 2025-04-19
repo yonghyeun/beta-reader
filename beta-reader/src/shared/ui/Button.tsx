@@ -10,14 +10,14 @@ const buttonVariants = cva("flex items-center justify-center", {
     },
     variant: {
       primary:
-        "bg-primary-400 text-secondary-white hover:bg-primary-500 disabled:bg-secondary-700 disabled:text-secondary-300",
+        "bg-primary-400 text-secondary-white hover:bg-primary-300 disabled:bg-secondary-700 disabled:text-secondary-300",
       secondary:
         "bg-secondary-700 text-secondary-white hover:bg-secondary-600 disabled:bg-secondary-700 disabled:text-secondary-300",
       white:
         "bg-secondary-white text-secondary-black hover:bg-secondary-200 disabled:bg-secondary-700 disabled:text-secondary-300"
     },
     rounded: {
-      md: "rounded-xl", // 12px
+      md: "rounded-xl",
       full: "rounded-full"
     }
   },
