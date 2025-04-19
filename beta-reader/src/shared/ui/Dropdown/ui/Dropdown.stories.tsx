@@ -10,6 +10,21 @@ const meta = {
   component: DropDown,
   args: {
     onDropdownChange: action("dropdown changed")
+  },
+  argTypes: {
+    initialValue: {
+      description: "드롭다운의 초기 선택값",
+      control: { type: "text" }
+    },
+    variant: {
+      description: "드롭다운의 스타일 변형",
+      control: { type: "radio" },
+      options: ["padded", "default"]
+    },
+    onDropdownChange: {
+      description: "드롭다운 값이 변경될 때 호출되는 콜백 함수",
+      action: "dropdown changed"
+    }
   }
 } satisfies Meta<typeof DropDown>;
 
@@ -20,7 +35,8 @@ type Story = StoryObj<typeof DropDown>;
 // 기본 드롭다운 스토리
 export const Default: Story = {
   args: {
-    initialValue: "선택하세요"
+    initialValue: "선택하세요",
+    variant: "padded"
   },
   render: (args) => (
     <div className="relative">
@@ -36,7 +52,8 @@ export const Default: Story = {
 // 많은 옵션을 가진 드롭다운
 export const ManyOptions: Story = {
   args: {
-    initialValue: "많은 옵션들"
+    initialValue: "많은 옵션들",
+    variant: "padded"
   },
   render: (args) => (
     <div className="relative">
@@ -54,7 +71,8 @@ export const ManyOptions: Story = {
 // 긴 텍스트를 가진 드롭다운
 export const LongText: Story = {
   args: {
-    initialValue: "긴 텍스트 옵션"
+    initialValue: "긴 텍스트 옵션",
+    variant: "padded"
   },
   render: (args) => (
     <div className="relative">
@@ -89,6 +107,7 @@ export const WithStateTracking = {
               setSelectedValue(value);
               action("상태 업데이트됨")(value);
             }}
+            variant="padded"
           >
             <DropDown.Item value="옵션 1">옵션 1</DropDown.Item>
             <DropDown.Item value="옵션 2">옵션 2</DropDown.Item>
