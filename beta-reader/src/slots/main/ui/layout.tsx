@@ -5,14 +5,16 @@ import { Sidebar } from "./Sidebar";
 
 export const MainLayout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
-    <div className="flex min-h-screen flex-col" role="application">
-      <div className="flex" role="presentation">
-        <Sidebar />
+    <main
+      id="main-content"
+      className="flex min-h-screen"
+      aria-label="메인 콘텐츠"
+    >
+      <Sidebar />
+      <section className="w-full">
         <Header />
-      </div>
-      <main id="main-content" className="flex-grow" aria-label="메인 콘텐츠">
         {children}
-      </main>
-    </div>
+      </section>
+    </main>
   );
 };

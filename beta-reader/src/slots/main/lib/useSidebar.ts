@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { create } from "zustand";
 
-export const useSidebar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+interface UseSidebarStates {
+  isOpen: boolean;
+}
 
-  const toggle = (action: "open" | "close") => () =>
-    setIsOpen(action === "open");
+interface UseSidebarActions {
+  toggle: (action: "open" | "close") => () => void;
+}
 
-  return {
-    isOpen,
-    toggle
-  };
-};
+export const useSidebar = create<UseSidebarStates & UseSidebarActions>(
+  (set) => ({
+    isOpen: false,
+    toggle: (action: "open" | "close") => () =>
+      set({ isOpen: action === "open" })
+  })
+);
