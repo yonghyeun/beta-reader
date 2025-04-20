@@ -31,7 +31,7 @@ export const Sidebar = () => {
         <>
           {/* 연재물 추가 & 사이드바 접기 버튼 */}
           <div
-            className="text-caption-2-regular flex justify-end gap-2.5"
+            className="text-caption-2-regular flex justify-end gap-1"
             role="toolbar"
             aria-label="사이드바 컨트롤"
           >
