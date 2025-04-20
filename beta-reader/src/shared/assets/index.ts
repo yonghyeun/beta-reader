@@ -29,3 +29,4 @@ export * from "./UpLarge";
 export * from "./UpSmall";
 export * from "./LogoIcon";
 export * from "./MenuIocn";
+export * from "./ProfileIcon";

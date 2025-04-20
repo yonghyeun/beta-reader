@@ -4,7 +4,10 @@ import { cva } from "class-variance-authority";
 
 import { useSidebar } from "../lib";
 import { MainLogo } from "./MainLogo";
+import { ProfileIcon } from "@/src/shared/assets";
 import { ROUTES } from "@/src/shared/config/routes";
+import { Dropdown } from "@/src/shared/ui/Dropdown";
+import { Selector } from "@/src/shared/ui/Selector";
 import Link from "next/link";
 
 const headerVariants = cva(
@@ -49,7 +52,14 @@ export const Header = () => {
       )}
       {/* TODO profile button */}
       <div role="navigation" aria-label="사용자 메뉴">
-        <button aria-label="로그인">login</button>
+        <Dropdown>
+          <Dropdown.Trigger>
+            <ProfileIcon />
+          </Dropdown.Trigger>
+          <Dropdown.Items position="bottom-right">
+            <div>팝업</div>
+          </Dropdown.Items>
+        </Dropdown>
       </div>
     </header>
   );
