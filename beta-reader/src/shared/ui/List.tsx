@@ -12,28 +12,26 @@ const ListItemContainer: React.FC<ListProps> = ({
   return <ul className={`flex flex-col gap-1.5 ${className}`}>{children}</ul>;
 };
 
-const listItemVariants = cva(" rounded-xl hover:bg-[#FFFFFF1A]", {
-  variants: {
-    isActive: {
-      true: "bg-secondary-700",
-      false: "bg-transparent"
-    },
-    size: {
-      sm: "text-caption-1-medium px-[0.8125rem] py-2",
-      md: "text-caption-1-medium px-[0.8125rem] py-2.5"
+const listItemVariants = cva(
+  "rounded-lg hover:bg-[#FFFFFF1A] text-caption-1-medium px-[0.88rem] py-[0.38rem]",
+  {
+    variants: {
+      isActive: {
+        true: "bg-secondary-800 text-caption-1-bold",
+        false: "bg-transparent"
+      }
     }
   }
-});
+);
 
 export const Item: React.FC<
   ListProps & VariantProps<typeof listItemVariants>
-> = ({ children, className = "", isActive, size }) => {
+> = ({ children, className = "", isActive }) => {
   return (
     <li
       className={listItemVariants({
         className,
-        isActive,
-        size
+        isActive
       })}
     >
       {children}
