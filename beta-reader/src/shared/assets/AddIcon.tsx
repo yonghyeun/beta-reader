@@ -1,18 +1,17 @@
 import { SVGProps } from "react";
 
-export const AddPlusLargeIcon = (props: SVGProps<SVGSVGElement>) => (
+export const AddIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
+    xmlns="http://www.w3.org/2000/svg"
     width="1.5rem"
     height="1.5rem"
-    viewBox="0 0 27 27"
+    viewBox="0 0 16 17"
     fill="none"
-    xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
     <path
-      d="M1.5 13.5H13.5M13.5 13.5H25.5M13.5 13.5V25.5M13.5 13.5V1.5"
+      d="M4 8.5H8M8 8.5H12M8 8.5V12.5M8 8.5V4.5"
       stroke="currentColor"
-      strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
