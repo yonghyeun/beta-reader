@@ -11,7 +11,7 @@ const asideVariants = cva(
   {
     variants: {
       isOpen: {
-        true: "fixed top-0 z-40 w-[13rem] px-2.5",
+        true: "fixed top-0 z-40 w-[13rem]",
         false: "w-fit px-6"
       }
     }
@@ -29,31 +29,35 @@ export const Sidebar = () => {
     >
       {isOpen ? (
         <>
-          {/* 연재물 추가 & 사이드바 접기 버튼 */}
-          <div
-            className="text-caption-2-regular flex justify-end gap-1"
-            role="toolbar"
-            aria-label="사이드바 컨트롤"
-          >
-            <button
-              className="flex cursor-pointer rounded-[0.3125rem] pr-1 hover:bg-[rgba(255,255,255,0.1)]"
-              aria-label={MAIN_LAYOUT_TEXT.ADD_SERIAL}
+          <nav className="flex flex-col gap-4">
+            {/* 연재물 추가 & 사이드바 접기 버튼 */}
+            <div
+              className="text-caption-2-regular flex justify-end gap-1 px-2.5"
+              role="toolbar"
+              aria-label="사이드바 컨트롤"
             >
-              <AddIcon width="1rem" height="1rem" aria-hidden="true" />
-              <span>{MAIN_LAYOUT_TEXT.ADD_SERIAL}</span>
-            </button>
-            <button
-              onClick={toggle("close")}
-              className="flex cursor-pointer rounded-[0.3125rem] px-1 hover:bg-[rgba(255,255,255,0.1)]"
-              aria-label={MAIN_LAYOUT_ARIA_LABEL.CLOSE_SIDEBAR}
-            >
-              <span>{MAIN_LAYOUT_TEXT.CLOSE_SIDEBAR}</span>
-            </button>
-          </div>
-          {/* 연재물 리스트 navigation bar */}
-          <ul role="menu" aria-label="연재물 목록">
-            <li role="none"></li>
-          </ul>
+              <button
+                className="flex cursor-pointer rounded-[0.3125rem] pr-1 hover:bg-[rgba(255,255,255,0.1)]"
+                aria-label={MAIN_LAYOUT_TEXT.ADD_SERIAL}
+              >
+                <AddIcon width="1rem" height="1rem" aria-hidden="true" />
+                <span>{MAIN_LAYOUT_TEXT.ADD_SERIAL}</span>
+              </button>
+              <button
+                onClick={toggle("close")}
+                className="flex cursor-pointer rounded-[0.3125rem] px-1 hover:bg-[rgba(255,255,255,0.1)]"
+                aria-label={MAIN_LAYOUT_ARIA_LABEL.CLOSE_SIDEBAR}
+              >
+                <span>{MAIN_LAYOUT_TEXT.CLOSE_SIDEBAR}</span>
+              </button>
+            </div>
+            {/* divider line */}
+            <div className="bg-secondary-600 h-[1px] w-full" />
+            {/* 연재물 리스트 navigation bar */}
+            <ul role="menu" aria-label="연재물 목록" className="px-2.5">
+              <li role="none"></li>
+            </ul>
+          </nav>
         </>
       ) : (
         <button
