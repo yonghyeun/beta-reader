@@ -1,5 +1,5 @@
-import { MAIN_LAYOUT_TEXT } from "../config";
 import { MainLogo } from "./MainLogo";
+import { ROUTES } from "@/src/shared/config/routes";
 import Link from "next/link";
 
 export const Header = () => {
@@ -10,7 +10,7 @@ export const Header = () => {
       aria-label="사이트 헤더"
     >
       {/* beta reader icon & home button */}
-      <Link href="/" aria-label="홈으로 이동">
+      <Link href={ROUTES.MAIN()} aria-label="홈으로 이동">
         <MainLogo />
       </Link>
       {/* TODO profile button */}

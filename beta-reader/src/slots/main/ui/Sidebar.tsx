@@ -5,6 +5,7 @@ import { cva } from "class-variance-authority";
 import { MAIN_LAYOUT_ARIA_LABEL, MAIN_LAYOUT_TEXT } from "../config";
 import { useSidebar } from "../lib";
 import { AddIcon, MenuIcon } from "@/src/shared/assets";
+import Link from "next/link";
 
 const asideVariants = cva(
   "bg-secondary-900 flex-col py-[5.25rem] transition-all duration-200 h-screen ease-in-out",
@@ -36,13 +37,15 @@ export const Sidebar = () => {
               role="toolbar"
               aria-label="사이드바 컨트롤"
             >
-              <button
+              {/* TODO : 연재물 추가 기능 작업 시 생성 */}
+              <Link
+                href="#"
                 className="flex cursor-pointer rounded-[0.3125rem] pr-1 hover:bg-[rgba(255,255,255,0.1)]"
                 aria-label={MAIN_LAYOUT_TEXT.ADD_SERIAL}
               >
                 <AddIcon width="1rem" height="1rem" aria-hidden="true" />
                 <span>{MAIN_LAYOUT_TEXT.ADD_SERIAL}</span>
-              </button>
+              </Link>
               <button
                 onClick={toggle("close")}
                 className="flex cursor-pointer rounded-[0.3125rem] px-1 hover:bg-[rgba(255,255,255,0.1)]"
