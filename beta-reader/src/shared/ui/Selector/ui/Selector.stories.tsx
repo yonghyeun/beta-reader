@@ -1,38 +1,38 @@
 import { useState } from "react";
 
-import { DropDown } from "./Dropdown";
+import { Selector } from "./Selector";
 import { action } from "@storybook/addon-actions";
 import type { Meta, StoryObj } from "@storybook/react";
 
 // 메타데이터 정의
 const meta = {
-  title: "Shared/Dropdown",
-  component: DropDown,
+  title: "Shared/Selector",
+  component: Selector,
   args: {
-    onDropdownChange: action("dropdown changed")
+    onSelectorChange: action("selector changed")
   },
   argTypes: {
     initialValue: {
-      description: "드롭다운의 초기 선택값",
+      description: "셀렉터의 초기 선택값",
       control: { type: "text" }
     },
     variant: {
-      description: "드롭다운의 스타일 변형",
+      description: "셀렉터의 스타일 변형",
       control: { type: "radio" },
       options: ["padded", "default"]
     },
-    onDropdownChange: {
-      description: "드롭다운 값이 변경될 때 호출되는 콜백 함수",
-      action: "dropdown changed"
+    onSelectorChange: {
+      description: "셀렉터 값이 변경될 때 호출되는 콜백 함수",
+      action: "selector changed"
     }
   }
-} satisfies Meta<typeof DropDown>;
+} satisfies Meta<typeof Selector>;
 
 export default meta;
 
-type Story = StoryObj<typeof DropDown>;
+type Story = StoryObj<typeof Selector>;
 
-// 기본 드롭다운 스토리
+// 기본 셀렉터 스토리
 export const Default: Story = {
   args: {
     initialValue: "선택하세요",
@@ -40,16 +40,16 @@ export const Default: Story = {
   },
   render: (args) => (
     <div className="relative">
-      <DropDown {...args}>
-        <DropDown.Item value="옵션 1">옵션 1</DropDown.Item>
-        <DropDown.Item value="옵션 2">옵션 2</DropDown.Item>
-        <DropDown.Item value="옵션 3">옵션 3</DropDown.Item>
-      </DropDown>
+      <Selector {...args}>
+        <Selector.Item value="옵션 1">옵션 1</Selector.Item>
+        <Selector.Item value="옵션 2">옵션 2</Selector.Item>
+        <Selector.Item value="옵션 3">옵션 3</Selector.Item>
+      </Selector>
     </div>
   )
 };
 
-// 많은 옵션을 가진 드롭다운
+// 많은 옵션을 가진 셀렉터
 export const ManyOptions: Story = {
   args: {
     initialValue: "많은 옵션들",
@@ -57,18 +57,18 @@ export const ManyOptions: Story = {
   },
   render: (args) => (
     <div className="relative">
-      <DropDown {...args}>
+      <Selector {...args}>
         {Array.from({ length: 10 }).map((_, index) => (
-          <DropDown.Item key={index} value={`옵션 ${index + 1}`}>
+          <Selector.Item key={index} value={`옵션 ${index + 1}`}>
             옵션 {index + 1}
-          </DropDown.Item>
+          </Selector.Item>
         ))}
-      </DropDown>
+      </Selector>
     </div>
   )
 };
 
-// 긴 텍스트를 가진 드롭다운
+// 긴 텍스트를 가진 셀렉터
 export const LongText: Story = {
   args: {
     initialValue: "긴 텍스트 옵션",
@@ -76,19 +76,19 @@ export const LongText: Story = {
   },
   render: (args) => (
     <div className="relative">
-      <DropDown {...args}>
-        <DropDown.Item value="이것은 매우 긴 텍스트 옵션입니다">
+      <Selector {...args}>
+        <Selector.Item value="이것은 매우 긴 텍스트 옵션입니다">
           이것은 매우 긴 텍스트 옵션입니다
-        </DropDown.Item>
-        <DropDown.Item value="이것도 상당히 긴 텍스트 옵션입니다">
+        </Selector.Item>
+        <Selector.Item value="이것도 상당히 긴 텍스트 옵션입니다">
           이것도 상당히 긴 텍스트 옵션입니다
-        </DropDown.Item>
-      </DropDown>
+        </Selector.Item>
+      </Selector>
     </div>
   )
 };
 
-// 상태 추적 드롭다운
+// 상태 추적 셀렉터
 export const WithStateTracking = {
   render: () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -101,19 +101,19 @@ export const WithStateTracking = {
         </div>
 
         <div className="relative">
-          <DropDown
+          <Selector
             initialValue={selectedValue}
-            onDropdownChange={(value) => {
+            onSelectorChange={(value) => {
               setSelectedValue(value);
               action("상태 업데이트됨")(value);
             }}
             variant="padded"
           >
-            <DropDown.Item value="옵션 1">옵션 1</DropDown.Item>
-            <DropDown.Item value="옵션 2">옵션 2</DropDown.Item>
-            <DropDown.Item value="옵션 3">옵션 3</DropDown.Item>
-            <DropDown.Item value="옵션 4">옵션 4</DropDown.Item>
-          </DropDown>
+            <Selector.Item value="옵션 1">옵션 1</Selector.Item>
+            <Selector.Item value="옵션 2">옵션 2</Selector.Item>
+            <Selector.Item value="옵션 3">옵션 3</Selector.Item>
+            <Selector.Item value="옵션 4">옵션 4</Selector.Item>
+          </Selector>
         </div>
       </div>
     );

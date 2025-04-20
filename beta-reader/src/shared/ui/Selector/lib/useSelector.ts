@@ -1,20 +1,20 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { createContext, useContext } from "react";
 
-export const useDropdown = (
+export const useSelector = (
   ref: React.RefObject<HTMLDivElement | null>,
   initialValue?: string,
-  onCloseDropdown?: (value: string) => void
+  onCloseSelector?: (value: string) => void
 ) => {
   const [value, setValue] = useState<string>(initialValue || "");
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const dropdownId = useMemo(
-    () => `dropdown-${Math.random().toString(36).slice(2, 9)}`,
+  const selectorId = useMemo(
+    () => `selector-${Math.random().toString(36).slice(2, 9)}`,
     []
   );
 
-  // dropdown 이 열린 후 외부 영역 클릭 시 자동으로 닫히도록 addEventListener
+  // selector가 열린 후 외부 영역 클릭 시 자동으로 닫히도록 addEventListener
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (ref.current && !ref.current.contains(event.target as Node)) {
@@ -42,28 +42,28 @@ export const useDropdown = (
     setValue(initialValue || "");
   }, [initialValue]);
 
-  const closeDropDown = useCallback((value: string) => {
+  const closeSelector = useCallback((value: string) => {
     setValue(value);
     setIsOpen(false);
-    onCloseDropdown?.(value);
+    onCloseSelector?.(value);
   }, []);
 
-  const openDropdown = useCallback(() => {
+  const openSelector = useCallback(() => {
     setIsOpen(true);
   }, []);
 
-  return { value, closeDropDown, openDropdown, isOpen, dropdownId };
+  return { value, closeSelector, openSelector, isOpen, selectorId };
 };
 
-export const DropdownContext = createContext<ReturnType<
-  typeof useDropdown
+export const SelectorContext = createContext<ReturnType<
+  typeof useSelector
 > | null>(null);
 
-export const useDropdownContext = () => {
-  const context = useContext(DropdownContext);
+export const useSelectorContext = () => {
+  const context = useContext(SelectorContext);
   if (!context) {
     throw new Error(
-      "useDropdown 훅은 DropdownProvider 내부에서만 사용해야 합니다"
+      "useSelector 훅은 SelectorProvider 내부에서만 사용해야 합니다"
     );
   }
   return context;

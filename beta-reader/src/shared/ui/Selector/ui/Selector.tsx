@@ -1,7 +1,7 @@
 import { VariantProps, cva } from "class-variance-authority";
 import { useRef } from "react";
 
-import { DropdownContext, useDropdown, useDropdownContext } from "../lib";
+import { SelectorContext, useSelector, useSelectorContext } from "../lib";
 import {
   DownLargeIcon,
   DownSmallIcon,
@@ -19,15 +19,15 @@ const selectorVariant = cva("flex items-center justify-between", {
   }
 });
 
-interface DropDownProps extends VariantProps<typeof selectorVariant> {
+interface SelectorProps extends VariantProps<typeof selectorVariant> {
   initialValue?: string;
   children: React.ReactNode;
-  onDropdownChange?: (value: string) => void;
+  onSelectorChange?: (value: string) => void;
   className?: string;
 }
 
-const dropdownIcons = (variant: "default" | "padded") => (status: boolean) => {
-  const dropdownIcons = {
+const selectorIcons = (variant: "default" | "padded") => (status: boolean) => {
+  const icons = {
     default: {
       open: <UpSmallIcon />,
       close: <DownSmallIcon />
@@ -37,45 +37,45 @@ const dropdownIcons = (variant: "default" | "padded") => (status: boolean) => {
       close: <DownLargeIcon />
     }
   };
-  return dropdownIcons[variant][status ? "open" : "close"];
+  return icons[variant][status ? "open" : "close"];
 };
 
-const DropdownContainer: React.FC<DropDownProps> = ({
+const SelectorContainer: React.FC<SelectorProps> = ({
   children,
-  onDropdownChange,
+  onSelectorChange,
   initialValue = "",
   className,
   ...props
 }) => {
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const dropdonwLogic = useDropdown(
-    dropdownRef,
+  const selectorRef = useRef<HTMLDivElement>(null);
+  const selectorLogic = useSelector(
+    selectorRef,
     initialValue,
-    onDropdownChange
+    onSelectorChange
   );
-  const getDropdownIcons = dropdownIcons(props.variant || "default");
+  const getSelectorIcons = selectorIcons(props.variant || "default");
 
-  const { isOpen, dropdownId, closeDropDown, openDropdown, value } =
-    dropdonwLogic;
+  const { isOpen, selectorId, closeSelector, openSelector, value } =
+    selectorLogic;
 
   return (
-    <DropdownContext value={{ ...dropdonwLogic }}>
-      <div ref={dropdownRef} className="relative">
-        {/* Dropdown Selector */}
+    <SelectorContext value={{ ...selectorLogic }}>
+      <div ref={selectorRef} className="relative">
+        {/* Selector Button */}
         <button
           aria-haspopup="listbox"
           aria-expanded={isOpen}
-          aria-controls={dropdownId}
-          onClick={() => (isOpen ? closeDropDown(value) : openDropdown())}
+          aria-controls={selectorId}
+          onClick={() => (isOpen ? closeSelector(value) : openSelector())}
           className={selectorVariant({ ...props, className })}
         >
           <span>{value}</span>
-          <span aria-hidden="true">{getDropdownIcons(isOpen)}</span>
+          <span aria-hidden="true">{getSelectorIcons(isOpen)}</span>
         </button>
-        {/* Dropdown Items */}
-        {dropdonwLogic.isOpen && (
+        {/* Selector Items */}
+        {selectorLogic.isOpen && (
           <ul
-            id={dropdonwLogic.dropdownId}
+            id={selectorLogic.selectorId}
             role="listbox"
             className="text-secondary-white bg-secondary-800 border-secondary-500 absolute top-full mt-2 flex min-w-72 flex-col gap-1 rounded-[1.25rem] border p-5"
           >
@@ -83,7 +83,7 @@ const DropdownContainer: React.FC<DropDownProps> = ({
           </ul>
         )}
       </div>
-    </DropdownContext>
+    </SelectorContext>
   );
 };
 
@@ -93,7 +93,7 @@ interface ItemProps {
 }
 
 const Item: React.FC<ItemProps> = ({ value, children }) => {
-  const { closeDropDown } = useDropdownContext();
+  const { closeSelector } = useSelectorContext();
 
   return (
     <li
@@ -101,7 +101,7 @@ const Item: React.FC<ItemProps> = ({ value, children }) => {
       aria-selected={false}
       className="min-w-[15.5rem] cursor-pointer rounded-xl px-[0.815rem] py-2.5 hover:bg-[#5E6CFF66]"
       onClick={() => {
-        closeDropDown(value);
+        closeSelector(value);
       }}
     >
       {children}
@@ -109,6 +109,6 @@ const Item: React.FC<ItemProps> = ({ value, children }) => {
   );
 };
 
-export const DropDown = Object.assign(DropdownContainer, {
+export const Selector = Object.assign(SelectorContainer, {
   Item
 });
