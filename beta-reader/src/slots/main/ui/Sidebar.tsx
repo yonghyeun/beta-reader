@@ -34,7 +34,7 @@ export const Sidebar = () => {
       <div className="relative h-full w-full overflow-hidden">
         {/* 열린 상태 (큰 사이드바) */}
         {isOpen && (
-          <nav className="flex flex-col gap-4">
+          <nav className="fade-in-animation flex flex-col gap-4">
             {/* header 대신 나타나는 MainIcon Logo */}
             <Link
               href={ROUTES.MAIN()}
