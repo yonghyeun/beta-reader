@@ -1,4 +1,9 @@
-import { BookIcon, MeatballIcon } from "@/src/shared/assets";
+import {
+  ArrowRightLargeIcon,
+  BookIcon,
+  MeatballIcon
+} from "@/src/shared/assets";
+import Link from "next/link";
 
 interface NovelMetaCardProps {
   novelTitle: string;
@@ -55,6 +60,14 @@ export const NovelMetaCard: React.FC<NovelMetaCardProps> = ({
           </li>
         ))}
       </ul>
+      <footer className="flex items-center justify-end">
+        <Link
+          href="#"
+          className="text-body-2-medium text-primary-200 hover:text-primary-100 flex items-center gap-0.5 rounded-lg px-1 py-0.5 hover:bg-[#FFFFFF1A]"
+        >
+          원고지 모두 보기 <ArrowRightLargeIcon />
+        </Link>
+      </footer>
     </section>
   );
 };

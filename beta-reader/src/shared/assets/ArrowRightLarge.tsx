@@ -2,17 +2,17 @@ import { SVGProps } from "react";
 
 export const ArrowRightLargeIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
+    xmlns="http://www.w3.org/2000/svg"
     width="1.5rem"
     height="1.5rem"
-    viewBox="0 0 44 40"
+    viewBox="0 0 24 25"
     fill="none"
-    xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
     <path
-      d="M2 20H42M42 20L24.8571 2M42 20L24.8571 38"
+      d="M9 5.5L16 12.5L9 19.5"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
