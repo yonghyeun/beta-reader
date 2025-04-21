@@ -14,8 +14,8 @@ const sideNavVariant = cva(
   {
     variants: {
       isOpen: {
-        true: "w-[13rem]",
-        false: "w-[4.5rem]"
+        true: "w-[20%]",
+        false: "w-[4.8%]"
       }
     }
   }
@@ -34,7 +34,7 @@ export const Sidebar = () => {
       <div className="relative h-full w-full overflow-hidden">
         {/* 열린 상태 (큰 사이드바) */}
         {isOpen && (
-          <nav className="flex w-[13rem] flex-col gap-4">
+          <nav className="flex flex-col gap-4">
             {/* header 대신 나타나는 MainIcon Logo */}
             <Link
               href={ROUTES.MAIN()}
