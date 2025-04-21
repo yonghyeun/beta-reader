@@ -14,8 +14,8 @@ const sideNavVariant = cva(
   {
     variants: {
       isOpen: {
-        true: "w-[20%]",
-        false: "w-[4.8%]"
+        true: "w-[20%] min-w-[13.5rem]",
+        false: "w-[4.8%] min-w-[2rem]"
       }
     }
   }
@@ -77,7 +77,7 @@ export const Sidebar = () => {
 
         {/* 닫힌 상태 (작은 사이드바) */}
         {!isOpen && (
-          <div className="flex h-full w-[4.5rem] items-start justify-center py-[5.25rem]">
+          <div className="flex h-full items-start justify-center py-[5.25rem]">
             <button
               onClick={toggle("open")}
               className="cursor-pointer"
