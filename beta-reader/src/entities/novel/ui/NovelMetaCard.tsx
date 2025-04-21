@@ -18,7 +18,7 @@ export const NovelMetaCard: React.FC<NovelMetaCardProps> = ({
   return (
     <section
       aria-labelledby="novel-title"
-      className="bg-secondary-900 border-secondary-700 flex flex-col gap-5 rounded-2xl border px-[1.625rem] py-5"
+      className="bg-secondary-900 border-secondary-700 hover:bg-secondary-800 flex flex-col gap-5 rounded-2xl border px-[1.625rem] py-5"
     >
       <header className="flex flex-col gap-2">
         <div className="flex justify-between">
@@ -46,7 +46,7 @@ export const NovelMetaCard: React.FC<NovelMetaCardProps> = ({
         {episodes.map((episode) => (
           <li
             key={episode.title}
-            className="bg-secondary-800 border-secondary-600 flex flex-col gap-2 rounded-2xl border px-[1.625rem] py-6"
+            className="bg-secondary-800 border-secondary-600 hover:bg-secondary-700 flex flex-col gap-2 rounded-2xl border px-[1.625rem] py-6"
           >
             <p className="text-body-2-medium line-clamp-1">{episode.title}</p>
             <p className="caption-3-regular text-secondary-300">
