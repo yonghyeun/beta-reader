@@ -45,14 +45,14 @@ export const Sidebar = () => {
             </Link>
             {/* 연재물 추가 & 사이드바 접기 버튼 */}
             <div
-              className="text-caption-2-regular flex justify-end gap-1 px-2.5"
+              className="text-caption-1-regular flex justify-end gap-1 px-2.5"
               role="toolbar"
               aria-label="사이드바 컨트롤"
             >
               {/* TODO : 연재물 추가 기능 작업 시 생성 */}
               <Link
                 href="#"
-                className="flex cursor-pointer rounded-[0.3125rem] pr-1 hover:bg-[rgba(255,255,255,0.1)]"
+                className="flex cursor-pointer items-center rounded-[0.3125rem] pr-1 hover:bg-[rgba(255,255,255,0.1)]"
                 aria-label={MAIN_LAYOUT_TEXT.ADD_SERIAL}
               >
                 <AddIcon width="1rem" height="1rem" aria-hidden="true" />
