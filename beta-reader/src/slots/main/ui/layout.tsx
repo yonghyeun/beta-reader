@@ -11,9 +11,9 @@ export const MainLayout: React.FC<PropsWithChildren> = ({ children }) => {
       aria-label="메인 콘텐츠"
     >
       <Sidebar />
-      <section className="w-full">
+      <section className="flex h-dvh w-full flex-col">
         <Header />
-        {children}
+        <section className="flex-1 overflow-auto">{children}</section>
       </section>
     </main>
   );

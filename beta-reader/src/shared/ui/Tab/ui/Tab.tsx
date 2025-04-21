@@ -30,9 +30,9 @@ export const Container: React.FC<TabContainerProps<string[]>> = ({
 
   return (
     <TabContext value={tabLogic}>
-      <section className={`w-full overflow-x-auto ${className}`}>
+      <section className={`w-full ${className}`}>
         <div className="border-secondary-400 border-b">
-          <ul className="flex w-full gap-5 px-10">
+          <ul className="flex w-full gap-5 overflow-x-auto px-10">
             {tabList.map((tab) => (
               <li key={tab} className="flex flex-col gap-2">
                 <button
