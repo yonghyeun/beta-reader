@@ -54,7 +54,7 @@ export const Header = () => {
       <div role="navigation" aria-label="사용자 메뉴">
         <Dropdown>
           <Dropdown.Trigger>
-            <ProfileIcon />
+            <ProfileIcon width="2rem" height="2rem" />
           </Dropdown.Trigger>
           <Dropdown.Items position="bottom-right">
             <div>팝업</div>
