@@ -28,5 +28,5 @@ export * from "./Trash";
 export * from "./UpLarge";
 export * from "./UpSmall";
 export * from "./LogoIcon";
-export * from "./MenuIocn";
+export * from "./MenuIcon";
 export * from "./ProfileIcon";
