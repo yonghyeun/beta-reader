@@ -26,7 +26,7 @@
   --color-warning-200: #ff564a;
 
   /* 폰트 속성 */
-  --font-display: var(--font-pretenard), "sans";
+  --font-display: var(--font-pretendard), "sans";
 
   /* line-height */
   --line-height-140: 1.4;
@@ -53,6 +53,17 @@
 
   /* 애니메이션 */
   --transition-opacity-duration: 300ms;
+}
+
+/* 글로벌 스타일 추가 */
+html {
+  font-family:
+    var(--font-pretendard),
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
 }
 
 @layer utilities {
