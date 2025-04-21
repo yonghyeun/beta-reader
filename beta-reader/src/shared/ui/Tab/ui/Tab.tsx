@@ -11,7 +11,7 @@ interface TabContainerProps<T extends string[]> {
   className?: string;
 }
 
-const tabSelectorVariants = cva("text-title-4-bold cursor-pointer", {
+const tabSelectorVariants = cva("cursor-pointer", {
   variants: {
     isActive: {
       true: "text-secondary-white",
@@ -26,34 +26,49 @@ export const Container: React.FC<TabContainerProps<string[]>> = ({
   children,
   className = ""
 }) => {
-  const tabLogic = useTab(tabList, initialValue);
+  const tabContext = useTab(tabList, initialValue);
 
   return (
-    <TabContext value={tabLogic}>
-      <section className={`w-full ${className}`}>
-        <div className="border-secondary-400 border-b">
-          <ul className="flex w-full gap-5 overflow-x-auto px-10">
-            {tabList.map((tab) => (
-              <li key={tab} className="flex flex-col gap-2">
-                <button
-                  onClick={tabLogic.handleChangeTab(tab)}
-                  className={tabSelectorVariants({
-                    isActive: tabLogic.selectedTab === tab
-                  })}
-                >
-                  {tab}
-                </button>
-                {tab === tabLogic.selectedTab && (
-                  <div className="bg-secondary-white fade-in-animation h-[0.125rem] w-full" />
-                )}
-              </li>
-            ))}
-            <div />
-          </ul>
-        </div>
-        {children}
-      </section>
+    <TabContext value={tabContext}>
+      <section className={`w-full ${className}`}>{children}</section>
     </TabContext>
+  );
+};
+
+interface TabHeaderProps {
+  className?: string;
+  withActiveLine?: boolean;
+}
+
+export const Header: React.FC<TabHeaderProps> = ({
+  className,
+  withActiveLine = false
+}) => {
+  const { tabList, selectedTab, handleChangeTab } = useTabContext();
+
+  return (
+    <div
+      className={`border-secondary-400 border-b ${withActiveLine ? "pt-4" : "py-4"}`}
+    >
+      <ul className={`flex gap-5 overflow-x-auto ${className}`}>
+        {tabList.map((tab) => (
+          <li key={tab} className="flex flex-col gap-4">
+            <button
+              onClick={handleChangeTab(tab)}
+              className={tabSelectorVariants({
+                isActive: selectedTab === tab
+              })}
+            >
+              {tab}
+            </button>
+            {withActiveLine && tab === selectedTab && (
+              <div className="bg-secondary-white fade-in-animation h-[0.125rem] w-full" />
+            )}
+          </li>
+        ))}
+        <div />
+      </ul>
+    </div>
   );
 };
 

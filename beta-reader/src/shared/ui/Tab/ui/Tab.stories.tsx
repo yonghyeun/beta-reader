@@ -1,4 +1,4 @@
-import { Container, Item } from "./Tab";
+import { Container, Header, Item } from "./Tab";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof Container> = {
@@ -29,7 +29,8 @@ const meta: Meta<typeof Container> = {
         defaultValue: { summary: "" }
       }
     }
-  }
+  },
+  subcomponents: { Header, Item }
 };
 
 export default meta;
@@ -38,10 +39,37 @@ type Story = StoryObj<typeof Container>;
 export const Default: Story = {
   render: () => (
     <Container tabList={["첫번째", "두번째", "세번째"]} initialValue="첫번째">
+      <Header />
       <Item on="첫번째">
         <div className="bg-secondary-800 mt-6 rounded-lg p-4 px-10">
           <h2 className="text-title-4-bold mb-2">첫번째 탭 내용</h2>
           <p>첫번째 탭에 표시될 내용입니다.</p>
+        </div>
+      </Item>
+      <Item on="두번째">
+        <div className="bg-secondary-800 mt-6 rounded-lg p-4 px-10">
+          <h2 className="text-title-4-bold mb-2">두번째 탭 내용</h2>
+          <p>두번째 탭에 표시될 내용입니다.</p>
+        </div>
+      </Item>
+      <Item on="세번째">
+        <div className="bg-secondary-800 mt-6 rounded-lg p-4 px-10">
+          <h2 className="text-title-4-bold mb-2">세번째 탭 내용</h2>
+          <p>세번째 탭에 표시될 내용입니다.</p>
+        </div>
+      </Item>
+    </Container>
+  )
+};
+
+export const WithActiveLine: Story = {
+  render: () => (
+    <Container tabList={["첫번째", "두번째", "세번째"]} initialValue="첫번째">
+      <Header withActiveLine />
+      <Item on="첫번째">
+        <div className="bg-secondary-800 mt-6 rounded-lg p-4 px-10">
+          <h2 className="text-title-4-bold mb-2">첫번째 탭 내용</h2>
+          <p>활성 라인이 표시된 탭입니다.</p>
         </div>
       </Item>
       <Item on="두번째">
@@ -65,6 +93,7 @@ export const WithMoreTabs: Story = {
     const tabs = ["홈", "프로필", "설정", "알림", "도움말"];
     return (
       <Container tabList={tabs} initialValue="홈">
+        <Header className="flex-wrap" />
         {tabs.map((tab) => (
           <Item key={tab} on={tab}>
             <div className="bg-secondary-800 mt-6 rounded-lg p-4 px-10">
@@ -76,6 +105,32 @@ export const WithMoreTabs: Story = {
       </Container>
     );
   }
+};
+
+export const CustomHeaderStyle: Story = {
+  render: () => (
+    <Container tabList={["첫번째", "두번째", "세번째"]} initialValue="첫번째">
+      <Header className="text-title-4-bold justify-center" withActiveLine />
+      <Item on="첫번째">
+        <div className="bg-secondary-800 mt-6 rounded-lg p-4 px-10">
+          <h2 className="text-title-4-bold mb-2">첫번째 탭 내용</h2>
+          <p>커스텀 헤더 스타일이 적용된 탭입니다.</p>
+        </div>
+      </Item>
+      <Item on="두번째">
+        <div className="bg-secondary-800 mt-6 rounded-lg p-4 px-10">
+          <h2 className="text-title-4-bold mb-2">두번째 탭 내용</h2>
+          <p>두번째 탭에 표시될 내용입니다.</p>
+        </div>
+      </Item>
+      <Item on="세번째">
+        <div className="bg-secondary-800 mt-6 rounded-lg p-4 px-10">
+          <h2 className="text-title-4-bold mb-2">세번째 탭 내용</h2>
+          <p>세번째 탭에 표시될 내용입니다.</p>
+        </div>
+      </Item>
+    </Container>
+  )
 };
 
 export const WithCustomContent: Story = {
@@ -98,6 +153,8 @@ export const WithCustomContent: Story = {
 
     return (
       <Container tabList={categories} initialValue="소설">
+        <Header withActiveLine />
+
         {/* String 형식으로 on prop 사용 */}
         <Item on="소설">
           <div className="bg-secondary-800 mt-6 rounded-lg p-4 px-10">
@@ -163,6 +220,7 @@ export const WithCustomContent: Story = {
 export const WithInitialSecondTab: Story = {
   render: () => (
     <Container tabList={["첫번째", "두번째", "세번째"]} initialValue="두번째">
+      <Header withActiveLine />
       <Item on="첫번째">
         <div className="bg-secondary-800 mt-6 rounded-lg p-4 px-10">
           <h2 className="text-title-4-bold mb-2">첫번째 탭 내용</h2>
@@ -194,6 +252,7 @@ export const CustomStyle: Story = {
       initialValue="작품정보"
       className="w-full max-w-[32rem]"
     >
+      <Header className="justify-center" />
       <Item on="작품정보">
         <div className="bg-secondary-800 mt-6 rounded-lg p-4 px-10">
           <h2 className="text-title-4-bold mb-2">작품정보</h2>
