@@ -7,6 +7,7 @@ import { useSidebar } from "../lib";
 import { MainLogo } from "./MainLogo";
 import { AddIcon, MenuIcon } from "@/src/shared/assets";
 import { ROUTES } from "@/src/shared/config/routes";
+import { TextButton } from "@/src/shared/ui";
 import Link from "next/link";
 
 const sideNavVariant = cva(
@@ -36,13 +37,14 @@ export const Sidebar = () => {
         {isOpen && (
           <nav className="fade-in-animation flex flex-col gap-4">
             {/* header 대신 나타나는 MainIcon Logo */}
-            <Link
+            <TextButton
+              as="link"
               href={ROUTES.MAIN()}
               aria-label="홈으로 이동"
               className="fade-in-animation mx-auto h-[4.25rem] px-3 py-2.5"
             >
               <MainLogo />
-            </Link>
+            </TextButton>
             {/* 연재물 추가 & 사이드바 접기 버튼 */}
             <div
               className="text-caption-1-regular flex justify-end gap-1 px-2.5"
@@ -50,21 +52,21 @@ export const Sidebar = () => {
               aria-label="사이드바 컨트롤"
             >
               {/* TODO : 연재물 추가 기능 작업 시 생성 */}
-              <Link
+              <TextButton
                 href="#"
-                className="flex cursor-pointer items-center rounded-[0.3125rem] pr-1 hover:bg-[rgba(255,255,255,0.1)]"
+                as="link"
+                className="pr-1 pl-0.5"
                 aria-label={MAIN_LAYOUT_TEXT.ADD_SERIAL}
               >
                 <AddIcon width="1rem" height="1rem" aria-hidden="true" />
                 <span>{MAIN_LAYOUT_TEXT.ADD_SERIAL}</span>
-              </Link>
-              <button
+              </TextButton>
+              <TextButton
                 onClick={toggle("close")}
-                className="flex cursor-pointer rounded-[0.3125rem] px-1 hover:bg-[rgba(255,255,255,0.1)]"
                 aria-label={MAIN_LAYOUT_ARIA_LABEL.CLOSE_SIDEBAR}
               >
                 <span>{MAIN_LAYOUT_TEXT.CLOSE_SIDEBAR}</span>
-              </button>
+              </TextButton>
             </div>
             {/* divider line */}
             <div className="bg-secondary-600 h-[1px] w-full" />
@@ -78,14 +80,13 @@ export const Sidebar = () => {
         {/* 닫힌 상태 (작은 사이드바) */}
         {!isOpen && (
           <div className="flex h-full items-start justify-center py-[5.25rem]">
-            <button
+            <TextButton
               onClick={toggle("open")}
-              className="cursor-pointer"
               aria-label={MAIN_LAYOUT_ARIA_LABEL.OPEN_SIDEBAR}
               aria-expanded="false"
             >
               <MenuIcon aria-hidden="true" />
-            </button>
+            </TextButton>
           </div>
         )}
       </div>

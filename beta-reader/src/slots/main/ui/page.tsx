@@ -25,6 +25,7 @@ export const MainPage = () => {
       </div>
 
       <Tab.Container tabList={["연재물", "댓글 내역"]} initialValue="연재물">
+        <Tab.Header className="text-title-4-bold px-10" />
         <Tab.Item on="연재물">
           <NovelDashboard className="px-10 pt-10" />
         </Tab.Item>

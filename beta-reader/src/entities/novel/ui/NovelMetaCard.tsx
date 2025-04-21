@@ -3,6 +3,7 @@ import {
   BookIcon,
   MeatballIcon
 } from "@/src/shared/assets";
+import { TextButton } from "@/src/shared/ui";
 import Link from "next/link";
 
 interface NovelMetaCardProps {
@@ -38,7 +39,7 @@ export const NovelMetaCard: React.FC<NovelMetaCardProps> = ({
         <h3 id="novel-title" className="text-body-2-regular line-clamp-1">
           {novelTitle}
         </h3>
-        <div className="text-secondary-200 text-caption-2-regular flex gap-2.5">
+        <div className="text-secondary-200 text-caption-2-regular flex items-center gap-2.5">
           <p>{manuscriptCount}개의 원고지</p>
           <p>{commentsCount}회의 댓글</p>
           <p className="text-caption-3-regular text-primary-200">
@@ -61,12 +62,13 @@ export const NovelMetaCard: React.FC<NovelMetaCardProps> = ({
         ))}
       </ul>
       <footer className="flex items-center justify-end">
-        <Link
+        <TextButton
+          as="link"
           href="#"
           className="text-body-2-medium text-primary-200 hover:text-primary-100 flex items-center gap-0.5 rounded-lg px-1 py-0.5 hover:bg-[#FFFFFF1A]"
         >
           원고지 모두 보기 <ArrowRightLargeIcon />
-        </Link>
+        </TextButton>
       </footer>
     </section>
   );

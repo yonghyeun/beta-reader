@@ -233,3 +233,7 @@ html {
     animation: fadeOut var(--transition-opacity-duration) ease-in-out;
   }
 }
+
+button {
+  cursor: pointer;
+}
