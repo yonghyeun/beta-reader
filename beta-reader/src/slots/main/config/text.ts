@@ -23,3 +23,9 @@ export const MAIN_LAYOUT_ARIA_LABEL = {
    */
   OPEN_SIDEBAR: "사이드바 열기"
 } as const;
+
+export const MAIN_TAB_TEXT = {
+  NOVEL: "연재물",
+  MANUSCRIPT: "원고지",
+  COMMENT: "댓글 내역"
+} as const;
