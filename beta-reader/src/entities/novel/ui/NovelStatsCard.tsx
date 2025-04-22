@@ -17,17 +17,17 @@ export const NovelStatsCard: React.FC<NovelStatsCardProps> = ({
       <StatisticsItem title="연재물">
         총 <span>{novelsCount}</span>개
       </StatisticsItem>
-      <VerticlaDivider />
+      <VerticalDivider />
 
       <StatisticsItem title="원고지">
         총 <span>{manuscriptCount}</span>개
       </StatisticsItem>
-      <VerticlaDivider />
+      <VerticalDivider />
 
       <StatisticsItem title="발행">
         총 <span>{commentsCount}</span>회
       </StatisticsItem>
-      <VerticlaDivider />
+      <VerticalDivider />
 
       <StatisticsItem title="자주 만든 장르">
         <span>{frequentGenre}</span>
