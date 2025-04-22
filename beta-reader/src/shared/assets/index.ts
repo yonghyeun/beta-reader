@@ -1,5 +1,5 @@
 export * from "./CheckIcon";
-export * from "./AddPlusLarge";
+export * from "./AddIcon";
 export * from "./ArrowLeftLarge";
 export * from "./ArrowRightLarge";
 export * from "./Book";
@@ -27,3 +27,6 @@ export * from "./RightSmall";
 export * from "./Trash";
 export * from "./UpLarge";
 export * from "./UpSmall";
+export * from "./LogoIcon";
+export * from "./MenuIcon";
+export * from "./ProfileIcon";

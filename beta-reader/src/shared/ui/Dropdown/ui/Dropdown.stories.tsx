@@ -1,120 +1,134 @@
-import { useState } from "react";
-
-import { DropDown } from "./Dropdown";
-import { action } from "@storybook/addon-actions";
+import { Dropdown, DropdownPosition } from "./Dropdown";
 import type { Meta, StoryObj } from "@storybook/react";
 
-// 메타데이터 정의
-const meta = {
-  title: "Shared/Dropdown",
-  component: DropDown,
-  args: {
-    onDropdownChange: action("dropdown changed")
+const meta: Meta<typeof Dropdown> = {
+  title: "shared/Dropdown",
+  component: Dropdown,
+  parameters: {
+    layout: "centered"
   },
-  argTypes: {
-    initialValue: {
-      description: "드롭다운의 초기 선택값",
-      control: { type: "text" }
-    },
-    variant: {
-      description: "드롭다운의 스타일 변형",
-      control: { type: "radio" },
-      options: ["padded", "default"]
-    },
-    onDropdownChange: {
-      description: "드롭다운 값이 변경될 때 호출되는 콜백 함수",
-      action: "dropdown changed"
-    }
-  }
-} satisfies Meta<typeof DropDown>;
+  tags: ["autodocs"]
+};
 
 export default meta;
+type Story = StoryObj<typeof Dropdown>;
 
-type Story = StoryObj<typeof DropDown>;
-
-// 기본 드롭다운 스토리
 export const Default: Story = {
-  args: {
-    initialValue: "선택하세요",
-    variant: "padded"
-  },
-  render: (args) => (
-    <div className="relative">
-      <DropDown {...args}>
-        <DropDown.Item value="옵션 1">옵션 1</DropDown.Item>
-        <DropDown.Item value="옵션 2">옵션 2</DropDown.Item>
-        <DropDown.Item value="옵션 3">옵션 3</DropDown.Item>
-      </DropDown>
-    </div>
+  render: () => (
+    <Dropdown>
+      <Dropdown.Trigger label="드롭다운" />
+      <Dropdown.Items>
+        <Dropdown.Item onClick={() => console.log("항목 1 클릭됨")}>
+          항목 1
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => console.log("항목 2 클릭됨")}>
+          항목 2
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => console.log("항목 3 클릭됨")}>
+          항목 3
+        </Dropdown.Item>
+      </Dropdown.Items>
+    </Dropdown>
   )
 };
 
-// 많은 옵션을 가진 드롭다운
-export const ManyOptions: Story = {
-  args: {
-    initialValue: "많은 옵션들",
-    variant: "padded"
-  },
-  render: (args) => (
-    <div className="relative">
-      <DropDown {...args}>
-        {Array.from({ length: 10 }).map((_, index) => (
-          <DropDown.Item key={index} value={`옵션 ${index + 1}`}>
-            옵션 {index + 1}
-          </DropDown.Item>
-        ))}
-      </DropDown>
-    </div>
+export const Padded: Story = {
+  render: () => (
+    <Dropdown>
+      <Dropdown.Trigger variant="padded" label="패딩이 있는 드롭다운" />
+      <Dropdown.Items>
+        <Dropdown.Item onClick={() => console.log("항목 1 클릭됨")}>
+          항목 1
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => console.log("항목 2 클릭됨")}>
+          항목 2
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => console.log("항목 3 클릭됨")}>
+          항목 3
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => console.log("항목 4 클릭됨")}>
+          항목 4
+        </Dropdown.Item>
+      </Dropdown.Items>
+    </Dropdown>
   )
 };
 
-// 긴 텍스트를 가진 드롭다운
-export const LongText: Story = {
-  args: {
-    initialValue: "긴 텍스트 옵션",
-    variant: "padded"
-  },
-  render: (args) => (
-    <div className="relative">
-      <DropDown {...args}>
-        <DropDown.Item value="이것은 매우 긴 텍스트 옵션입니다">
-          이것은 매우 긴 텍스트 옵션입니다
-        </DropDown.Item>
-        <DropDown.Item value="이것도 상당히 긴 텍스트 옵션입니다">
-          이것도 상당히 긴 텍스트 옵션입니다
-        </DropDown.Item>
-      </DropDown>
-    </div>
+export const CustomTrigger: Story = {
+  render: () => (
+    <Dropdown>
+      <Dropdown.Trigger className="rounded-md bg-purple-700 px-4 py-2 text-white">
+        <div className="flex items-center gap-2">
+          <span>사용자 지정 트리거</span>
+          <span>🔽</span>
+        </div>
+      </Dropdown.Trigger>
+      <Dropdown.Items className="border-purple-300 bg-purple-100">
+        <Dropdown.Item
+          className="hover:bg-purple-200"
+          onClick={() => console.log("옵션 A 클릭됨")}
+        >
+          옵션 A
+        </Dropdown.Item>
+        <Dropdown.Item
+          className="hover:bg-purple-200"
+          onClick={() => console.log("옵션 B 클릭됨")}
+        >
+          옵션 B
+        </Dropdown.Item>
+        <Dropdown.Item
+          className="hover:bg-purple-200"
+          onClick={() => console.log("옵션 C 클릭됨")}
+        >
+          옵션 C
+        </Dropdown.Item>
+      </Dropdown.Items>
+    </Dropdown>
   )
 };
 
-// 상태 추적 드롭다운
-export const WithStateTracking = {
+// 다양한 위치 옵션 보여주기
+export const DifferentPositions: Story = {
   render: () => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [selectedValue, setSelectedValue] = useState<string>("선택해주세요");
+    // 모든 가능한 위치 옵션
+    const positions: DropdownPosition[] = [
+      "bottom-left",
+      "bottom-right",
+      "top-left",
+      "top-right",
+      "left-top",
+      "left-bottom",
+      "right-top",
+      "right-bottom"
+    ];
 
     return (
-      <div className="flex flex-col gap-4">
-        <div className="bg-secondary-800 text-secondary-white rounded-lg p-3">
-          <p>현재 선택된 값: {selectedValue}</p>
-        </div>
-
-        <div className="relative">
-          <DropDown
-            initialValue={selectedValue}
-            onDropdownChange={(value) => {
-              setSelectedValue(value);
-              action("상태 업데이트됨")(value);
-            }}
-            variant="padded"
-          >
-            <DropDown.Item value="옵션 1">옵션 1</DropDown.Item>
-            <DropDown.Item value="옵션 2">옵션 2</DropDown.Item>
-            <DropDown.Item value="옵션 3">옵션 3</DropDown.Item>
-            <DropDown.Item value="옵션 4">옵션 4</DropDown.Item>
-          </DropDown>
-        </div>
+      <div className="flex flex-wrap gap-20 p-20">
+        {positions.map((position) => (
+          <div key={position} className="flex flex-col items-center">
+            <h3 className="mb-4 text-sm font-semibold">{position}</h3>
+            <Dropdown>
+              <Dropdown.Trigger className="rounded bg-blue-600 px-3 py-2 text-white">
+                {position}
+              </Dropdown.Trigger>
+              <Dropdown.Items
+                position={position}
+                className="border-gray-300 bg-white text-black shadow-md"
+              >
+                <Dropdown.Item
+                  onClick={() => console.log(`${position} 항목 1`)}
+                >
+                  항목 1
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => console.log(`${position} 항목 2`)}
+                >
+                  항목 2
+                </Dropdown.Item>
+              </Dropdown.Items>
+            </Dropdown>
+          </div>
+        ))}
       </div>
     );
   }
