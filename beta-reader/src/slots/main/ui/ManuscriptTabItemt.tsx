@@ -1,7 +1,4 @@
-import {
-  EpisodePreviewCard,
-  EpisodeTitleCard
-} from "@/src/entities/episode/ui";
+import { EpisodePreviewCard, EpisodeTitleCard } from "@/entities/episode/ui";
 
 const content =
   "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati error hic consequuntur? Placeat rem explicabo eos reiciendis laborum numquam nulla non dignissimos saepe beatae at, asperiores eligendi! Corporis, voluptates perspiciatis!";

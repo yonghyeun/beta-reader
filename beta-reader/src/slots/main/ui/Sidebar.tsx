@@ -3,13 +3,14 @@
 import { cva } from "class-variance-authority";
 import React from "react";
 
+import { AddIcon, MenuIcon } from "@/shared/assets";
+import { ROUTES } from "@/shared/config/routes";
+import { TextButton } from "@/shared/ui";
+import * as List from "@/shared/ui/List";
+
 import { MAIN_LAYOUT_ARIA_LABEL, MAIN_LAYOUT_TEXT } from "../config";
 import { useSidebar } from "../lib";
 import { MainLogo } from "./MainLogo";
-import { AddIcon, MenuIcon } from "@/src/shared/assets";
-import { ROUTES } from "@/src/shared/config/routes";
-import { TextButton } from "@/src/shared/ui";
-import * as List from "@/src/shared/ui/List";
 import Link from "next/link";
 
 const mockNovelList = Array.from({ length: 3 }, (_, index) => ({

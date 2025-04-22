@@ -1,9 +1,6 @@
-import {
-  ArrowRightLargeIcon,
-  BookIcon,
-  MeatballIcon
-} from "@/src/shared/assets";
-import { TextButton } from "@/src/shared/ui";
+import { ArrowRightLargeIcon, BookIcon, MeatballIcon } from "@/shared/assets";
+import { TextButton } from "@/shared/ui";
+
 import Link from "next/link";
 
 interface NovelMetaCardProps {

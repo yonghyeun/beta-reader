@@ -1,8 +1,9 @@
+import { BookmarkIcon } from "@/shared/assets/Bookmark";
+import { EditPencilIcon } from "@/shared/assets/EditPencil";
+import { RightSmallIcon } from "@/shared/assets/RightSmall";
+import { TrashIcon } from "@/shared/assets/Trash";
+
 import { TextButton } from "./TextButton";
-import { BookmarkIcon } from "@/src/shared/assets/Bookmark";
-import { EditPencilIcon } from "@/src/shared/assets/EditPencil";
-import { RightSmallIcon } from "@/src/shared/assets/RightSmall";
-import { TrashIcon } from "@/src/shared/assets/Trash";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof TextButton> = {

@@ -1,5 +1,6 @@
+import { LogoIcon } from "@/shared/assets";
+
 import { MAIN_LAYOUT_TEXT } from "../config";
-import { LogoIcon } from "@/src/shared/assets";
 import { Poppins } from "next/font/google";
 
 const poppins = Poppins({

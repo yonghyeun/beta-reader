@@ -1,9 +1,11 @@
+import { NovelStatsCard } from "@/entities/novel/ui";
+
+import { ProfileIcon } from "@/shared/assets";
+import * as Tab from "@/shared/ui/Tab";
+
 import { MAIN_TAB_TEXT } from "../config";
 import { ManuscriptTabItem } from "./ManuscriptTabItemt";
 import { NovelTabItem } from "./NovelTabItem";
-import { NovelStatsCard } from "@/src/entities/novel/ui";
-import { ProfileIcon } from "@/src/shared/assets";
-import * as Tab from "@/src/shared/ui/Tab";
 
 export const MainPage = () => {
   return (

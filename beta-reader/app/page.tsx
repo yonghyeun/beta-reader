@@ -1,3 +1,3 @@
-import { MainPage } from "@/src/slots/main/ui";
+import { MainPage } from "@/slots/main/ui";
 
 export default MainPage;

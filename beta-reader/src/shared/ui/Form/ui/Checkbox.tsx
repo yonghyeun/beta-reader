@@ -3,8 +3,9 @@
 import { cva } from "class-variance-authority";
 import React, { useState } from "react";
 
+import { CheckIcon } from "@/shared/assets";
+
 import { CheckboxGroupContext, useCheckboxGroupContext } from "../model";
-import { CheckIcon } from "@/src/shared/assets";
 
 interface CheckboxGroupProps
   extends React.InputHTMLAttributes<HTMLInputElement> {

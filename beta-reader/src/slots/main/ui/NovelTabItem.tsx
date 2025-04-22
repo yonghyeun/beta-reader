@@ -1,4 +1,4 @@
-import { NovelMetaCard } from "@/src/entities/novel/ui";
+import { NovelMetaCard } from "@/entities/novel/ui";
 
 const mockNovelMetaCardProps = Array.from(
   {

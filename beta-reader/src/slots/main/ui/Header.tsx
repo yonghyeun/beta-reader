@@ -2,12 +2,13 @@
 
 import { cva } from "class-variance-authority";
 
+import { ProfileIcon } from "@/shared/assets";
+import { ROUTES } from "@/shared/config/routes";
+import { Dropdown } from "@/shared/ui/Dropdown";
+import { Selector } from "@/shared/ui/Selector";
+
 import { useSidebar } from "../lib";
 import { MainLogo } from "./MainLogo";
-import { ProfileIcon } from "@/src/shared/assets";
-import { ROUTES } from "@/src/shared/config/routes";
-import { Dropdown } from "@/src/shared/ui/Dropdown";
-import { Selector } from "@/src/shared/ui/Selector";
 import Link from "next/link";
 
 const headerVariants = cva(

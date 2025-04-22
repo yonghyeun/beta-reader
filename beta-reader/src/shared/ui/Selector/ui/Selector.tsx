@@ -1,13 +1,14 @@
 import { VariantProps, cva } from "class-variance-authority";
 import { useRef } from "react";
 
-import { SelectorContext, useSelector, useSelectorContext } from "../lib";
 import {
   DownLargeIcon,
   DownSmallIcon,
   UpLargeIcon,
   UpSmallIcon
-} from "@/src/shared/assets";
+} from "@/shared/assets";
+
+import { SelectorContext, useSelector, useSelectorContext } from "../lib";
 
 const selectorVariant = cva("flex items-center justify-between", {
   variants: {

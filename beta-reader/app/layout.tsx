@@ -1,6 +1,7 @@
+import { pretendard } from "@/shared/config/fonts";
+
 import "./globals.css";
-import { pretendard } from "@/src/shared/config/fonts";
-import { MainLayout } from "@/src/slots/main/ui";
+import { MainLayout } from "@/slots/main/ui";
 
 export default function RootLayout({
   children
