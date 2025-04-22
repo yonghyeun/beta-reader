@@ -53,6 +53,6 @@ const StatisticsItem: React.FC<StatisticsItemProps> = ({ title, children }) => {
   );
 };
 
-const VerticlaDivider = () => (
+const VerticalDivider = () => (
   <div className="bg-secondary-400 h-8 w-[0.0625rem]" aria-hidden />
 );
