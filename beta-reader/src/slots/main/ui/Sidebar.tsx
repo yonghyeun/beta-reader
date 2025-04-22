@@ -105,9 +105,8 @@ const OpenSidebarHeader: React.FC<SidebarHeaderProps> = ({ onClose }) => {
       role="toolbar"
       aria-label="사이드바 컨트롤"
     >
-      {/* TODO : 연재물 추가 기능 작업 시 생성 */}
       <TextButton
-        href="#"
+        href={ROUTES.NOVEL_SETTING()}
         as="link"
         className="pr-1 pl-0.5"
         aria-label={MAIN_LAYOUT_TEXT.ADD_SERIAL}
