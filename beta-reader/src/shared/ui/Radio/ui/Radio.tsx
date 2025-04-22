@@ -1,9 +1,9 @@
 "use client";
 
 import { cva } from "class-variance-authority";
-import React, { useState } from "react";
+import React from "react";
 
-import { RadioGroupContext, useRadioGroupContext } from "../model";
+import { RadioGroupContext, useRadioGroup, useRadioGroupContext } from "../lib";
 
 interface RadioGroupProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -13,7 +13,7 @@ interface RadioGroupProps extends React.InputHTMLAttributes<HTMLInputElement> {
   className?: string;
 }
 
-export const RadioGroupContainer: React.FC<RadioGroupProps> = ({
+export const Container: React.FC<RadioGroupProps> = ({
   name,
   value,
   children,
@@ -21,19 +21,15 @@ export const RadioGroupContainer: React.FC<RadioGroupProps> = ({
   onRadioGroupChange,
   ...props
 }) => {
-  const [selectedValue, setSelectedValue] = useState<string>(() => value);
-
-  const _onRadioGroupChange = (value: string) => {
-    setSelectedValue(value);
-    onRadioGroupChange(value);
-  };
+  const { value: _value, onRadioGroupChange: _onRadioGroupChange } =
+    useRadioGroup(value, onRadioGroupChange);
 
   return (
     <fieldset className={className}>
       <RadioGroupContext
         value={{
           name,
-          value: selectedValue,
+          value: _value,
           onRadioChange: _onRadioGroupChange,
           ...props
         }}
@@ -65,7 +61,11 @@ const radioInputVariants = cva(
   }
 );
 
-const Input: React.FC<RadioProps> = ({ value, label, className = "" }) => {
+export const Input: React.FC<RadioProps> = ({
+  value,
+  label,
+  className = ""
+}) => {
   const {
     value: radioGroupValue,
     name,
@@ -117,7 +117,3 @@ const Input: React.FC<RadioProps> = ({ value, label, className = "" }) => {
     </label>
   );
 };
-
-export const RadioGroup = Object.assign(RadioGroupContainer, {
-  Input
-});

@@ -1,12 +1,12 @@
 "use client";
 
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 interface RadioGroupContextValue
   extends React.InputHTMLAttributes<HTMLInputElement> {
   value: string;
   name: string;
-  onRadioChange: (newValue: string) => void;
+  onRadioChange: (value: string) => void;
 }
 
 export const RadioGroupContext = createContext<RadioGroupContextValue | null>(
@@ -21,4 +21,21 @@ export const useRadioGroupContext = () => {
     );
   }
   return context;
+};
+
+export const useRadioGroup = (
+  initialValue?: string,
+  callback?: (value: string) => void
+) => {
+  const [value, setValue] = useState<string>(() => initialValue || "");
+
+  const onRadioGroupChange = (value: string) => {
+    setValue(value);
+    callback?.(value);
+  };
+
+  return {
+    value,
+    onRadioGroupChange
+  };
 };
