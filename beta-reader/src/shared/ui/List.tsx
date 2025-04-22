@@ -1,15 +1,20 @@
 import { VariantProps, cva } from "class-variance-authority";
 
-interface ListProps {
+interface ListContainerProps extends React.HTMLAttributes<HTMLUListElement> {
   children: React.ReactNode;
   className?: string;
 }
 
-const ListItemContainer: React.FC<ListProps> = ({
+export const Container: React.FC<ListContainerProps> = ({
   children,
-  className = ""
+  className = "",
+  ...props
 }) => {
-  return <ul className={`flex flex-col gap-1.5 ${className}`}>{children}</ul>;
+  return (
+    <ul className={`flex flex-col gap-1.5 ${className}`} {...props}>
+      {children}
+    </ul>
+  );
 };
 
 const listItemVariants = cva(
@@ -24,21 +29,28 @@ const listItemVariants = cva(
   }
 );
 
-export const Item: React.FC<
-  ListProps & VariantProps<typeof listItemVariants>
-> = ({ children, className = "", isActive }) => {
+interface ListItemProps
+  extends React.HTMLAttributes<HTMLLIElement>,
+    VariantProps<typeof listItemVariants> {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export const Item: React.FC<ListItemProps> = ({
+  children,
+  className = "",
+  isActive,
+  ...props
+}) => {
   return (
     <li
       className={listItemVariants({
         className,
         isActive
       })}
+      {...props}
     >
       {children}
     </li>
   );
 };
-
-export const List = Object.assign(ListItemContainer, {
-  Item
-});

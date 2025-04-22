@@ -11,9 +11,10 @@ test.describe("사이드바 기능 테스트", () => {
   });
 
   test("사이드바 열기/닫기 기능 테스트", async ({ page }) => {
+    const sidebar = page.locator('nav[aria-label="사이드바 네비게이션"]');
+
     // 사이드바가 초기에는 닫힌 상태인지 확인
-    const closedSidebar = page.locator('nav[aria-label="사이드바 네비게이션"]');
-    await expect(closedSidebar).toHaveClass(/w-fit/);
+    await expect(sidebar).toHaveAttribute("aria-expanded", "false");
 
     // 메뉴 아이콘 버튼 클릭하여 사이드바 열기
     const menuButton = page.locator(
@@ -22,11 +23,10 @@ test.describe("사이드바 기능 테스트", () => {
     await menuButton.click();
 
     // 사이드바가 열렸는지 확인
-    const openedSidebar = page.locator('nav[aria-label="사이드바 네비게이션"]');
-    await expect(openedSidebar).toHaveClass(/w-\[13rem\]/);
+    await expect(sidebar).toHaveAttribute("aria-expanded", "true");
 
     // 사이드바 내부에 '연재물 추가' 버튼이 표시되는지 확인
-    const addSerialButton = page.locator("button", {
+    const addSerialButton = page.locator("a", {
       hasText: MAIN_LAYOUT_TEXT.ADD_SERIAL
     });
     await expect(addSerialButton).toBeVisible();
@@ -39,7 +39,7 @@ test.describe("사이드바 기능 테스트", () => {
     await closeButton.click();
 
     // 사이드바가 다시 닫혔는지 확인
-    await expect(closedSidebar).toHaveClass(/w-fit/);
+    await expect(sidebar).toHaveAttribute("aria-expanded", "false");
   });
 
   test("사이드바에서 연재물 추가 버튼 클릭 시 동작 테스트", async ({
@@ -52,7 +52,7 @@ test.describe("사이드바 기능 테스트", () => {
     await menuButton.click();
 
     // 연재물 추가 버튼 찾기
-    const addSerialButton = page.locator("button", {
+    const addSerialButton = page.locator("a", {
       hasText: MAIN_LAYOUT_TEXT.ADD_SERIAL
     });
     await expect(addSerialButton).toBeVisible();
@@ -80,7 +80,7 @@ test.describe("사이드바 기능 테스트", () => {
     await menuButton.click();
 
     // 작은 화면에서도 사이드바 열리는지 확인
-    await expect(smallScreenSidebar).toHaveClass(/w-\[13rem\]/);
+    await expect(smallScreenSidebar).toHaveAttribute("aria-expanded", "true");
 
     // 큰 화면 크기로 변경
     await page.setViewportSize({ width: 1440, height: 900 });
