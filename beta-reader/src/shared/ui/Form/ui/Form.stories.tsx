@@ -2,7 +2,7 @@ import { Container, Wrapper } from "./Form";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof Container> = {
-  title: "shared/Form/Form",
+  title: "shared/Form",
   component: Container,
   parameters: {
     layout: "centered"
