@@ -11,7 +11,6 @@ type Character = {
 
 export interface NovelSettingFormStoreState {
   title: string;
-  topic: string;
   plot: string;
   genre: string;
   ageGroup: string;
@@ -26,7 +25,6 @@ export interface NovelSettingFormStoreState {
 
 interface NovelSettingFormActions {
   setTitle: (title: string) => void;
-  setTopic: (topic: string) => void;
   setPlot: (plot: string) => void;
   setGenre: (genre: string) => void;
   setAgeGroup: (ageGroup: string) => void;
@@ -45,7 +43,6 @@ const NOVEL_SETTING_FORM_INITIAL_STATE = (): NovelSettingFormStoreState => {
 
   return {
     title: "",
-    topic: "",
     plot: "",
     genre: "",
     ageGroup: "",
@@ -71,7 +68,6 @@ export const createNovelSettingFormStore = (
       ...initialState,
 
       setTitle: (title: string) => set({ title }),
-      setTopic: (topic: string) => set({ topic }),
       setPlot: (plot: string) => set({ plot }),
       setGenre: (genre: string) => set({ genre }),
       setAgeGroup: (ageGroup: string) => set({ ageGroup }),
@@ -162,6 +158,28 @@ export const useNovelSettingFormStore = Object.assign(
       }
 
       return store.getState();
+    },
+
+    getNovelSettingFormState: () => {
+      const store = useContext(NovelSettingFormContext);
+      if (store === null) {
+        throw new Error(
+          "useNovelSettingFormStore.getNovelSettingFormState는 NovelSettingFormContext 내에서만 사용해야 합니다"
+        );
+      }
+
+      const state = useStore(store, (state) => state);
+
+      const { title, plot, genre, ageGroup, keywords, characters } = state;
+
+      return {
+        title,
+        plot,
+        genre,
+        ageGroup,
+        keywords,
+        characters
+      };
     }
   }
 );
