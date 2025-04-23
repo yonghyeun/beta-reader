@@ -10,7 +10,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko" className={pretendard.variable}>
-      <body className="bg-secondary-black text-secondary-white">
+      <body className="bg-secondary-black text-secondary-white h-svh overflow-hidden">
         <MainLayout>{children}</MainLayout>
       </body>
     </html>
