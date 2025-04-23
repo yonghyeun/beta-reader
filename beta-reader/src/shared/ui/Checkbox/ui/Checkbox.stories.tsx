@@ -74,7 +74,10 @@ export const PreSelected: Story = {
  */
 export const MultiSelect: Story = {
   render: () => {
-    const [selectedValues, setSelectedValues] = useState<string[]>(["option1", "option3"]);
+    const [selectedValues, setSelectedValues] = useState<string[]>([
+      "option1",
+      "option3"
+    ]);
 
     const handleCheckboxChange = (values: string[]) => {
       setSelectedValues(values);
@@ -172,7 +175,9 @@ export const CustomStyling: Story = {
  */
 export const CheckboxStates: Story = {
   render: () => {
-    const [selectedValues, setSelectedValues] = useState<string[]>(["selected"]);
+    const [selectedValues, setSelectedValues] = useState<string[]>([
+      "selected"
+    ]);
 
     const handleCheckboxChange = (values: string[]) => {
       setSelectedValues(values);
@@ -189,8 +194,16 @@ export const CheckboxStates: Story = {
             onCheckboxGroupChange={handleCheckboxChange}
             className="flex flex-col gap-3"
           >
-            <Input value="selected" label="선택된 상태" id="checkbox-selected" />
-            <Input value="unselected" label="선택되지 않은 상태" id="checkbox-unselected" />
+            <Input
+              value="selected"
+              label="선택된 상태"
+              id="checkbox-selected"
+            />
+            <Input
+              value="unselected"
+              label="선택되지 않은 상태"
+              id="checkbox-unselected"
+            />
           </Container>
         </div>
 
@@ -202,15 +215,15 @@ export const CheckboxStates: Story = {
             onCheckboxGroupChange={() => {}}
             className="flex flex-col gap-3"
           >
-            <Input 
-              value="disabled-selected" 
-              label="선택된 비활성화 상태" 
+            <Input
+              value="disabled-selected"
+              label="선택된 비활성화 상태"
               id="checkbox-disabled-selected"
               disabled
             />
-            <Input 
-              value="disabled-unselected" 
-              label="선택되지 않은 비활성화 상태" 
+            <Input
+              value="disabled-unselected"
+              label="선택되지 않은 비활성화 상태"
               id="checkbox-disabled-unselected"
               disabled
             />
@@ -227,13 +240,15 @@ export const CheckboxStates: Story = {
             required
             aria-label="필수 입력 체크박스 그룹"
           >
-            <Input 
-              value="required-option" 
-              label="필수 입력 옵션" 
+            <Input
+              value="required-option"
+              label="필수 입력 옵션"
               id="checkbox-required"
             />
           </Container>
-          <p className="text-secondary-200 mt-2 text-sm">* 이 필드는 필수입니다. (스크린 리더에 필수 항목으로 안내됨)</p>
+          <p className="text-secondary-200 mt-2 text-sm">
+            * 이 필드는 필수입니다. (스크린 리더에 필수 항목으로 안내됨)
+          </p>
         </div>
       </div>
     );
@@ -247,27 +262,29 @@ export const IndividualCheckboxes: Story = {
   render: () => {
     const [checkboxState1, setCheckboxState1] = useState<boolean>(true);
     const [checkboxState2, setCheckboxState2] = useState<boolean>(false);
-    
+
     // 개별 체크박스를 위한 커스텀 핸들러
-    const handleIndividualCheckbox = (setState: React.Dispatch<React.SetStateAction<boolean>>) => {
+    const handleIndividualCheckbox = (
+      setState: React.Dispatch<React.SetStateAction<boolean>>
+    ) => {
       return (values: string[]) => {
         setState(values.length > 0);
       };
     };
 
     return (
-      <div className="bg-secondary-800 rounded-lg p-4 flex flex-col gap-4">
+      <div className="bg-secondary-800 flex flex-col gap-4 rounded-lg p-4">
         <h3 className="text-title-4-bold">독립형 체크박스 활용</h3>
-        
+
         <Container
           name="individual1"
           value={checkboxState1 ? "checked" : ""}
           onCheckboxGroupChange={handleIndividualCheckbox(setCheckboxState1)}
           className="flex"
         >
-          <Input 
-            value="checked" 
-            label="독립형 체크박스 (선택됨)" 
+          <Input
+            value="checked"
+            label="독립형 체크박스 (선택됨)"
             id="individual-checkbox1"
           />
         </Container>
@@ -278,16 +295,20 @@ export const IndividualCheckboxes: Story = {
           onCheckboxGroupChange={handleIndividualCheckbox(setCheckboxState2)}
           className="flex"
         >
-          <Input 
-            value="checked" 
-            label="독립형 체크박스 (선택되지 않음)" 
+          <Input
+            value="checked"
+            label="독립형 체크박스 (선택되지 않음)"
             id="individual-checkbox2"
           />
         </Container>
-        
-        <div className="mt-2 p-3 bg-secondary-900 rounded-md">
-          <pre className="text-sm text-secondary-200">
-            {JSON.stringify({ checkbox1: checkboxState1, checkbox2: checkboxState2 }, null, 2)}
+
+        <div className="bg-secondary-900 mt-2 rounded-md p-3">
+          <pre className="text-secondary-200 text-sm">
+            {JSON.stringify(
+              { checkbox1: checkboxState1, checkbox2: checkboxState2 },
+              null,
+              2
+            )}
           </pre>
         </div>
       </div>

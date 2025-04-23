@@ -52,6 +52,7 @@ export const Tag: React.FC<TagProps> = ({
         onClick={onClick}
         type="button"
         aria-label="tag"
+        role="button"
       >
         {children}
         <CloseSmallIcon />

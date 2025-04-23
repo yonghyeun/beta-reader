@@ -7,9 +7,9 @@ import { RadioGroupContext, useRadioGroup, useRadioGroupContext } from "../lib";
 
 interface RadioGroupProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
-  value: string;
   children: React.ReactNode;
   onRadioGroupChange: (value: string) => void;
+  value?: string;
   className?: string;
 }
 
@@ -44,6 +44,7 @@ interface RadioProps {
   value: string;
   label?: string;
   className?: string;
+  id: string;
 }
 
 const radioInputVariants = cva(
@@ -64,7 +65,8 @@ const radioInputVariants = cva(
 export const Input: React.FC<RadioProps> = ({
   value,
   label,
-  className = ""
+  className = "",
+  id
 }) => {
   const {
     value: radioGroupValue,
@@ -74,17 +76,13 @@ export const Input: React.FC<RadioProps> = ({
   } = useRadioGroupContext();
   const isChecked = radioGroupValue === value;
 
-  /**
-   * 라디오 버튼 상태 변경을 처리하는 핸들러
-   * 접근성을 위해 onChange 이벤트 사용
-   */
-  const handleChange = () => {
+  const handleClick = () => {
     onRadioChange(value);
   };
 
   return (
     <label
-      htmlFor={value}
+      htmlFor={id}
       className={`flex w-fit cursor-pointer items-center justify-center gap-1 rounded-full px-2 py-1 hover:bg-[#FFFFFF1A] ${className}`}
     >
       {/* 
@@ -103,12 +101,15 @@ export const Input: React.FC<RadioProps> = ({
       {/* 실제 라디오 입력 요소 - 접근성을 위해 존재하지만 시각적으로는 숨김 */}
       <input
         type="radio"
-        id={value}
+        id={id}
         name={name}
         value={value}
         className="sr-only" // 시각적으로 숨기되 스크린 리더는 접근 가능
         checked={isChecked}
-        onChange={handleChange}
+        onChange={() => {}} // onChange 핸들러는 필요 없지만 React에서 요구되어 빈 함수로 대체
+        onClick={handleClick}
+        aria-checked={isChecked}
+        aria-labelledby={value}
         {...props}
       />
 

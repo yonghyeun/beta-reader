@@ -50,11 +50,18 @@ export const Label: React.FC<LabelProps> = ({
   children,
   className,
   ...props
-}) => (
-  <label className={`text-title-4-bold cursor-pointer ${className}`} {...props}>
-    {children}
-  </label>
-);
+}) => {
+  const {} = useTextFieldContext();
+
+  return (
+    <label
+      className={`text-title-4-bold cursor-pointer ${className}`}
+      {...props}
+    >
+      {children}
+    </label>
+  );
+};
 
 export const Input: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = ({
   className = "",
@@ -67,13 +74,13 @@ export const Input: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = ({
       {...props}
       onFocus={toggleFocus("on")}
       onBlur={toggleFocus("off")}
-      className={`text-title-4-bold text-secondary-200 placeholder:text-secondary-200 selection:bg-[#B3BAFF]/30 focus:outline-none ${className}`}
+      className={`text-secondary-200 placeholder:text-secondary-200 selection:bg-[#B3BAFF]/30 focus:outline-none ${className}`}
     />
   );
 };
 
 const textAreaVariant = cva(
-  "text-body-1-medium text-secondary-white placeholder:text-secondary-200 bg-transparent selection:bg-[#B3BAFF]/30 focus:outline-none",
+  "placeholder:text-secondary-200 bg-transparent selection:bg-[#B3BAFF]/30 focus:outline-none",
   {
     variants: {
       resize: {

@@ -42,7 +42,12 @@ export const Default: Story = {
           <legend className="text-title-4-bold mb-4">장르 선택</legend>
           <div className="flex flex-wrap gap-2">
             {genres.slice(0, 5).map((genre) => (
-              <Input key={genre} value={genre} label={genre} />
+              <Input
+                key={genre}
+                value={genre}
+                label={genre}
+                id={`default-${genre}`}
+              />
             ))}
           </div>
         </Container>
@@ -69,7 +74,12 @@ export const GridLayout: Story = {
           <legend className="text-title-4-bold mb-4">장르 선택</legend>
           <div className="grid grid-cols-5 gap-3">
             {genres.map((genre) => (
-              <Input key={genre} value={genre} label={genre} />
+              <Input
+                key={genre}
+                value={genre}
+                label={genre}
+                id={`grid-${genre}`}
+              />
             ))}
           </div>
         </Container>
@@ -96,16 +106,19 @@ export const WithCustomStyles: Story = {
               value="옵션 1"
               label="옵션 1"
               className="bg-secondary-800 border-l-primary-200 w-full rounded-md border-l-4 px-4 py-2"
+              id="custom-option1"
             />
             <Input
               value="옵션 2"
               label="옵션 2"
               className="bg-secondary-800 border-l-primary-200 w-full rounded-md border-l-4 px-4 py-2"
+              id="custom-option2"
             />
             <Input
               value="옵션 3"
               label="옵션 3"
               className="bg-secondary-800 border-l-primary-200 w-full rounded-md border-l-4 px-4 py-2"
+              id="custom-option3"
             />
           </div>
         </Container>
@@ -127,10 +140,10 @@ export const WithoutLabels: Story = {
         >
           <legend className="text-title-4-bold mb-4">색상 선택</legend>
           <div className="flex gap-4">
-            <Input value="red" className="!p-0" />
-            <Input value="green" className="!p-0" />
-            <Input value="blue" className="!p-0" />
-            <Input value="yellow" className="!p-0" />
+            <Input value="red" className="!p-0" id="color-red" />
+            <Input value="green" className="!p-0" id="color-green" />
+            <Input value="blue" className="!p-0" id="color-blue" />
+            <Input value="yellow" className="!p-0" id="color-yellow" />
           </div>
         </Container>
 

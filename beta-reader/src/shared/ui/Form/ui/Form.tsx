@@ -22,10 +22,10 @@ interface WrapperProps {
 
 export const Wrapper: React.FC<WrapperProps> = ({ children, className }) => {
   return (
-    <section
+    <fieldset
       className={`bg-secondary-900 rounded-[1.25rem] px-7 py-6 ${className}`}
     >
       {children}
-    </section>
+    </fieldset>
   );
 };

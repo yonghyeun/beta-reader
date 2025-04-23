@@ -2,15 +2,15 @@ import { SVGProps } from "react";
 
 export const PlusSmallIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
+    xmlns="http://www.w3.org/2000/svg"
     width="1.5rem"
     height="1.5rem"
-    viewBox="0 0 19 19"
+    viewBox="0 0 24 24"
     fill="none"
-    xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
     <path
-      d="M1.5 9.5H9.5M9.5 9.5H17.5M9.5 9.5V17.5M9.5 9.5V1.5"
+      d="M8 12H12M12 12H16M12 12V16M12 12V8"
       stroke="currentColor"
       strokeWidth="1.5"
       strokeLinecap="round"

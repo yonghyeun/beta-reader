@@ -1,3 +1,3 @@
-export default function () {
-  return <div>hi!</div>;
-}
+import { NovelSettingPage } from "@/slots/novel-setting/ui";
+
+export default NovelSettingPage;
