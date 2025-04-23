@@ -1,6 +1,6 @@
 import * as TextField from "@/shared/ui/TextField";
 
-import { NOVEL_SETTING_FORM, NOVEL_SETTING_TEXT } from "../config";
+import { NOVEL_SETTING_FORM, NOVEL_SETTING_FORM_TEXT } from "../config";
 import { useNovelSettingFormStore } from "../lib";
 
 export const NovelPlotTextField = () => {
@@ -9,7 +9,7 @@ export const NovelPlotTextField = () => {
   return (
     <TextField.Container className="flex flex-col gap-4">
       <TextField.Label htmlFor={NOVEL_SETTING_FORM.PLOT.name}>
-        {NOVEL_SETTING_TEXT.PLOT}
+        {NOVEL_SETTING_FORM_TEXT.PLOT}
       </TextField.Label>
       <TextField.TextArea
         name={NOVEL_SETTING_FORM.PLOT.name}

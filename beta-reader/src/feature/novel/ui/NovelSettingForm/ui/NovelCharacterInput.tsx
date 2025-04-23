@@ -7,9 +7,9 @@ import { NOVEL_SETTING_FORM } from "../config";
 import { useNovelSettingFormStore } from "../lib";
 
 export const NovelCharacterInput = () => {
-  const chracterIds = useNovelSettingFormStore((state) => state.characterIds);
+  const characterIds = useNovelSettingFormStore((state) => state.characterIds);
   const addCharacter = useNovelSettingFormStore((state) => state.addCharacter);
-  const nextChracterId = getRandomId();
+  const nextCharacterId = getRandomId();
 
   return (
     <Form.Wrapper className="flex flex-col gap-3">
@@ -18,7 +18,7 @@ export const NovelCharacterInput = () => {
         <Button
           variant="secondary"
           className="pr-5 pl-4"
-          onClick={addCharacter(nextChracterId)}
+          onClick={addCharacter(nextCharacterId)}
           type="button"
         >
           <PlusSmallIcon />
@@ -27,7 +27,7 @@ export const NovelCharacterInput = () => {
       </header>
 
       <ul className="flex flex-col gap-3">
-        {chracterIds.map((characterId) => (
+        {characterIds.map((characterId) => (
           <li key={characterId}>
             <CharacterInputItem id={characterId} />
           </li>

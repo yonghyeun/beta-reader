@@ -4,9 +4,6 @@ export const NOVEL_SETTING_FORM = {
     placeholder: "연재물 제목을 입력하세요"
   },
 
-  // TOPIC 이 뭐지 ?
-  // TOPIC :
-
   GENRE: {
     name: "genre",
     options: [
