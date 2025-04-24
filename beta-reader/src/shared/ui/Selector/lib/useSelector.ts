@@ -35,18 +35,21 @@ export const useSelector = (
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isOpen]);
+  }, [isOpen, ref]); // ref 의존성 추가
 
   // 외부에서 initlalValue가 변경되면 value도 변경
   useEffect(() => {
     setValue(initialValue || "");
   }, [initialValue]);
 
-  const closeSelector = useCallback((value: string) => {
-    setValue(value);
-    setIsOpen(false);
-    onCloseSelector?.(value);
-  }, []);
+  const closeSelector = useCallback(
+    (value: string) => {
+      setValue(value);
+      setIsOpen(false);
+      onCloseSelector?.(value);
+    },
+    [onCloseSelector]
+  ); // onCloseSelector 의존성 추가
 
   const openSelector = useCallback(() => {
     setIsOpen(true);

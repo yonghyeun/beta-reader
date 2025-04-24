@@ -39,7 +39,6 @@ export const Sidebar = () => {
       aria-label="사이드바 네비게이션"
       className={sideNavVariant({ isOpen })}
       role="navigation"
-      aria-expanded={isOpen ? "true" : "false"}
     >
       <div className="relative h-full w-full overflow-hidden">
         {/* 열린 상태 (큰 사이드바) */}
@@ -55,10 +54,8 @@ export const Sidebar = () => {
               aria-label="연재물 목록"
             >
               {mockNovelList.map(({ title, id }) => (
-                <Link href={`#${id}`}>
-                  <List.Item key={id} role="listitem">
-                    {title}
-                  </List.Item>
+                <Link href={`#${id}`} key={id}>
+                  <List.Item role="listitem">{title}</List.Item>
                 </Link>
               ))}
             </List.Container>

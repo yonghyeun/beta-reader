@@ -1,5 +1,6 @@
 // jest.config.mjs
-export default {
+
+const jestConfig = {
   preset: "ts-jest",
   testEnvironment: "node",
   transform: {
@@ -20,3 +21,5 @@ export default {
     "node_modules/(?!(react-native|react-native-.*|@react-native-.*)/)"
   ]
 };
+
+export default jestConfig;
