@@ -4,12 +4,12 @@ import * as Form from "@/shared/ui/Form";
 import * as RadioGroup from "@/shared/ui/Radio";
 
 import { NOVEL_SETTING_FORM } from "../config";
-import { useNovelSettingFormStore } from "../lib";
+import { getRandomCharacterId, useNovelSettingFormStore } from "../lib";
 
 export const NovelCharacterInput = () => {
   const characterIds = useNovelSettingFormStore((state) => state.characterIds);
   const addCharacter = useNovelSettingFormStore((state) => state.addCharacter);
-  const nextCharacterId = getRandomId();
+  const nextCharacterId = getRandomCharacterId();
 
   return (
     <Form.Wrapper className="flex flex-col gap-3">
@@ -35,10 +35,6 @@ export const NovelCharacterInput = () => {
       </ul>
     </Form.Wrapper>
   );
-};
-
-const getRandomId = () => {
-  return Math.floor(Math.random() * 10000);
 };
 
 interface CharacterInputItemProps {

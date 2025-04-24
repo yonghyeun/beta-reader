@@ -1,6 +1,8 @@
 import { createContext, useContext } from "react";
 import { ExtractState, create, useStore } from "zustand";
 
+import { getRandomCharacterId } from "./getRandomCharacterId";
+
 type Character = {
   role: string;
   name: string;
@@ -39,7 +41,7 @@ interface NovelSettingFormActions {
 }
 
 const NOVEL_SETTING_FORM_INITIAL_STATE = (): NovelSettingFormStoreState => {
-  const characterId = Math.floor(Math.random() * 10000);
+  const characterId = getRandomCharacterId();
 
   return {
     title: "",
@@ -60,7 +62,7 @@ const NOVEL_SETTING_FORM_INITIAL_STATE = (): NovelSettingFormStoreState => {
 };
 
 export const createNovelSettingFormStore = (
-  initialState?: Partial<NovelSettingFormStoreState>
+  initialState: Partial<NovelSettingFormStoreState>
 ) => {
   const store = create<NovelSettingFormStoreState & NovelSettingFormActions>(
     (set, get) => ({
@@ -107,11 +109,6 @@ export const createNovelSettingFormStore = (
           )
         }),
 
-      /**
-       * 해당 메소드는 캐릭터칸 모두를 리렌더링 하기에 성능상 좋지 않다.
-       * 캐릭터칸을 추가할 때마다 id를 부여하고, 해당 id를 가진 캐릭터칸만 리렌더링 하도록 개선해야 한다.
-       * TODO : 사실인지 확인하기 , zustand는 선택적 구독으로 구현되어있기에 괜찮을거 같다.
-       */
       updateCharacter: (id: number) => (newCharacter: Partial<Character>) =>
         set({
           characters: get().characters.map((character) =>

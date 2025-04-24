@@ -7,7 +7,7 @@ import {
 } from "../lib";
 
 interface NovelSettingFormProviderProps {
-  initialState?: Partial<NovelSettingFormStoreState>;
+  initialState: Partial<NovelSettingFormStoreState>;
   children: React.ReactNode;
 }
 
