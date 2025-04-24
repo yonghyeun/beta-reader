@@ -134,18 +134,18 @@ type NovelSettingFormStore = ReturnType<typeof createNovelSettingFormStore>;
 export const NovelSettingFormContext =
   createContext<NovelSettingFormStore | null>(null);
 
-export const useNovelSettingFormStore = Object.assign(
-  <U>(selector: (state: ExtractState<NovelSettingFormStore>) => U) => {
-    const store = useContext(NovelSettingFormContext);
-    if (store === null) {
-      throw new Error(
-        "useNovelSettingFormStore는 NovelSettingFormContext 내에서만 사용해야 합니다"
-      );
-    }
-
-    return useStore(store, selector);
+export const useNovelSettingFormStore = <U>(
+  selector: (state: ExtractState<NovelSettingFormStore>) => U
+) => {
+  const store = useContext(NovelSettingFormContext);
+  if (store === null) {
+    throw new Error(
+      "useNovelSettingFormStore는 NovelSettingFormContext 내에서만 사용해야 합니다"
+    );
   }
-);
+
+  return useStore(store, selector);
+};
 
 export const useNovelSettingFormStoreContext = () => {
   const store = useContext(NovelSettingFormContext);
