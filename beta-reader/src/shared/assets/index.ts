@@ -30,3 +30,6 @@ export * from "./UpSmall";
 export * from "./LogoIcon";
 export * from "./MenuIcon";
 export * from "./ProfileIcon";
+
+export * from "./NovelGraphic";
+export * from "./ManuscriptGraphic";
