@@ -144,45 +144,15 @@ export const useNovelSettingFormStore = Object.assign(
     }
 
     return useStore(store, selector);
-  },
-  {
-    // Hook 규칙을 준수하기 위해 일반 함수로 변경
-    getState() {
-      const context = NovelSettingFormContext;
-      // 컴포넌트 외부에서 사용할 수 있도록 useContext를 사용하지 않고
-      // 컴포넌트 내부에서 호출할 수 있는 함수로 제공
-      return function useGetState() {
-        const store = useContext(context);
-        if (store === null) {
-          throw new Error(
-            "useNovelSettingFormStore.getState는 NovelSettingFormContext 내에서만 사용해야 합니다"
-          );
-        }
-        return store.getState();
-      };
-    },
-
-    // Hook 규칙을 준수하기 위해 일반 함수로 변경
-    useNovelSettingFormState() {
-      const store = useContext(NovelSettingFormContext);
-      if (store === null) {
-        throw new Error(
-          "useNovelSettingFormStore.useNovelSettingFormState는 NovelSettingFormContext 내에서만 사용해야 합니다"
-        );
-      }
-
-      const state = useStore(store, (state) => state);
-
-      const { title, plot, genre, ageGroup, keywords, characters } = state;
-
-      return {
-        title,
-        plot,
-        genre,
-        ageGroup,
-        keywords,
-        characters
-      };
-    }
   }
 );
+
+export const useNovelSettingFormStoreContext = () => {
+  const store = useContext(NovelSettingFormContext);
+  if (store === null) {
+    throw new Error(
+      "useNovelSettingFormStoreContext는 NovelSettingFormContext 내에서만 사용해야 합니다"
+    );
+  }
+  return store;
+};

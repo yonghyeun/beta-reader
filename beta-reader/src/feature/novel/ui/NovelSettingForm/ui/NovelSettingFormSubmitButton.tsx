@@ -4,8 +4,7 @@ import { ensureAllFieldsExist, useNovelSettingFormStore } from "../lib";
 
 // TODO API 붙이기
 export const NovelSettingFormSubmitButton = () => {
-  const novelSettingFormState =
-    useNovelSettingFormStore.getNovelSettingFormState();
+  const novelSettingFormState = useNovelSettingFormStore((state) => state);
 
   return (
     <div className="flex justify-center">
