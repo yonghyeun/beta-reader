@@ -1,52 +1,159 @@
-import { FlatCompat } from "@eslint/eslintrc";
+// eslint.config.mjs
+import importPlugin from "eslint-plugin-import";
+import jsxA11yPlugin from "eslint-plugin-jsx-a11y";
+import prettierPlugin from "eslint-plugin-prettier";
+import reactPlugin from "eslint-plugin-react";
+import reactHooksPlugin from "eslint-plugin-react-hooks";
+import unusedImportsPlugin from "eslint-plugin-unused-imports";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
+import babelParser from "@babel/eslint-parser";
+import { FlatCompat } from "@eslint/eslintrc";
+import typescriptEslint from "@typescript-eslint/eslint-plugin";
+import typescriptParser from "@typescript-eslint/parser";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const compat = new FlatCompat({ baseDirectory: __dirname });
 
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
+// eslint 설정 배열 생성
 const eslintConfig = [
-  ...compat.config({
-    parser: "@typescript-eslint/parser", // TypeScript 코드를 파싱하기 위한 파서
-    extends: [
-      "next/core-web-vitals", // Next.js 프로젝트를 위한 기본 설정
-      "next", // Next.js 프로젝트를 위한 추가 설정
-      "plugin:@typescript-eslint/recommended", // TypeScript를 위한 권장 설정
-      "plugin:prettier/recommended", // Prettier와 ESLint 통합을 위한 설정
-    ],
-    plugins: [
-      "react", // React 관련 린트 규칙을 추가
-      "react-hooks", // React Hooks 관련 린트 규칙을 추가
-      "jsx-a11y", // 접근성 관련 린트 규칙을 추가
-      "import", // import/export 관련 린트 규칙을 추가
-      "prettier", // Prettier와 ESLint 통합을 위한 플러그인
-      "@typescript-eslint", // TypeScript 관련 린트 규칙을 추가
-      "unused-imports", // 사용되지 않는 import를 감지하고 제거하기 위한 플러그인
-    ],
+  // 기본 설정
+  {
+    ignores: [
+      "node_modules/**",
+      ".next/**",
+      "dist/**",
+      "storybook-static/**",
+      ".storybook/**",
+      "__mock__/**"
+    ]
+  },
+  // 스토리북 파일에 대한 특별 설정
+  {
+    files: ["**/*.stories.tsx", "**/*.stories.ts"],
+    languageOptions: {
+      parser: babelParser,
+      parserOptions: {
+        ecmaVersion: "latest",
+        sourceType: "module",
+        ecmaFeatures: { jsx: true },
+        requireConfigFile: false,
+        babelOptions: {
+          presets: ["@babel/preset-react", "@babel/preset-typescript"]
+        }
+      },
+      globals: {
+        React: "readonly",
+        JSX: "readonly"
+      }
+    },
+    plugins: {
+      react: reactPlugin,
+      "@typescript-eslint": typescriptEslint,
+      "react-hooks": reactHooksPlugin, // 리액트 훅 플러그인 추가
+      "unused-imports": unusedImportsPlugin, // 미사용 import 플러그인 추가
+      prettier: prettierPlugin // Prettier 플러그인 추가
+    },
+    rules: {
+      // 스토리북용 룰 완화
+      "@typescript-eslint/no-unused-vars": "off",
+      "import/no-unused-modules": "off",
+      "import/no-anonymous-default-export": "off",
+      "unused-imports/no-unused-imports": "off",
+      "react-hooks/rules-of-hooks": "off", // 스토리북에서는 hooks 규칙 비활성화
+      "react-hooks/exhaustive-deps": "off" // hooks 의존성 규칙도 비활성화
+    }
+  },
+  // JavaScript 파일에 적용
+  {
+    files: ["**/*.js", "**/*.jsx", "**/*.mjs"],
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      parserOptions: {
+        ecmaFeatures: { jsx: true }
+      }
+    },
+    plugins: {
+      react: reactPlugin,
+      "react-hooks": reactHooksPlugin,
+      "jsx-a11y": jsxA11yPlugin,
+      import: importPlugin,
+      prettier: prettierPlugin,
+      "unused-imports": unusedImportsPlugin // 누락된 플러그인 추가
+    },
+    rules: {
+      "import/no-anonymous-default-export": "off",
+      "unused-imports/no-unused-imports": "error",
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+      "prettier/prettier": ["error", { endOfLine: "auto" }]
+    }
+  },
+  // 모든 TypeScript 파일에 적용
+  {
+    files: ["**/*.ts", "**/*.tsx"],
+    languageOptions: {
+      parser: typescriptParser,
+      parserOptions: {
+        ecmaVersion: "latest",
+        sourceType: "module",
+        ecmaFeatures: { jsx: true },
+        project: "./tsconfig.json"
+      },
+      globals: {
+        React: "readonly",
+        JSX: "readonly"
+      }
+    },
+    plugins: {
+      react: reactPlugin,
+      "react-hooks": reactHooksPlugin,
+      "jsx-a11y": jsxA11yPlugin,
+      import: importPlugin,
+      "@typescript-eslint": typescriptEslint,
+      "unused-imports": unusedImportsPlugin
+    },
     rules: {
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
-          vars: "all", // 모든 변수를 검사
-          varsIgnorePattern: "^_", // "_"로 시작하는 변수는 무시
-          args: "after-used", // 사용된 이후의 인수만 검사
-          argsIgnorePattern: "^_", // "_"로 시작하는 인수는 무시
-        },
-      ], // 사용되지 않는 변수를 에러로 표시
-      "unused-imports/no-unused-imports": "error", // 사용되지 않는 import를 에러로 표시
+          vars: "all",
+          varsIgnorePattern: "^_",
+          args: "after-used",
+          argsIgnorePattern: "^_"
+        }
+      ],
+      "unused-imports/no-unused-imports": "error",
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn"
+    }
+  },
+  // Prettier 설정
+  {
+    files: ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
+    plugins: {
+      prettier: prettierPlugin
+    },
+    rules: {
       "prettier/prettier": [
         "error",
         {
-          endOfLine: "auto",
-        },
-      ], // Prettier 규칙을 ESLint에 추가하여 코드 스타일을 검사
-    },
+          endOfLine: "auto"
+        }
+      ]
+    }
+  },
+  // Next.js 관련 설정
+  ...compat.config({
+    extends: ["next/core-web-vitals"]
   }),
+  // TypeScript 관련 설정
+  ...compat.config({
+    extends: ["plugin:@typescript-eslint/recommended"]
+  })
 ];
 
 export default eslintConfig;
-
