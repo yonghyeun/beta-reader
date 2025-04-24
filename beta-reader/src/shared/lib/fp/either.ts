@@ -1,3 +1,5 @@
+import { getValue } from "./getValue";
+
 export type Left<L> = { readonly _tag: "Left"; readonly value: L };
 export type Right<R> = { readonly _tag: "Right"; readonly value: R };
 export type Either<L, R> = Left<L> | Right<R>;
@@ -41,5 +43,10 @@ export const tabBoth =
 
     return either;
   };
+
+export const getOrElse =
+  <L, R, T>(defaultValue: T | (() => T)) =>
+  (either: Either<L, R>): R | T =>
+    isLeft(either) ? getValue(defaultValue) : either.value;
 
 // fold,  getOrElse, mapLeft, tryCatch 등등은 추후 필요할 때 생성하도록 하자
