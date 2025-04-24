@@ -1,8 +1,6 @@
 import { ArrowRightLargeIcon, BookIcon, MeatballIcon } from "@/shared/assets";
 import { TextButton } from "@/shared/ui";
 
-import Link from "next/link";
-
 interface NovelMetaCardProps {
   novelTitle: string;
   manuscriptCount: number;

@@ -5,7 +5,6 @@ import { cva } from "class-variance-authority";
 import { ProfileIcon } from "@/shared/assets";
 import { ROUTES } from "@/shared/config/routes";
 import { Dropdown } from "@/shared/ui/Dropdown";
-import { Selector } from "@/shared/ui/Selector";
 
 import { useSidebar } from "../lib";
 import { MainLogo } from "./MainLogo";
@@ -22,15 +21,6 @@ const headerVariants = cva(
     }
   }
 );
-
-const logoLinkVariants = cva("transition-opacity-300", {
-  variants: {
-    isOpen: {
-      true: "opacity-0",
-      false: "opacity-100"
-    }
-  }
-});
 
 export const Header = () => {
   const isOpen = useSidebar((state) => state.isOpen);

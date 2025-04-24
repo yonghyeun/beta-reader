@@ -62,7 +62,8 @@ export const WithMultipleEpisodes: Story = {
  */
 export const WithLongTitle: Story = {
   args: {
-    novelTitle: "이것은 매우 길고 상세한 판타지 소설의 제목으로, 여러 줄에 걸쳐 표시될 수 있으며 UI에서 어떻게 처리되는지 확인하기 위한 예시입니다",
+    novelTitle:
+      "이것은 매우 길고 상세한 판타지 소설의 제목으로, 여러 줄에 걸쳐 표시될 수 있으며 UI에서 어떻게 처리되는지 확인하기 위한 예시입니다",
     manuscriptCount: 85,
     commentsCount: 12,
     lastUpdated: "2025.04.18",
@@ -84,13 +85,15 @@ export const WithLongEpisodeTitles: Story = {
     commentsCount: 45,
     lastUpdated: "2025.04.19",
     episodes: [
-      { 
-        title: "이것은 아주 긴 에피소드 제목으로 한 줄을 넘어갈 정도로 길고 상세한 설명을 담고 있습니다",
-        lastUpdated: "2025.04.15" 
+      {
+        title:
+          "이것은 아주 긴 에피소드 제목으로 한 줄을 넘어갈 정도로 길고 상세한 설명을 담고 있습니다",
+        lastUpdated: "2025.04.15"
       },
-      { 
-        title: "이것도 마찬가지로 매우 긴 에피소드 제목으로 UI 테스트를 위한 목적을 가지고 있습니다", 
-        lastUpdated: "2025.04.19" 
+      {
+        title:
+          "이것도 마찬가지로 매우 긴 에피소드 제목으로 UI 테스트를 위한 목적을 가지고 있습니다",
+        lastUpdated: "2025.04.19"
       }
     ]
   }
