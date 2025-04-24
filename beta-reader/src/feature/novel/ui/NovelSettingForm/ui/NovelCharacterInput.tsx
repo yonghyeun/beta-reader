@@ -81,7 +81,6 @@ const CharacterInputItem: React.FC<CharacterInputItemProps> = ({ id }) => {
               name="role"
               onRadioGroupChange={(role) => updateCharacter({ role })}
               className="flex gap-3.5"
-              onChange={({ target }) => updateCharacter({ role: target.value })}
               value={character.role}
               aria-label="등장인물 역할"
               aria-required="true"
