@@ -12,9 +12,9 @@ export const CloseSmallIcon = (props: SVGProps<SVGSVGElement>) => (
     <path
       d="M12 12L8 8M8 8L4 4M8 8L12 4M8 8L4 12"
       stroke="currentColor"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );

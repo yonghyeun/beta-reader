@@ -1,19 +1,19 @@
 "use client";
 
 import { cva } from "class-variance-authority";
-import React, { useState } from "react";
+import React from "react";
 
-import { RadioGroupContext, useRadioGroupContext } from "../model";
+import { RadioGroupContext, useRadioGroup, useRadioGroupContext } from "../lib";
 
 interface RadioGroupProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
-  value: string;
   children: React.ReactNode;
   onRadioGroupChange: (value: string) => void;
+  value?: string;
   className?: string;
 }
 
-export const RadioGroupContainer: React.FC<RadioGroupProps> = ({
+export const Container: React.FC<RadioGroupProps> = ({
   name,
   value,
   children,
@@ -21,19 +21,15 @@ export const RadioGroupContainer: React.FC<RadioGroupProps> = ({
   onRadioGroupChange,
   ...props
 }) => {
-  const [selectedValue, setSelectedValue] = useState<string>(() => value);
-
-  const _onRadioGroupChange = (value: string) => {
-    setSelectedValue(value);
-    onRadioGroupChange(value);
-  };
+  const { value: _value, onRadioGroupChange: _onRadioGroupChange } =
+    useRadioGroup(value, onRadioGroupChange);
 
   return (
     <fieldset className={className}>
       <RadioGroupContext
         value={{
           name,
-          value: selectedValue,
+          value: _value,
           onRadioChange: _onRadioGroupChange,
           ...props
         }}
@@ -48,6 +44,7 @@ interface RadioProps {
   value: string;
   label?: string;
   className?: string;
+  id: string;
 }
 
 const radioInputVariants = cva(
@@ -65,7 +62,12 @@ const radioInputVariants = cva(
   }
 );
 
-const Input: React.FC<RadioProps> = ({ value, label, className = "" }) => {
+export const Input: React.FC<RadioProps> = ({
+  value,
+  label,
+  className = "",
+  id
+}) => {
   const {
     value: radioGroupValue,
     name,
@@ -74,17 +76,13 @@ const Input: React.FC<RadioProps> = ({ value, label, className = "" }) => {
   } = useRadioGroupContext();
   const isChecked = radioGroupValue === value;
 
-  /**
-   * 라디오 버튼 상태 변경을 처리하는 핸들러
-   * 접근성을 위해 onChange 이벤트 사용
-   */
-  const handleChange = () => {
+  const handleClick = () => {
     onRadioChange(value);
   };
 
   return (
     <label
-      htmlFor={value}
+      htmlFor={id}
       className={`flex w-fit cursor-pointer items-center justify-center gap-1 rounded-full px-2 py-1 hover:bg-[#FFFFFF1A] ${className}`}
     >
       {/* 
@@ -103,12 +101,15 @@ const Input: React.FC<RadioProps> = ({ value, label, className = "" }) => {
       {/* 실제 라디오 입력 요소 - 접근성을 위해 존재하지만 시각적으로는 숨김 */}
       <input
         type="radio"
-        id={value}
+        id={id}
         name={name}
         value={value}
         className="sr-only" // 시각적으로 숨기되 스크린 리더는 접근 가능
         checked={isChecked}
-        onChange={handleChange}
+        onChange={() => {}} // onChange 핸들러는 필요 없지만 React에서 요구되어 빈 함수로 대체
+        onClick={handleClick}
+        aria-checked={isChecked}
+        aria-labelledby={value}
         {...props}
       />
 
@@ -117,7 +118,3 @@ const Input: React.FC<RadioProps> = ({ value, label, className = "" }) => {
     </label>
   );
 };
-
-export const RadioGroup = Object.assign(RadioGroupContainer, {
-  Input
-});

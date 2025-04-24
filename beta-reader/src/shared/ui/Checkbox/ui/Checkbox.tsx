@@ -1,22 +1,26 @@
 "use client";
 
 import { cva } from "class-variance-authority";
-import React, { useState } from "react";
+import React from "react";
 
 import { CheckIcon } from "@/shared/assets";
 
-import { CheckboxGroupContext, useCheckboxGroupContext } from "../model";
+import {
+  CheckboxGroupContext,
+  useCheckbox,
+  useCheckboxGroupContext
+} from "../lib";
 
 interface CheckboxGroupProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
-  value: string[];
+  value: string;
   children: React.ReactNode;
   onCheckboxGroupChange: (value: string[]) => void;
   className?: string;
 }
 
-const CheckboxContainer: React.FC<CheckboxGroupProps> = ({
+export const Container: React.FC<CheckboxGroupProps> = ({
   name,
   value,
   children,
@@ -24,24 +28,18 @@ const CheckboxContainer: React.FC<CheckboxGroupProps> = ({
   onCheckboxGroupChange,
   ...props
 }) => {
-  const [selectedValues, setSelectedValues] = useState<string[]>(() => value);
-
-  const _onCheckboxGroupChange = (newValue: string) => {
-    const newValues = selectedValues.includes(newValue)
-      ? selectedValues.filter((item) => item !== newValue)
-      : [...selectedValues, newValue];
-
-    setSelectedValues(newValues);
-    onCheckboxGroupChange(newValues);
-  };
+  const { values, onCheckboxClick: _onCheckboxClick } = useCheckbox(
+    value,
+    onCheckboxGroupChange
+  );
 
   return (
     <fieldset className={className}>
       <CheckboxGroupContext
         value={{
           name,
-          value: selectedValues,
-          onCheckboxChange: _onCheckboxGroupChange,
+          values,
+          onCheckboxClick: _onCheckboxClick,
           ...props
         }}
       >
@@ -55,6 +53,7 @@ interface CheckboxProps {
   value: string;
   label?: string;
   className?: string;
+  id: string;
 }
 
 const checkboxVariants = cva("h-5 w-5 p-0.5 rounded-sm transition-colors", {
@@ -66,26 +65,27 @@ const checkboxVariants = cva("h-5 w-5 p-0.5 rounded-sm transition-colors", {
   }
 });
 
-const Input: React.FC<CheckboxProps> = ({ value, label, className = "" }) => {
+export const Input: React.FC<CheckboxProps> = ({
+  value,
+  label,
+  className = "",
+  id
+}) => {
   const {
-    value: checkboxValues,
+    values: checkboxValues,
     name,
-    onCheckboxChange,
+    onCheckboxClick,
     ...props
   } = useCheckboxGroupContext();
   const isChecked = checkboxValues.includes(value);
 
-  /**
-   * 체크박스 버튼 상태 변경을 처리하는 핸들러
-   * 접근성을 위해 onChange 이벤트 사용
-   */
-  const handleChange = () => {
-    onCheckboxChange(value);
+  const handleClick = () => {
+    onCheckboxClick(value);
   };
 
   return (
     <label
-      htmlFor={value}
+      htmlFor={id}
       className={`flex w-fit cursor-pointer items-center justify-center gap-1 rounded-lg px-2 py-1 hover:bg-[#FFFFFF1A] ${className}`}
     >
       {/* 
@@ -101,13 +101,15 @@ const Input: React.FC<CheckboxProps> = ({ value, label, className = "" }) => {
       {/* 실제 체크박스 입력 요소 - 접근성을 위해 존재하지만 시각적으로는 숨김 */}
       <input
         type="checkbox"
-        id={value}
+        id={id}
         name={name}
         value={value}
         className="sr-only" // 시각적으로 숨기되 스크린 리더는 접근 가능
         checked={isChecked}
-        onChange={handleChange}
+        onChange={() => {}}
+        onClick={handleClick}
         aria-checked={isChecked}
+        aria-labelledby={value}
         {...props}
       />
 
@@ -116,7 +118,3 @@ const Input: React.FC<CheckboxProps> = ({ value, label, className = "" }) => {
     </label>
   );
 };
-
-export const CheckboxGroup = Object.assign(CheckboxContainer, {
-  Input
-});

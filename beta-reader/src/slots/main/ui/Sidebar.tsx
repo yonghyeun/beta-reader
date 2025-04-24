@@ -47,7 +47,6 @@ export const Sidebar = () => {
           <nav className="fade-in-animation flex flex-col gap-4">
             <SidebarLogo />
             <OpenSidebarHeader onClose={toggle("close")} />
-            <div className="bg-secondary-600 h-[1px] w-full" />
             {/* 연재물 리스트 list bar */}
             {/* TODO : 라우팅 기능 추가 , isActive props 추가 */}
             <List.Container
@@ -101,13 +100,12 @@ interface SidebarHeaderProps {
 const OpenSidebarHeader: React.FC<SidebarHeaderProps> = ({ onClose }) => {
   return (
     <header
-      className="text-caption-1-regular flex justify-end gap-1 px-2.5"
+      className="text-caption-1-regular border-secondary-600 flex justify-end gap-1 border-b px-2.5 pb-4.5"
       role="toolbar"
       aria-label="사이드바 컨트롤"
     >
-      {/* TODO : 연재물 추가 기능 작업 시 생성 */}
       <TextButton
-        href="#"
+        href={ROUTES.NOVEL_SETTING()}
         as="link"
         className="pr-1 pl-0.5"
         aria-label={MAIN_LAYOUT_TEXT.ADD_SERIAL}

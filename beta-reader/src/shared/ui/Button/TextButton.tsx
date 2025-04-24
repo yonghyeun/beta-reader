@@ -57,6 +57,7 @@ export const TextButton: React.FC<TextButtonProps> = ({
         className
       })}
       {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+      type="button"
     >
       {children}
     </button>

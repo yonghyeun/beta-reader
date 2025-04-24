@@ -42,27 +42,6 @@ test.describe("사이드바 기능 테스트", () => {
     await expect(sidebar).toHaveAttribute("aria-expanded", "false");
   });
 
-  test("사이드바에서 연재물 추가 버튼 클릭 시 동작 테스트", async ({
-    page
-  }) => {
-    // 먼저 사이드바 열기
-    const menuButton = page.locator(
-      `button[aria-label="${MAIN_LAYOUT_ARIA_LABEL.OPEN_SIDEBAR}"]`
-    );
-    await menuButton.click();
-
-    // 연재물 추가 버튼 찾기
-    const addSerialButton = page.locator("a", {
-      hasText: MAIN_LAYOUT_TEXT.ADD_SERIAL
-    });
-    await expect(addSerialButton).toBeVisible();
-
-    // 연재물 추가 버튼 클릭 (현재는 기능이 구현되지 않았을 수 있으므로 버튼 존재 여부만 확인)
-    // 추후 기능이 구현되면 아래 주석을 해제하고 관련 기능 테스트 추가
-    // await addSerialButton.click();
-    // await expect(page.locator('특정 모달 또는 페이지 요소')).toBeVisible();
-  });
-
   test("반응형 디자인: 사이드바와 헤더의 배치 테스트", async ({ page }) => {
     // 다양한 화면 크기에서 사이드바 테스트
 

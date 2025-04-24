@@ -1,10 +1,8 @@
-import { VariantProps, cva } from "class-variance-authority";
-import { useCallback, useState } from "react";
+"use client";
 
-import {
-  TextFieldContext,
-  useTextFieldContext
-} from "../model/useTextFieldContext";
+import { VariantProps, cva } from "class-variance-authority";
+
+import { TextFieldContext, useTextField, useTextFieldContext } from "../lib";
 
 interface TextFieldProps {
   children?: React.ReactNode;
@@ -23,18 +21,11 @@ const textFieldTextFieldContainerVariant = cva(
   }
 );
 
-const TextFieldContainer: React.FC<TextFieldProps> = ({
+export const Container: React.FC<TextFieldProps> = ({
   children,
   className = ""
 }) => {
-  const [isFocused, setIsFocused] = useState<boolean>(false);
-
-  const toggleFocus = useCallback(
-    (value: "on" | "off") => () => {
-      setIsFocused(value === "on");
-    },
-    []
-  );
+  const { isFocused, toggleFocus } = useTextField();
 
   return (
     <fieldset
@@ -43,7 +34,9 @@ const TextFieldContainer: React.FC<TextFieldProps> = ({
         isFocused
       })}
     >
-      <TextFieldContext value={{ toggleFocus }}>{children}</TextFieldContext>
+      <TextFieldContext value={{ isFocused, toggleFocus }}>
+        {children}
+      </TextFieldContext>
     </fieldset>
   );
 };
@@ -53,13 +46,24 @@ interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
   className?: string;
 }
 
-const Label: React.FC<LabelProps> = ({ children, className, ...props }) => (
-  <label className={`text-title-4-bold cursor-pointer ${className}`} {...props}>
-    {children}
-  </label>
-);
+export const Label: React.FC<LabelProps> = ({
+  children,
+  className,
+  ...props
+}) => {
+  const {} = useTextFieldContext();
 
-const Input: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = ({
+  return (
+    <label
+      className={`text-title-4-bold cursor-pointer ${className}`}
+      {...props}
+    >
+      {children}
+    </label>
+  );
+};
+
+export const Input: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = ({
   className = "",
   ...props
 }) => {
@@ -70,13 +74,13 @@ const Input: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = ({
       {...props}
       onFocus={toggleFocus("on")}
       onBlur={toggleFocus("off")}
-      className={`text-title-4-bold text-secondary-200 placeholder:text-secondary-200 selection:bg-[#B3BAFF]/30 focus:outline-none ${className}`}
+      className={`text-secondary-200 placeholder:text-secondary-200 selection:bg-[#B3BAFF]/30 focus:outline-none ${className}`}
     />
   );
 };
 
 const textAreaVariant = cva(
-  "text-body-1-medium text-secondary-white placeholder:text-secondary-200 bg-transparent selection:bg-[#B3BAFF]/30 focus:outline-none",
+  "placeholder:text-secondary-200 bg-transparent selection:bg-[#B3BAFF]/30 focus:outline-none",
   {
     variants: {
       resize: {
@@ -90,7 +94,7 @@ const textAreaVariant = cva(
   }
 );
 
-const TextArea: React.FC<
+export const TextArea: React.FC<
   React.TextareaHTMLAttributes<HTMLTextAreaElement> &
     VariantProps<typeof textAreaVariant>
 > = ({ className = "", resize, ...props }) => {
@@ -108,9 +112,3 @@ const TextArea: React.FC<
     />
   );
 };
-
-export const TextField = Object.assign(TextFieldContainer, {
-  Label,
-  Input,
-  TextArea
-});
