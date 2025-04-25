@@ -1,4 +1,4 @@
-import { NovelStatsCard } from "@/entities/novel/ui";
+import { NovelStatsCards } from "@/entities/novel/ui";
 
 import { ProfileIcon } from "@/shared/assets";
 import * as Tab from "@/shared/ui/Tab";
@@ -20,7 +20,7 @@ export const MainPage = () => {
 
       {/* 전체 메인 메타 정보 */}
       <div className="px-10">
-        <NovelStatsCard
+        <NovelStatsCards
           novelsCount={12}
           manuscriptCount={256}
           commentsCount={78}

@@ -4,7 +4,7 @@ import { ManuscriptGraphic, NovelGraphic } from "@/shared/assets";
 import { CommentGraphic } from "@/shared/assets/CommentGraphic";
 import { GenreGraphic } from "@/shared/assets/GenreGraphic";
 
-interface NovelStatsCardProps {
+interface NovelStatsCardsProps {
   novelsCount: number;
   manuscriptCount: number;
   commentsCount: number;
@@ -12,7 +12,7 @@ interface NovelStatsCardProps {
 }
 
 // TODO 반응형 디자인 추가 하기
-export const NovelStatsCard: React.FC<NovelStatsCardProps> = ({
+export const NovelStatsCards: React.FC<NovelStatsCardsProps> = ({
   novelsCount,
   manuscriptCount,
   commentsCount,
@@ -20,22 +20,42 @@ export const NovelStatsCard: React.FC<NovelStatsCardProps> = ({
 }) => {
   return (
     <ul className="bg-secondary-900 flex items-center gap-[1.875rem] rounded-[1.25rem] px-[2.875rem] py-5">
-      <StatisticsItem title="연재물" graphic={<NovelGraphic />}>
+      <StatisticsItem
+        title="연재물"
+        graphic={
+          <NovelGraphic className="h-9 w-9 lg:h-[2.625rem] lg:w-[2.625rem]" />
+        }
+      >
         총 <span>{novelsCount}</span>개
       </StatisticsItem>
       <VerticalDivider />
 
-      <StatisticsItem title="원고지" graphic={<ManuscriptGraphic />}>
+      <StatisticsItem
+        title="원고지"
+        graphic={
+          <ManuscriptGraphic className="h-9 w-9 lg:h-[2.625rem] lg:w-[2.625rem]" />
+        }
+      >
         총 <span>{manuscriptCount}</span>개
       </StatisticsItem>
       <VerticalDivider />
 
-      <StatisticsItem title="발행" graphic={<CommentGraphic />}>
+      <StatisticsItem
+        title="발행"
+        graphic={
+          <CommentGraphic className="h-9 w-9 lg:h-[2.625rem] lg:w-[2.625rem]" />
+        }
+      >
         총 <span>{commentsCount}</span>회
       </StatisticsItem>
       <VerticalDivider />
 
-      <StatisticsItem title="자주 만든 장르" graphic={<GenreGraphic />}>
+      <StatisticsItem
+        title="자주 만든 장르"
+        graphic={
+          <GenreGraphic className="h-9 w-9 lg:h-[2.625rem] lg:w-[2.625rem]" />
+        }
+      >
         <span>{frequentGenre}</span>
       </StatisticsItem>
     </ul>
@@ -54,7 +74,7 @@ const StatisticsItem: React.FC<StatisticsItemProps> = ({
   graphic
 }) => {
   return (
-    <li className="flex flex-grow items-center gap-4">
+    <li className="flex flex-grow flex-col items-center gap-4 lg:flex-row">
       {graphic}
       <div className="flex flex-col gap-2.5">
         <p className="text-caption-2-regular text-secondary-100">{title}</p>
@@ -65,5 +85,8 @@ const StatisticsItem: React.FC<StatisticsItemProps> = ({
 };
 
 const VerticalDivider = () => (
-  <div className="bg-secondary-400 h-8 w-[0.0625rem]" aria-hidden />
+  <div
+    className="bg-secondary-400 h-20 w-[0.0625rem] self-center lg:h-8"
+    aria-hidden
+  />
 );
