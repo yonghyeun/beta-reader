@@ -2,7 +2,7 @@ import { Button } from "./Button";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof Button> = {
-  title: "Shared/Button",
+  title: "Shared/Button/Button",
   component: Button,
   argTypes: {
     variant: {
@@ -16,6 +16,14 @@ const meta: Meta<typeof Button> = {
     rounded: {
       control: { type: "radio" },
       options: ["md", "full"]
+    },
+    disabled: {
+      control: "boolean",
+      description: "버튼의 비활성화 상태",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" }
+      }
     }
   }
 };
