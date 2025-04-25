@@ -1,11 +1,16 @@
 import * as TextField from "@/shared/ui/TextField";
 
 import { NOVEL_SETTING_FORM, NOVEL_SETTING_FORM_TEXT } from "../config";
-import { useNovelSettingFormStore } from "../lib";
+import {
+  useNovelSettingFormStore,
+  useNovelSettingFormStoreContext
+} from "../lib";
 
 export const NovelTitleInput = () => {
-  const defaultValue = useNovelSettingFormStore.getState().title;
   const setTitle = useNovelSettingFormStore((state) => state.setTitle);
+
+  const store = useNovelSettingFormStoreContext();
+  const defaultValue = store.getState().title;
 
   return (
     <TextField.Container className="flex flex-col gap-4">

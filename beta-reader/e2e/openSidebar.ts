@@ -12,4 +12,10 @@ export const openSidebar = async (page: Page) => {
 
   // 버튼을 클릭하여 사이드바를 엽니다.
   await menuButton.click();
+
+  // 사이드바가 열렸는지 확인합니다 (닫기 버튼이 표시되는지 확인)
+  const closeButton = page.locator(
+    `button[aria-label="${MAIN_LAYOUT_ARIA_LABEL.CLOSE_SIDEBAR}"]`
+  );
+  await expect(closeButton).toBeVisible();
 };
