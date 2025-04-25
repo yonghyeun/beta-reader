@@ -43,7 +43,7 @@ export const Sidebar = () => {
       <div className="relative h-full w-full overflow-hidden">
         {/* 열린 상태 (큰 사이드바) */}
         {isOpen && (
-          <nav className="fade-in-animation flex flex-col gap-4">
+          <nav className="fade-in-animation-300 flex flex-col gap-4">
             <SidebarLogo />
             <OpenSidebarHeader onClose={toggle("close")} />
             {/* 연재물 리스트 list bar */}
@@ -84,7 +84,7 @@ const SidebarLogo = () => (
     as="link"
     href={ROUTES.MAIN()}
     aria-label="홈으로 이동"
-    className="fade-in-animation mx-auto h-[4.25rem] px-3 py-2.5"
+    className="fade-in-animation-100 mx-auto h-[4.25rem] px-3 py-2.5"
   >
     <MainLogo />
   </TextButton>

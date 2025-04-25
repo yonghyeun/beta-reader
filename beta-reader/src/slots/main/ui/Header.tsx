@@ -36,7 +36,7 @@ export const Header = () => {
         <Link
           href={ROUTES.MAIN()}
           aria-label="홈으로 이동"
-          className="fade-in-animation"
+          className="fade-in-animation-100"
         >
           <MainLogo />
         </Link>
