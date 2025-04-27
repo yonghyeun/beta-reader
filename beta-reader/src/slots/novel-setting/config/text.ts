@@ -2,7 +2,7 @@ export const NOVEL_SETTING_TEXT = {
   /**
    * NOVEL_SETTING main title
    */
-  TITLE: "연재물 추가",
+  TITLE: "연재물 등록",
   /**
    * NOVEL_SETTING main description
    */

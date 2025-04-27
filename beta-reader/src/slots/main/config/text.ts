@@ -8,9 +8,9 @@ export const MAIN_LAYOUT_TEXT = {
    */
   CLOSE_SIDEBAR: "접기",
   /**
-   * 연재물 추가
+   * 연재물 등록
    */
-  ADD_SERIAL: "연재물 추가"
+  ADD_SERIAL: "연재물 등록"
 } as const;
 
 export const MAIN_LAYOUT_ARIA_LABEL = {
