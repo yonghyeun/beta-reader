@@ -20,37 +20,37 @@ export const NovelGraphic = (props: SVGProps<SVGSVGElement>) => (
     <path
       d="M23.9844 2.76761C22.7069 3.42902 21.6669 4.47825 21 5.76614V34.5442C21 34.9768 21.5623 35.1452 21.8 34.7837C22.8289 33.219 23.3976 32.39 24.1313 31.7774C24.8354 31.1894 25.6451 30.7488 26.5172 30.4798C27.5002 30.1765 28.5856 30.1765 30.7469 30.1765H30.7609H37.3063C38.5981 30.1765 39.2452 30.1758 39.7391 29.9201C40.1738 29.695 40.5253 29.3347 40.7469 28.893C40.9987 28.3907 41 27.7344 41 26.4197V5.75676C41 4.44194 40.9987 3.78419 40.7469 3.28196C40.5253 2.84015 40.1724 2.4815 39.7375 2.25639C39.2432 2.00063 38.5957 2 37.3016 2H31.2922H31.2908C27.4092 2 25.4672 2 23.9844 2.76761Z"
       fill="#8A94FF"
-      fill-opacity="0.6"
+      fillOpacity="0.6"
     />
     <path
       d="M5 8H11.3332C13.4364 8 15.6187 8.05941 17.5 8.99994V8.99994"
       stroke="#2A38C1"
-      stroke-width="2"
-      stroke-linecap="round"
+      strokeWidth="2"
+      strokeLinecap="round"
     />
     <path
       d="M5 12H11.3332C13.4364 12 15.6187 12.0594 17.5 12.9999V12.9999"
       stroke="#2A38C1"
-      stroke-width="2"
-      stroke-linecap="round"
+      strokeWidth="2"
+      strokeLinecap="round"
     />
     <path
       d="M5 16H11.3332C13.4364 16 15.6187 16.0594 17.5 16.9999V16.9999"
       stroke="#2A38C1"
-      stroke-width="2"
-      stroke-linecap="round"
+      strokeWidth="2"
+      strokeLinecap="round"
     />
     <path
       d="M37.5 8H31.1668C29.0636 8 26.8813 8.05941 25 8.99994V8.99994"
       stroke="#2A38C1"
-      stroke-width="2"
-      stroke-linecap="round"
+      strokeWidth="2"
+      strokeLinecap="round"
     />
     <path
       d="M37.5 12H31.1668C29.0636 12 26.8813 12.0594 25 12.9999V12.9999"
       stroke="#2A38C1"
-      stroke-width="2"
-      stroke-linecap="round"
+      strokeWidth="2"
+      strokeLinecap="round"
     />
   </svg>
 );
