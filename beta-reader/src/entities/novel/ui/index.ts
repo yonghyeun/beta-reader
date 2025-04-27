@@ -1,2 +1,2 @@
-export * from "./NovelStatsCard";
+export * from "./NovelStatsCards";
 export * from "./NovelMetaCard";

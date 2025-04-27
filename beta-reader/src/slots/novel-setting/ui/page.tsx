@@ -1,26 +1,19 @@
 "use client";
 
-import { BackwardButton } from "@/shared/ui";
+import { BackwardNavigationbar } from "@/shared/ui/BackwardNavigationbar";
 
 import { NOVEL_SETTING_TEXT } from "../config";
-import { NovelSettingForm } from "@/feature/novel/ui/NovelSettingForm";
+import { NovelSettingForm } from "@/feature/novel/ui";
 
 export const NovelSettingPage = () => {
   return (
-    <section className="flex flex-col gap-10 pb-10">
-      <NovelSettingNavigationbar />
+    <section className="relative flex flex-col gap-10 pb-10">
+      <BackwardNavigationbar>
+        <h2 className="text-title-4-bold">{NOVEL_SETTING_TEXT.TITLE}</h2>
+      </BackwardNavigationbar>
       <NovelSettingHeader />
       <NovelSettingForm />
     </section>
-  );
-};
-
-const NovelSettingNavigationbar = () => {
-  return (
-    <nav className="border-b-secondary-600 flex gap-5 border-b px-10 py-5">
-      <BackwardButton width="2rem" height="2rem" />
-      <h2 className="text-title-4-bold">{NOVEL_SETTING_TEXT.TITLE}</h2>
-    </nav>
   );
 };
 

@@ -119,6 +119,22 @@ export const AsLinkWithIcon: Story = {
   )
 };
 
+export const Disabled: Story = {
+  args: {
+    children: "비활성화 버튼",
+    disabled: true
+  }
+};
+
+export const DisabledWithIcon: Story = {
+  render: () => (
+    <TextButton disabled>
+      <span>비활성화 아이콘 버튼</span>
+      <EditPencilIcon width="1rem" height="1rem" />
+    </TextButton>
+  )
+};
+
 export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-col gap-6">
@@ -157,6 +173,17 @@ export const AllVariants: Story = {
           <TextButton as="link" href="/example-link">
             <span>더보기</span>
             <RightSmallIcon width="1rem" height="1rem" />
+          </TextButton>
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <p className="text-secondary-300 mb-2 text-sm">비활성화 상태</p>
+        <div className="flex flex-wrap items-center gap-4">
+          <TextButton disabled>비활성화 버튼</TextButton>
+          <TextButton disabled>
+            <span>비활성화 아이콘 버튼</span>
+            <TrashIcon width="1rem" height="1rem" />
           </TextButton>
         </div>
       </div>

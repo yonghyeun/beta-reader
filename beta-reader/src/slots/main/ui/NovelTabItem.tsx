@@ -29,7 +29,7 @@ export const NovelTabItem: React.FC<NovelTabItemProps> = ({ className }) => {
         모든 연재물 <span className="text-primary-200">(3)</span>
       </h3>
       <ul
-        className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2"
+        className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-2"
         role="list"
         aria-label="모든 연재물 목록"
       >

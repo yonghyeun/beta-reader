@@ -52,7 +52,9 @@
   --font-size-10: 0.625rem; /* 10px */
 
   /* 애니메이션 */
-  --transition-opacity-duration: 100ms;
+  --transition-opacity-duration-100: 100ms;
+  --transition-opacity-duration-300: 300ms;
+
   --transition-shake-duration: 300ms;
 }
 
@@ -217,8 +219,12 @@ html {
     }
   }
 
-  .fade-in-animation {
-    animation: fadeIn var(--transition-opacity-duration) ease-in-out;
+  .fade-in-animation-100 {
+    animation: fadeIn var(--transition-opacity-duration-100) ease-in-out;
+  }
+
+  .fade-in-animation-300 {
+    animation: fadeIn var(--transition-opacity-duration-300) ease-in-out;
   }
 
   @keyframes fadeOut {
@@ -230,8 +236,8 @@ html {
     }
   }
 
-  .fade-out-animation {
-    animation: fadeOut var(--transition-opacity-duration) ease-in-out;
+  .fade-out-animation-100 {
+    animation: fadeOut var(--transition-opacity-duration-100) ease-in-out;
   }
 
   @keyframes shake {

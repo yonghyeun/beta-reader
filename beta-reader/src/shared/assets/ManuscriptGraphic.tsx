@@ -20,25 +20,25 @@ export const ManuscriptGraphic = (props: SVGProps<SVGSVGElement>) => (
     <path
       d="M7.96021 10.9481H23.8327"
       stroke="#2A38C1"
-      stroke-width="2"
-      stroke-linecap="round"
+      strokeWidth="2"
+      strokeLinecap="round"
     />
     <path
       d="M7.96021 16.9035H23.8327"
       stroke="#2A38C1"
-      stroke-width="2"
-      stroke-linecap="round"
+      strokeWidth="2"
+      strokeLinecap="round"
     />
     <path
       d="M7.96021 22.8589H15.8964"
       stroke="#2A38C1"
-      stroke-width="2"
-      stroke-linecap="round"
+      strokeWidth="2"
+      strokeLinecap="round"
     />
     <path
       d="M29 27H21C19.8954 27 19 27.8954 19 29V38L29 27Z"
       fill="#B3BAFF"
-      fill-opacity="0.5"
+      fillOpacity="0.5"
     />
   </svg>
 );

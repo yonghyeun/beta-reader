@@ -43,13 +43,13 @@ export const Sidebar = () => {
       <div className="relative h-full w-full overflow-hidden">
         {/* 열린 상태 (큰 사이드바) */}
         {isOpen && (
-          <nav className="fade-in-animation flex flex-col gap-4">
+          <nav className="fade-in-animation-300">
             <SidebarLogo />
             <OpenSidebarHeader onClose={toggle("close")} />
             {/* 연재물 리스트 list bar */}
             {/* TODO : 라우팅 기능 추가 , isActive props 추가 */}
             <List.Container
-              className="px-2.5"
+              className="px-2.5 py-3.5"
               role="list"
               aria-label="연재물 목록"
             >
@@ -84,7 +84,7 @@ const SidebarLogo = () => (
     as="link"
     href={ROUTES.MAIN()}
     aria-label="홈으로 이동"
-    className="fade-in-animation mx-auto h-[4.25rem] px-3 py-2.5"
+    className="fade-in-animation-100 flex h-[3.25rem] w-full items-center justify-center"
   >
     <MainLogo />
   </TextButton>
@@ -97,7 +97,7 @@ interface SidebarHeaderProps {
 const OpenSidebarHeader: React.FC<SidebarHeaderProps> = ({ onClose }) => {
   return (
     <header
-      className="text-caption-1-regular border-secondary-600 flex justify-end gap-1 border-b px-2.5 pb-4.5"
+      className="text-caption-1-regular border-secondary-600 flex h-[4.6625rem] items-center justify-end gap-1 border-b px-2.5"
       role="toolbar"
       aria-label="사이드바 컨트롤"
     >

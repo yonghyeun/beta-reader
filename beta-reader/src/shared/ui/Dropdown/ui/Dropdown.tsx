@@ -134,7 +134,7 @@ const Items: React.FC<ItemsProps> = ({
     <ul
       id={dropdownId}
       role="listbox"
-      className={`text-secondary-white bg-secondary-800 border-secondary-500 absolute ${positionClasses} flex min-w-72 flex-col gap-1 rounded-[1.25rem] border p-5 ${className || ""} fade-in-animation`}
+      className={`text-secondary-white bg-secondary-800 border-secondary-500 absolute ${positionClasses} flex min-w-72 flex-col gap-1 rounded-[1.25rem] border p-5 ${className || ""} fade-in-animation-100`}
     >
       {children}
     </ul>

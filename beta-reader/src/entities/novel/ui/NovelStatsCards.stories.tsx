@@ -1,9 +1,9 @@
-import { NovelStatsCard } from "./NovelStatsCard";
+import { NovelStatsCards } from "./NovelStatsCards";
 import type { Meta, StoryObj } from "@storybook/react";
 
-const meta: Meta<typeof NovelStatsCard> = {
-  title: "entities/Novel/NovelStatsCard",
-  component: NovelStatsCard,
+const meta: Meta<typeof NovelStatsCards> = {
+  title: "entities/Novel/NovelStatsCards",
+  component: NovelStatsCards,
   parameters: {
     layout: "centered"
   },
@@ -11,7 +11,7 @@ const meta: Meta<typeof NovelStatsCard> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof NovelStatsCard>;
+type Story = StoryObj<typeof NovelStatsCards>;
 
 export const Default: Story = {
   args: {
@@ -31,7 +31,7 @@ export const WithHighCounts: Story = {
   },
   render: (args) => (
     <div className="w-[70rem]">
-      <NovelStatsCard {...args} />
+      <NovelStatsCards {...args} />
     </div>
   )
 };

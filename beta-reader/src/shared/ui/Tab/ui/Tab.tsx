@@ -62,7 +62,7 @@ export const Header: React.FC<TabHeaderProps> = ({
               {tab}
             </button>
             {withActiveLine && tab === selectedTab && (
-              <div className="bg-secondary-white fade-in-animation h-[0.125rem] w-full" />
+              <div className="bg-secondary-white fade-in-animation-100 h-[0.125rem] w-full" />
             )}
           </li>
         ))}

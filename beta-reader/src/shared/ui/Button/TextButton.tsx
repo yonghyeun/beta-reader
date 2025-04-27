@@ -22,7 +22,7 @@ interface LinkProps extends OriginalLinkProps {
 }
 
 const textButtonVariants = cva(
-  "text-primary-200 text-body-2-midium gap-0.5 hover:text-primary-100 inline-flex items-center rounded-lg hover:bg-[#FFFFFF1A]",
+  "text-primary-200 text-body-2-medium gap-0.5 hover:not-disabled:text-primary-100 inline-flex items-center rounded-lg hover:not-disabled:bg-[#FFFFFF1A] disabled:text-secondary-400",
   {
     variants: {
       size: {
